@@ -2,6 +2,10 @@ name: Download open-source toolbox source pack
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/toolbox-download.yml'
 
 permissions:
   contents: read
