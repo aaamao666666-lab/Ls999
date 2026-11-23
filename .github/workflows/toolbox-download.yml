@@ -1,0 +1,50 @@
+name: Download open-source toolbox source pack
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download selected upstream source repositories
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p toolbox-source-pack
+          fetch_repo() {
+            owner_repo="$1"
+            folder="$2"
+            branch="$3"
+            echo "Downloading $owner_repo ($branch)"
+            curl -fL --retry 3 "https://codeload.github.com/$owner_repo/zip/refs/heads/$branch" -o "/tmp/$folder.zip"
+            mkdir -p "toolbox-source-pack/$folder"
+            unzip -q "/tmp/$folder.zip" -d "/tmp/unpack-$folder"
+            shopt -s nullglob
+            entries=(/tmp/unpack-"$folder"/*)
+            if [ "${#entries[@]}" -eq 0 ]; then echo "Empty archive: $owner_repo"; exit 1; fi
+            cp -a "${entries[0]}"/. "toolbox-source-pack/$folder"/
+            rm -rf "/tmp/unpack-$folder" "/tmp/$folder.zip"
+          }
+          fetch_repo "KwaiVGI/LivePortrait" "LivePortrait" "main"
+          fetch_repo "OpenTalker/SadTalker" "SadTalker" "main"
+          fetch_repo "facefusion/facefusion" "FaceFusion" "master"
+          fetch_repo "abi/screenshot-to-code" "Screenshot-to-Code" "main"
+          fetch_repo "versatica/JsSIP" "JsSIP" "master"
+          fetch_repo "phaserjs/phaser" "Phaser" "master"
+          cat > toolbox-source-pack/README-DOWNLOAD.txt <<'EOF'
+          Source snapshots downloaded from upstream GitHub repositories.
+          Each folder retains the upstream LICENSE and project documentation.
+          Check licenses for code, models, datasets and assets separately before commercial use.
+          These are source snapshots only; dependencies, model weights and deployment are not included.
+          EOF
+      - name: Upload ZIP artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: open-source-toolbox-source-pack
+          path: toolbox-source-pack/
+          compression-level: 6
+          retention-days: 14
