@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "purpose": "Persistent reusable tool catalog; not a ChatGPT runtime installation",
+  "tools": [
+    {"id":"liveportrait","category":"digital-human","repository":"https://github.com/KwaiVGI/LivePortrait","code_license":"MIT","status":"catalogued","notes":"InsightFace assets have separate non-commercial terms unless replaced."},
+    {"id":"sadtalker","category":"digital-human","repository":"https://github.com/OpenTalker/SadTalker","code_license":"Apache-2.0","status":"catalogued","notes":"Check third-party model and asset licenses."},
+    {"id":"facefusion","category":"face-video","repository":"https://github.com/facefusion/facefusion","code_license":"OpenRAIL-AS","status":"catalogued","notes":"Model assets have individual licenses; not commercial-ready by default."},
+    {"id":"screenshot-to-code","category":"website-ui","repository":"https://github.com/abi/screenshot-to-code","code_license":"verify-upstream","status":"catalogued","notes":"Verify current license and any model/API costs before use."},
+    {"id":"jssip","category":"telephony-webrtc","repository":"https://github.com/versatica/JsSIP","code_license":"MIT","status":"catalogued","notes":"Requires SIP server and credentials."},
+    {"id":"coolify","category":"deployment","repository":"https://github.com/coollabsio/coolify","code_license":"verify-upstream","status":"catalogued","notes":"Requires a VPS; verify current license."},
+    {"id":"phaser","category":"game-framework","repository":"https://github.com/phaserjs/phaser","code_license":"MIT","status":"catalogued","notes":"2D browser game framework."},
+    {"id":"asterisk","category":"telephony-pbx","repository":"https://github.com/asterisk/asterisk","code_license":"GPL-2.0","status":"catalogued","notes":"Requires server administration and telecom configuration."}
+  ]
+}
