@@ -113,7 +113,11 @@ body{background:radial-gradient(ellipse at 50% -12%,#243a59 0,#101b2e 38%,#070d1
 .canada-history{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
 .canada-history span{background:#0b1729;border:1px solid #d5c49a33;border-radius:9px;padding:9px 2px;text-align:center;color:#e4d3ae;font-size:12px}
 .canada-disclaimer{font-size:10px;line-height:1.6;color:#8999b0;text-align:center;margin:12px 5px}
-</style></head><body><div class="app"><header class="top"><div class="brand"><span class="logo" aria-label="LS99">LS99</span><span>联盛娱乐</span></div><button class="support" onclick="toast('客服入口演示：尚未接入客服系统')">♧</button></header>
+</style>
+<style>
+#canadaApiStatus{margin:8px 13px;padding:10px;border:1px solid #d5c49a44;border-radius:10px;background:#101d31;color:#d8c69a;font-size:11px;line-height:1.5}#canadaPeriod,#canadaNiu,#canadaCountdown{margin:6px 0;color:#d9c99f;font-size:11px}#canadaHistory span{line-height:1.65;overflow-wrap:anywhere}
+</style>
+</head><body><div class="app"><header class="top"><div class="brand"><span class="logo" aria-label="LS99">LS99</span><span>联盛娱乐</span></div><button class="support" onclick="toast('客服入口演示：尚未接入客服系统')">♧</button></header>
 <main id="home" class="page active"><div class="hero"><div class="hero-kicker"><i></i> OFFICIAL ENTERTAINMENT CLUB</div><small>PREMIUM · ENTERTAINMENT</small><b>联盛娱乐 LS99</b><span>臻选体验 · 品质服务 · 精致娱乐空间</span><div class="hero-foot"><span>MEMBER EXCLUSIVE</span><span>EST. 2026　✦</span></div></div><div class="notice"><span><i class="notice-dot"></i> 平台公告与最新消息</span><b>查看详情　›</b></div><div class="login"><div class="avatar">●</div><div class="grow"><b>请您先登录</b><div class="muted">余额：登录后查看</div></div><div class="quick"><button onclick="modal('存款')">存款</button><button onclick="modal('取款')">取款</button></div></div><section class="section"><div class="title">热门精选</div><div class="grid" id="featured"></div></section><section class="section"><div class="title">游戏分类</div><div class="catgrid" id="homeCats"></div></section></main>
 <main id="games" class="page"><div class="subpage-head games-head"><div class="eyebrow">DISCOVER YOUR FAVORITES</div><h1>游戏大厅</h1><p>精选游戏 · 清晰分类 · 快速查找</p></div><div class="game-layout"><aside class="side" id="side"></aside><section class="panel"><input id="search" class="search" placeholder="搜索游戏名称" autocomplete="off"><div class="tabs"><button data-tab="hot" class="active">全部精选</button><button data-tab="recent">最近浏览</button><button data-tab="fav">我的收藏</button></div><div class="game-meta"><span id="gameCount">精选游戏</span><span>点击卡片查看详情</span></div><div class="grid game-grid" id="gameGrid"></div></section></div></main>
 <main id="baccarat" class="page"><div class="bac-top"><button onclick="go('games','真人')">‹ 返回游戏大厅</button><span>LIVE BACCARAT · 真人百家乐</span><button onclick="toast('已加入收藏')">♡</button></div><section class="dealer-stage"><img src="dealer-db.webp" alt="百家乐荷官"><div class="dealer-caption"><small>LIVE TABLE · 现场牌桌</small><h2>百家乐 · 贵宾厅</h2><p>独立荷官画面 · 蓝曜牌桌氛围</p></div></section><section class="table-panel"><div class="table-head"><span>PLAYER 闲</span><span>TIE 和</span><span>BANKER 庄</span></div><div class="bet-row"><button>闲 <b>1 : 1</b></button><button>和 <b>1 : 8</b></button><button>庄 <b>0.95 : 1</b></button></div><div class="chip-row"><button>10</button><button>50</button><button>100</button><button>500</button><button>1K</button></div><div class="roadmap"><b>牌路记录</b><div class="road-dots">🔴 🔵 🔴 🔴 🔵 🔵 🔴 🟢 🔵 🔴 🔵 🔴</div></div><button class="demo-action" onclick="modal('演示桌台','当前为界面演示，尚未连接真实游戏供应商、账户或投注系统。')">进入演示桌台</button></section></main>
@@ -144,25 +148,67 @@ const cats=[['热门','🔥'],['真人','🎲'],['电子','🎰'],['彩票','⑧
 </script>
 <script>
 (function(){
-let credit=10000,stake=10,choice='大',variant='加拿大28',history=[];
+const API='https://www.lspcpc28.com/api/pc28/list';
 const $=id=>document.getElementById(id);
-function updateCredit(){$('canadaCredit').textContent=credit.toLocaleString('en-US')}
-document.querySelectorAll('[data-variant]').forEach(b=>b.addEventListener('click',()=>{variant=b.dataset.variant;document.querySelectorAll('[data-variant]').forEach(x=>x.classList.toggle('active',x===b));$('canadaResult').textContent='当前模式：'+variant+'（免费模拟）'}));
-document.querySelectorAll('[data-choice]').forEach(b=>b.addEventListener('click',()=>{choice=b.dataset.choice;document.querySelectorAll('[data-choice]').forEach(x=>x.classList.toggle('active',x===b))}));
-document.querySelectorAll('[data-stake]').forEach(b=>b.addEventListener('click',()=>{stake=Number(b.dataset.stake);document.querySelectorAll('[data-stake]').forEach(x=>x.classList.toggle('active',x===b))}));
-$('canadaPlay').addEventListener('click',()=>{
- if(credit<stake){$('canadaResult').textContent='试玩积分不足';return}
- credit-=stake;
- const a=Math.floor(Math.random()*10),b=Math.floor(Math.random()*10),c=Math.floor(Math.random()*10),sum=a+b+c;
- const big=sum>=14,odd=sum%2===1;
- const win=(choice==='大'&&big)||(choice==='小'&&!big)||(choice==='单'&&odd)||(choice==='双'&&!odd);
- if(win)credit+=stake*2;
- $('c1').textContent=a;$('c2').textContent=b;$('c3').textContent=c;$('cSum').textContent=sum;
- $('canadaResult').textContent='和值 '+sum+' · '+(big?'大':'小')+' · '+(odd?'单':'双')+' · '+(win?'试玩命中 +'+(stake*2).toLocaleString():'未命中');
- history.unshift([a,b,c].join('')+' / '+sum);history=history.slice(0,10);
- $('canadaHistory').innerHTML=history.map(x=>'<span>'+x+'</span>').join('');
- updateCredit();
-});
-updateCredit();
+let latest=null,rows=[],timer=null,countdownTimer=null,secondsLeft=0,variant='加拿大28';
+const status=document.createElement('div');status.className='canada-result';status.id='canadaApiStatus';status.textContent='正在连接官方开奖数据…';
+$('canadaResult').before(status);
+const period=document.createElement('div');period.className='canada-result';period.id='canadaPeriod';$('canadaDraw')?.append(period);
+const niu=document.createElement('div');niu.className='canada-result';niu.id='canadaNiu';$('canadaResult').before(niu);
+const next=document.createElement('div');next.className='canada-result';next.id='canadaCountdown';$('canadaResult').before(next);
+document.querySelectorAll('[data-variant]').forEach(b=>b.addEventListener('click',()=>{
+ variant=b.dataset.variant;
+ document.querySelectorAll('[data-variant]').forEach(x=>x.classList.toggle('active',x===b));
+ $('canadaResult').textContent='当前玩法：'+variant+'；所有加拿大玩法共用同一期官方开奖结果';
+}));
+function parseNumbers(value){
+ const parts=String(value??'').match(/\d+/g)||[];
+ if(parts.length!==3||parts.some(x=>Number(x)>9))return null;
+ return parts.map(Number);
+}
+function renderDraw(d){
+ const nums=parseNumbers(d.openCode);
+ if(!nums)throw new Error('开奖号码格式不正确：'+String(d.openCode));
+ const sum=nums.reduce((a,b)=>a+b,0);
+ ['c1','c2','c3'].forEach((id,i)=>$(id).textContent=nums[i]);
+ $('cSum').textContent=sum;
+ $('canadaPeriod').textContent='第 '+d.lotNumber+' 期 · 和值 '+(d.lotResultNo??sum);
+ $('canadaResult').textContent='官方开奖结果：'+nums.join(' + ')+' = '+sum+' · '+(sum>=14?'大':'小')+' · '+(sum%2?'单':'双');
+ $('canadaNiu').textContent='牛牛结果：'+[d.lotResultOneNo,d.lotResultTwoNo,d.lotResultThreeNo].filter(Boolean).join(' / ');
+}
+function renderHistory(){
+ $('canadaHistory').innerHTML=rows.slice(0,8).map(d=>{
+  const ns=parseNumbers(d.openCode);if(!ns)return '';
+  return '<span><b>'+String(d.lotNumber??'')+'</b><br>'+ns.join('+')+'<br>'+ns.reduce((a,b)=>a+b,0)+'</span>';
+ }).join('')||'<span>暂无历史记录</span>';
+}
+function renderCountdown(){
+ $('canadaCountdown').textContent=secondsLeft>0?'距离下一期开奖：'+String(Math.floor(secondsLeft/60)).padStart(2,'0')+':'+String(secondsLeft%60).padStart(2,'0'):'等待下一期开奖时间';
+ if(secondsLeft>0)secondsLeft--;
+}
+async function loadDraw(){
+ try{
+  const res=await fetch(API,{cache:'no-store'});
+  if(!res.ok)throw new Error('HTTP '+res.status);
+  const json=await res.json(),list=json?.data?.list;
+  if(!json?.success||!Array.isArray(list)||!list.length)throw new Error('接口返回格式异常');
+  rows=list;latest=list[0];renderDraw(latest);renderHistory();
+  const info=json?.data?.nextDrawInfo;
+  if(info?.nextDrawTime&&info?.currentBJTime){
+   const now=new Date('1970-01-01T'+info.currentBJTime.slice(11)+'Z').getTime();
+   const target=new Date('1970-01-01T'+info.nextDrawTime+'Z').getTime();
+   secondsLeft=Math.max(0,Math.floor((target-now)/1000));
+   if(countdownTimer)clearInterval(countdownTimer);
+   renderCountdown();countdownTimer=setInterval(renderCountdown,1000);
+  }
+  status.textContent='实时开奖已连接 · 数据源 lspcpc28.com · 每15秒更新';
+ }catch(err){
+  status.textContent='官方开奖暂不可用：'+err.message+'。不会用随机号码冒充真实开奖。';
+  console.warn('LS999 Canada draw API:',err);
+ }
+}
+$('canadaPlay').textContent='刷新官方开奖结果';
+$('canadaPlay').addEventListener('click',loadDraw);
+loadDraw();timer=setInterval(loadDraw,15000);
 })();
 </script></body></html>
