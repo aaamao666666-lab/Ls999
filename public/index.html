@@ -117,14 +117,31 @@ body{background:radial-gradient(ellipse at 50% -12%,#243a59 0,#101b2e 38%,#070d1
 <style>
 #canadaApiStatus{margin:8px 13px;padding:10px;border:1px solid #d5c49a44;border-radius:10px;background:#101d31;color:#d8c69a;font-size:11px;line-height:1.5}#canadaPeriod,#canadaNiu,#canadaCountdown{margin:6px 0;color:#d9c99f;font-size:11px}#canadaHistory span{line-height:1.65;overflow-wrap:anywhere}
 </style>
+
+<style>
+/* LS999 polish */
+.page{animation:pageIn .28s ease}
+@keyframes pageIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.page{animation:none}}
+.notice{cursor:pointer;transition:transform .15s,border-color .15s}
+.notice:active{transform:scale(.985)}
+.activity-card{cursor:pointer;transition:transform .18s,box-shadow .18s}
+.activity-card:active{transform:scale(.985)}
+.tile img.broken{object-fit:contain;background:linear-gradient(145deg,#1b2d46,#0c1728);padding:18%}
+.chip-row button.active,.bet-row button.active{outline:2px solid #e8d7b1;box-shadow:0 0 0 2px #d8c39a55,inset 0 0 14px #e8d7b122}
+.canada-meta{margin:6px 0;color:#d9c99f;font-size:11px;line-height:1.55}
+.canada-match{color:#9fd6b0}.canada-miss{color:#e0b0a4}
+.external-hint{display:inline-block;margin-left:4px;font-size:9px;color:#d8c69a;border:1px solid #d5c49a55;border-radius:8px;padding:1px 5px;vertical-align:middle}
+.toast{max-width:min(88vw,360px);text-align:center}
+</style>
 </head><body><div class="app"><header class="top"><div class="brand"><span class="logo" aria-label="LS99">LS99</span><span>联盛娱乐</span></div><button class="support" onclick="toast('客服入口演示：尚未接入客服系统')">♧</button></header>
-<main id="home" class="page active"><div class="hero"><div class="hero-kicker"><i></i> OFFICIAL ENTERTAINMENT CLUB</div><small>PREMIUM · ENTERTAINMENT</small><b>联盛娱乐 LS99</b><span>臻选体验 · 品质服务 · 精致娱乐空间</span><div class="hero-foot"><span>MEMBER EXCLUSIVE</span><span>EST. 2026　✦</span></div></div><div class="notice"><span><i class="notice-dot"></i> 平台公告与最新消息</span><b>查看详情　›</b></div><div class="login"><div class="avatar">●</div><div class="grow"><b>请您先登录</b><div class="muted">余额：登录后查看</div></div><div class="quick"><button onclick="modal('存款')">存款</button><button onclick="modal('取款')">取款</button></div></div><section class="section"><div class="title">热门精选</div><div class="grid" id="featured"></div></section><section class="section"><div class="title">游戏分类</div><div class="catgrid" id="homeCats"></div></section></main>
+<main id="home" class="page active"><div class="hero"><div class="hero-kicker"><i></i> OFFICIAL ENTERTAINMENT CLUB</div><small>PREMIUM · ENTERTAINMENT</small><b>联盛娱乐 LS99</b><span>臻选体验 · 品质服务 · 精致娱乐空间</span><div class="hero-foot"><span>MEMBER EXCLUSIVE</span><span>EST. 2026　✦</span></div></div><div class="notice" role="button" tabindex="0" onclick="modal('平台公告','欢迎体验 LS99 联盛娱乐手机版。收藏、最近浏览已支持本地保存；加拿大玩法可查看官方开奖数据；麻将胡了2 可直达独立试玩页。')"><span><i class="notice-dot"></i> 平台公告与最新消息</span><b>查看详情　›</b></div><div class="login"><div class="avatar">●</div><div class="grow"><b>请您先登录</b><div class="muted">余额：登录后查看</div></div><div class="quick"><button onclick="modal('存款')">存款</button><button onclick="modal('取款')">取款</button></div></div><section class="section"><div class="title">热门精选</div><div class="grid" id="featured"></div></section><section class="section"><div class="title">游戏分类</div><div class="catgrid" id="homeCats"></div></section></main>
 <main id="games" class="page"><div class="subpage-head games-head"><div class="eyebrow">DISCOVER YOUR FAVORITES</div><h1>游戏大厅</h1><p>精选游戏 · 清晰分类 · 快速查找</p></div><div class="game-layout"><aside class="side" id="side"></aside><section class="panel"><input id="search" class="search" placeholder="搜索游戏名称" autocomplete="off"><div class="tabs"><button data-tab="hot" class="active">全部精选</button><button data-tab="recent">最近浏览</button><button data-tab="fav">我的收藏</button></div><div class="game-meta"><span id="gameCount">精选游戏</span><span>点击卡片查看详情</span></div><div class="grid game-grid" id="gameGrid"></div></section></div></main>
 <main id="baccarat" class="page"><div class="bac-top"><button onclick="go('games','真人')">‹ 返回游戏大厅</button><span>LIVE BACCARAT · 真人百家乐</span><button onclick="toast('已加入收藏')">♡</button></div><section class="dealer-stage"><img src="dealer-db.webp" alt="百家乐荷官"><div class="dealer-caption"><small>LIVE TABLE · 现场牌桌</small><h2>百家乐 · 贵宾厅</h2><p>独立荷官画面 · 蓝曜牌桌氛围</p></div></section><section class="table-panel"><div class="table-head"><span>PLAYER 闲</span><span>TIE 和</span><span>BANKER 庄</span></div><div class="bet-row"><button>闲 <b>1 : 1</b></button><button>和 <b>1 : 8</b></button><button>庄 <b>0.95 : 1</b></button></div><div class="chip-row"><button>10</button><button>50</button><button>100</button><button>500</button><button>1K</button></div><div class="roadmap"><b>牌路记录</b><div class="road-dots">🔴 🔵 🔴 🔴 🔵 🔵 🔴 🟢 🔵 🔴 🔵 🔴</div></div><button class="demo-action" onclick="modal('演示桌台','当前为界面演示，尚未连接真实游戏供应商、账户或投注系统。')">进入演示桌台</button></section></main>
 <main id="canada" class="page">
 <div class="canada-wrap">
 <div class="canada-head"><button onclick="go('games','彩票')">‹ 返回游戏大厅</button><span class="canada-sub">CANADA LOTTERY · 试玩模式</span></div>
-<h1 class="canada-title">加拿大游戏</h1><div class="canada-sub">三位数字开奖 · 选择玩法 · 模拟开奖</div>
+<h1 class="canada-title">加拿大游戏</h1><div class="canada-sub">官方开奖展示 · 玩法对照 · 非真实下注</div>
 <div class="canada-wallet"><div><div class="canada-sub">试玩积分（非现金）</div><b id="canadaCredit">10,000</b></div><span class="canada-sub">DEMO POINTS</span></div>
 <div class="canada-variants">
 <button class="active" data-variant="加拿大28">加拿大28</button>
@@ -135,11 +152,11 @@ body{background:radial-gradient(ellipse at 50% -12%,#243a59 0,#101b2e 38%,#070d1
 <section class="canada-card"><div class="canada-label">选择玩法</div><div class="canada-options" id="canadaChoices">
 <button class="active" data-choice="大">大</button><button data-choice="小">小</button><button data-choice="单">单</button><button data-choice="双">双</button>
 </div></section>
-<section class="canada-card"><div class="canada-label">试玩积分</div><div class="canada-stakes"><button data-stake="10" class="active">10</button><button data-stake="50">50</button><button data-stake="100">100</button><button data-stake="500">500</button></div></section>
-<section class="canada-card"><div class="canada-label">最近模拟开奖</div><div class="canada-draw"><span class="canada-ball" id="c1">?</span><span class="canada-ball" id="c2">?</span><span class="canada-ball" id="c3">?</span><span class="canada-sum" id="cSum">—</span></div><div class="canada-result" id="canadaResult">选择玩法后，点击下方按钮模拟开奖</div><button class="canada-play" id="canadaPlay">确认试玩 · 模拟开奖</button></section>
-<section class="canada-card"><div class="canada-label">模拟开奖记录</div><div class="canada-history" id="canadaHistory"><span>等待开奖</span></div></section>
-<div class="canada-disclaimer">此处为免费模拟试玩，积分不具现金价值，不支持充值、提现或真实下注。模拟数字不是官方开奖结果。</div>
-</div></main><main id="activity" class="page"><div class="subpage-head"><div class="eyebrow">MEMBER PRIVILEGES</div><h1>活动中心</h1><p>精选会员礼遇与平台最新资讯</p></div><div class="activity-list"><article class="activity-card activity-new"><div class="activity-copy"><small>WELCOME PRIVILEGE</small><b>新人专享礼遇</b><span>开启专属会员体验 · 活动详情敬请留意官方公告</span><em>了解详情　›</em></div><div class="activity-art">01</div></article><article class="activity-card activity-daily"><div class="activity-copy"><small>DAILY EXCLUSIVE</small><b>每日专属礼遇</b><span>每日活动资讯与会员权益展示</span><em>查看活动　›</em></div><div class="activity-art">02</div></article><article class="activity-card activity-vip"><div class="activity-copy"><small>VIP CLUB</small><b>尊享会员计划</b><span>会员等级与专属服务介绍</span><em>探索权益　›</em></div><div class="activity-art">VIP</div></article><div class="activity-note">活动内容与规则以平台正式公告为准</div></div></main>
+<section class="canada-card"><div class="canada-label">演示筹码（仅展示，不扣分）</div><div class="canada-stakes"><button data-stake="10" class="active">10</button><button data-stake="50">50</button><button data-stake="100">100</button><button data-stake="500">500</button></div></section>
+<section class="canada-card"><div class="canada-label">最新官方开奖</div><div class="canada-draw" id="canadaDraw"><span class="canada-ball" id="c1">?</span><span class="canada-ball" id="c2">?</span><span class="canada-ball" id="c3">?</span><span class="canada-sum" id="cSum">—</span></div><div class="canada-result" id="canadaResult">选择大小单双后，可对照官方开奖结果</div><button class="canada-play" id="canadaPlay">刷新官方开奖结果</button></section>
+<section class="canada-card"><div class="canada-label">近期官方开奖</div><div class="canada-history" id="canadaHistory"><span>等待开奖</span></div></section>
+<div class="canada-disclaimer">本页展示官方开奖数据，仅供界面演示与玩法对照。积分不具现金价值，不支持充值、提现或真实下注。</div>
+</div></main><main id="activity" class="page"><div class="subpage-head"><div class="eyebrow">MEMBER PRIVILEGES</div><h1>活动中心</h1><p>精选会员礼遇与平台最新资讯</p></div><div class="activity-list"><article class="activity-card activity-new" onclick="modal('新人专享礼遇','活动规则与领取方式将以平台正式公告为准。当前为前端展示卡片。')"><div class="activity-copy"><small>WELCOME PRIVILEGE</small><b>新人专享礼遇</b><span>开启专属会员体验 · 活动详情敬请留意官方公告</span><em>了解详情　›</em></div><div class="activity-art">01</div></article><article class="activity-card activity-daily" onclick="modal('每日专属礼遇','每日活动资讯展示位。正式活动上线后将在此同步。')"><div class="activity-copy"><small>DAILY EXCLUSIVE</small><b>每日专属礼遇</b><span>每日活动资讯与会员权益展示</span><em>查看活动　›</em></div><div class="activity-art">02</div></article><article class="activity-card activity-vip" onclick="modal('尊享会员计划','会员等级与专属服务介绍展示位。登录体系接入后可查看个人权益。')"><div class="activity-copy"><small>VIP CLUB</small><b>尊享会员计划</b><span>会员等级与专属服务介绍</span><em>探索权益　›</em></div><div class="activity-art">VIP</div></article><div class="activity-note">活动内容与规则以平台正式公告为准</div></div></main>
 <main id="mine" class="page"><div class="mine-banner"><div class="mine-topline"><span>MEMBER CENTER</span><span>LS99　✦</span></div><div class="mine-user"><div class="avatar">♙</div><div><h2>欢迎来到联盛</h2><p>登录后开启专属会员空间</p></div></div><button class="mine-login" onclick="modal('登录 / 注册')">登录 / 注册　›</button></div><section class="mine-wallet"><div class="wallet-label">我的账户 <span>ACCOUNT OVERVIEW</span></div><div class="wallet-value">•••••• <small>登录后查看</small></div><div class="wallet-actions"><button onclick="modal('存款')">存款</button><button onclick="modal('取款')">取款</button><button onclick="modal('转账')">转账</button><button onclick="modal('记录')">交易记录</button></div></section><section class="mine-menu"><div class="mine-menu-title">账户服务 <span>ACCOUNT SERVICES</span></div><div class="menu"><button onclick="modal('个人资料')"><i>♙</i><span>个人资料<small>PROFILE</small></span><b>›</b></button><button onclick="modal('账户安全')"><i>◇</i><span>账户安全<small>SECURITY</small></span><b>›</b></button><button onclick="modal('交易记录')"><i>▤</i><span>交易记录<small>HISTORY</small></span><b>›</b></button><button onclick="modal('客服中心')"><i>✧</i><span>客服中心<small>SUPPORT</small></span><b>›</b></button><button onclick="modal('设置')"><i>⚙</i><span>偏好设置<small>SETTINGS</small></span><b>›</b></button><button onclick="modal('关于我们')"><i>ⓘ</i><span>关于联盛<small>ABOUT LS99</small></span><b>›</b></button></div></section><div class="mine-foot">LS99 · PREMIUM MEMBER EXPERIENCE</div></main>
 <nav class="bottom"><button class="nav active" data-page="home"><span class="ico">⌂</span>首页</button><button class="nav" data-page="games"><span class="ico">▣</span>游戏</button><button class="wallet" onclick="modal('钱包')">◇<br>钱包</button><button class="nav" data-page="activity"><span class="ico">⚑</span>活动</button><button class="nav" data-page="mine"><span class="ico">♟</span>我的</button></nav></div>
 <div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="dialog"><h3 id="modalTitle">提示</h3><p id="modalText">这是前端演示页面，未连接真实账户、充值、提现、投注、彩票开奖或第三方游戏服务。</p><button onclick="closeModal()">知道了</button></div></div><div class="toast" id="toast"></div>
@@ -151,8 +168,9 @@ let fav=new Set(readList('ls99-favorites')),recent=readList('ls99-recent');
 const featuredGames=[games[1],games[12],games[16],games[23],games[29],games[33]];
 const side=document.getElementById('side');
 cats.forEach(([n,i])=>{let b=document.createElement('button');b.innerHTML=`<span class="ico">${i}</span>${n}`;b.onclick=()=>{cat=n;side.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));render()};side.append(b)});
-function card(g){let f=fav.has(g.name);return `<article class="tile" data-game="${g.name}"><span class="tag">${g.cat}</span><img src="${g.img}" alt="${g.name}" loading="lazy"><button class="star ${f?'on':''}" data-star="${g.name}" aria-label="${f?'取消收藏':'加入收藏'} ${g.name}">${f?'★':'☆'}</button><div class="name">${g.name}</div></article>`}
-function openGame(n){recent=[n,...recent.filter(x=>x!==n)].slice(0,30);writeList('ls99-recent',recent);const game=games.find(x=>x.name===n);if(game&&game.cat==='真人'){go('baccarat')}else if(game&&game.name.startsWith('加拿大')){go('canada')}else{modal(n,'该游戏入口尚未接入授权游戏服务。当前仅展示游戏目录，不会模拟真实游戏或投注。')}}
+const EXTERNAL_GAMES={'麻将胡了2':'https://mahjong-hulu2-mobile.aaamao666666.workers.dev'};
+function card(g){let f=fav.has(g.name);const ext=EXTERNAL_GAMES[g.name]?'<span class="external-hint">试玩</span>':'';return `<article class="tile" data-game="${g.name}"><span class="tag">${g.cat}</span><img src="${g.img}" alt="${g.name}" loading="lazy" onerror="this.classList.add('broken');this.onerror=null;this.src='placeholder-game.svg'"><button class="star ${f?'on':''}" data-star="${g.name}" aria-label="${f?'取消收藏':'加入收藏'} ${g.name}">${f?'★':'☆'}</button><div class="name">${g.name}${ext}</div></article>`}
+function openGame(n){recent=[n,...recent.filter(x=>x!==n)].slice(0,30);writeList('ls99-recent',recent);const game=games.find(x=>x.name===n);if(EXTERNAL_GAMES[n]){toast('正在打开 '+n+' 试玩页');window.open(EXTERNAL_GAMES[n],'_blank','noopener,noreferrer');return}if(game&&game.cat==='真人'){go('baccarat')}else if(game&&game.name.startsWith('加拿大')){go('canada')}else{modal(n,'该游戏入口尚未接入授权游戏服务。当前仅展示游戏目录，不会模拟真实游戏或投注。')}}
 function toggleFavorite(n){fav.has(n)?fav.delete(n):fav.add(n);writeList('ls99-favorites',[...fav]);render();renderFeatured()}
 function bindCards(root){root.querySelectorAll('[data-star]').forEach(b=>b.onclick=e=>{e.stopPropagation();toggleFavorite(b.dataset.star)});root.querySelectorAll('[data-game]').forEach(el=>el.onclick=()=>openGame(el.dataset.game))}
 function render(){let q=document.getElementById('search').value.trim().toLowerCase();let list=games.filter(g=>(cat==='热门'||g.cat===cat)&&g.name.toLowerCase().includes(q));if(tab==='fav')list=list.filter(g=>fav.has(g.name));if(tab==='recent')list=list.filter(g=>recent.includes(g.name));document.getElementById('gameCount').textContent=`${list.length} 款游戏`;const grid=document.getElementById('gameGrid');grid.innerHTML=list.map(card).join('')||'<p style="grid-column:1/-1;text-align:center;color:#93a4c2;padding:40px 0">暂无记录</p>';bindCards(grid)}
@@ -167,6 +185,11 @@ function toast(t){let e=document.getElementById('toast');e.textContent=t;e.class
 function renderFeatured(){const root=document.getElementById('featured');root.innerHTML=featuredGames.map(card).join('');bindCards(root)}
 renderFeatured();
 document.getElementById('homeCats').innerHTML=cats.slice(1).map(([n])=>{let g=games.find(x=>x.cat===n);return `<button class="cat" onclick="go('games','${n}')"><span>${n}</span><img src="${g.img}" alt="${n}"></button>`}).join('');
+
+document.querySelectorAll('.bet-row button,.chip-row button').forEach(b=>b.addEventListener('click',()=>{
+ const group=b.parentElement;group.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+ toast(b.parentElement.classList.contains('chip-row')?'已选择筹码 '+b.textContent:'已选择投注区：'+b.textContent.replace(/\s+/g,' ').trim());
+}));
 go('home');render();
 </script>
 <script>
@@ -176,9 +199,28 @@ const $=id=>document.getElementById(id);
 let latest=null,rows=[],timer=null,countdownTimer=null,secondsLeft=0,variant='加拿大28';
 const status=document.createElement('div');status.className='canada-result';status.id='canadaApiStatus';status.textContent='正在连接官方开奖数据…';
 $('canadaResult').before(status);
-const period=document.createElement('div');period.className='canada-result';period.id='canadaPeriod';$('canadaDraw')?.append(period);
-const niu=document.createElement('div');niu.className='canada-result';niu.id='canadaNiu';$('canadaResult').before(niu);
-const next=document.createElement('div');next.className='canada-result';next.id='canadaCountdown';$('canadaResult').before(next);
+const period=document.createElement('div');period.className='canada-meta';period.id='canadaPeriod';
+const niu=document.createElement('div');niu.className='canada-meta';niu.id='canadaNiu';
+const next=document.createElement('div');next.className='canada-meta';next.id='canadaCountdown';
+const compare=document.createElement('div');compare.className='canada-meta';compare.id='canadaCompare';
+$('canadaResult').before(period);$('canadaResult').before(niu);$('canadaResult').before(next);$('canadaResult').before(compare);
+let choice=document.querySelector('#canadaChoices .active')?.dataset.choice||'大';
+document.querySelectorAll('#canadaChoices [data-choice]').forEach(b=>b.addEventListener('click',()=>{
+ choice=b.dataset.choice;
+ document.querySelectorAll('#canadaChoices [data-choice]').forEach(x=>x.classList.toggle('active',x===b));
+ if(latest)updateCompare(latest);
+}));
+document.querySelectorAll('.canada-stakes [data-stake]').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('.canada-stakes [data-stake]').forEach(x=>x.classList.toggle('active',x===b));
+}));
+function updateCompare(d){
+ const nums=parseNumbers(d.openCode);if(!nums){compare.textContent='';return}
+ const sum=nums.reduce((a,b)=>a+b,0);
+ const map={大:sum>=14,小:sum<=13,单:sum%2===1,双:sum%2===0};
+ const hit=!!map[choice];
+ compare.className='canada-meta '+(hit?'canada-match':'canada-miss');
+ compare.textContent='玩法对照：你选「'+choice+'」· 本期为 '+(sum>=14?'大':'小')+' / '+(sum%2?'单':'双')+' · '+(hit?'相符':'不相符')+'（仅演示，无派彩）';
+}
 document.querySelectorAll('[data-variant]').forEach(b=>b.addEventListener('click',()=>{
  variant=b.dataset.variant;
  document.querySelectorAll('[data-variant]').forEach(x=>x.classList.toggle('active',x===b));
@@ -198,6 +240,7 @@ function renderDraw(d){
  $('canadaPeriod').textContent='第 '+d.lotNumber+' 期 · 和值 '+(d.lotResultNo??sum);
  $('canadaResult').textContent='官方开奖结果：'+nums.join(' + ')+' = '+sum+' · '+(sum>=14?'大':'小')+' · '+(sum%2?'单':'双');
  $('canadaNiu').textContent='牛牛结果：'+[d.lotResultOneNo,d.lotResultTwoNo,d.lotResultThreeNo].filter(Boolean).join(' / ');
+ updateCompare(d);
 }
 function renderHistory(){
  $('canadaHistory').innerHTML=rows.slice(0,8).map(d=>{
@@ -230,7 +273,6 @@ async function loadDraw(){
   console.warn('LS999 Canada draw API:',err);
  }
 }
-$('canadaPlay').textContent='刷新官方开奖结果';
 $('canadaPlay').addEventListener('click',loadDraw);
 loadDraw();timer=setInterval(loadDraw,15000);
 })();
