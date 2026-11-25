@@ -1,203 +1,674 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b1424"><title>LS99 联盛娱乐 · 手机版演示</title>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#06101f">
+<title>LR · 手机版演示</title>
 <style>
-:root{--blue:#287cf2;--deep:#145edb;--ink:#405477;--muted:#91a2c2;--bg:#f2f7ff;--gold:#e8c982}*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg)}button,input{font:inherit}button{border:0;cursor:pointer}.app{min-height:100vh;padding-bottom:calc(94px + env(safe-area-inset-bottom))}.top{height:66px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 16px;box-shadow:0 2px 12px #315b9710;position:sticky;top:0;z-index:8}.brand{display:flex;align-items:center;gap:9px;color:#1676ed;font-size:23px;font-weight:900}.logo{width:39px;height:39px;border-radius:50%;background:linear-gradient(145deg,#168bff,#0862d9);display:grid;place-items:center;color:white;font-size:15px;font-style:italic}.support{font-size:23px;color:#3985ef;background:none}.page{display:none}.page.active{display:block}.hero{margin:13px 13px 10px;border-radius:15px;overflow:hidden;min-height:158px;padding:22px;color:white;background:radial-gradient(circle at 80% 22%,#f4d99a66,transparent 25%),linear-gradient(120deg,#0b3d86,#1676e5 55%,#08285e);display:flex;flex-direction:column;justify-content:center;box-shadow:0 7px 22px #3977c526}.hero small{letter-spacing:4px;color:#f7dca0}.hero b{font-size:27px;margin-top:9px;letter-spacing:2px}.hero span{font-size:13px;margin-top:7px;color:#d8e8ff}.notice,.login{margin:10px 13px;background:#fff;border:1px solid #e5efff;border-radius:13px;padding:12px 14px;display:flex;align-items:center;gap:10px}.notice{justify-content:space-between;color:#7890b6}.login{padding:13px}.avatar{width:48px;height:48px;border-radius:50%;background:#edf4ff;color:#8eaddd;display:grid;place-items:center;font-size:25px}.grow{flex:1}.muted{font-size:12px;color:#9aa9c4;margin-top:4px}.quick{display:flex;gap:7px}.quick button{background:#f4f8ff;color:#287cf2;border:1px solid #e5efff;border-radius:10px;padding:7px 10px;font-size:13px}.section{margin:12px 13px;background:#fff;border:1px solid #e7effc;border-radius:17px;padding:12px;box-shadow:0 4px 14px #2c69ad0b}.title{font-size:18px;font-weight:850;color:#367eea;margin:2px 4px 12px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 9px}.tile{min-width:0;text-align:center;position:relative;background:transparent;padding:0}.tile img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;box-shadow:0 3px 9px #245a9915}.tile .name{font-size:13px;color:#64799e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:6px 1px 0}.tag{position:absolute;left:5px;top:5px;background:#071d3b9c;color:white;border-radius:6px;padding:3px 5px;font-size:10px}.star{position:absolute;right:5px;top:5px;width:25px;height:25px;border-radius:50%;background:#ffffffdf;color:#b9c2d1;font-size:17px}.star.on{color:#287cf2}.catgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.cat{height:80px;border:1px solid #e8d9b7;border-radius:13px;background:linear-gradient(130deg,#fff,#edf5ff);display:flex;align-items:center;justify-content:space-between;padding:10px 13px;color:#3f587d;font-weight:800}.cat img{width:55px;height:55px;object-fit:contain}.game-layout{display:grid;grid-template-columns:94px minmax(0,1fr);min-height:calc(100vh - 66px)}.side{padding:10px 0 20px;position:sticky;top:66px;height:calc(100vh - 66px);overflow:auto;background:#f5f8ff}.side button{display:flex;align-items:center;gap:7px;width:100%;padding:15px 8px;background:transparent;color:#687da4;font-size:14px;text-align:left;border-radius:0 11px 11px 0;margin:3px 0}.side button.active{color:#287cf2;background:#e8f1ff;border-left:4px solid #3987ff;font-weight:800}.side .ico{font-size:17px;width:20px;text-align:center}.panel{padding:12px 10px 25px;background:linear-gradient(180deg,#f5f8ff,#eef5ff);border-radius:17px 0 0 0}.search{width:100%;padding:11px 13px;border:1px solid #dce8fb;border-radius:11px;background:white;outline:none;margin-bottom:10px;color:#435a7d}.tabs{display:flex;justify-content:space-around;border-bottom:1px solid #dce8fb;margin-bottom:12px}.tabs button{background:none;color:#a0afd0;padding:9px 7px 12px;position:relative;font-size:15px}.tabs button.active{color:#317df0;font-weight:800}.tabs button.active:after{content:"";height:3px;width:48px;border-radius:8px;background:#3984fa;position:absolute;bottom:-1px;left:50%;transform:translateX(-50%)}.activity-list{padding:13px;display:grid;gap:13px}.activity-card{min-height:122px;border-radius:14px;padding:20px;color:white;background:linear-gradient(110deg,#0d397e,#267fe8 65%,#d5b46e);display:flex;flex-direction:column;justify-content:center;box-shadow:0 5px 16px #173e741c}.activity-card b{font-size:21px}.activity-card span{font-size:12px;margin-top:8px;color:#e4efff}.profile{margin:14px;background:white;border-radius:16px;padding:24px 15px;text-align:center}.menu{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.menu button{background:#f4f8ff;border:1px solid #e5efff;border-radius:10px;padding:13px;color:#58739d}.bottom{position:fixed;z-index:10;bottom:0;left:0;right:0;height:75px;padding:7px 8px calc(7px + env(safe-area-inset-bottom));background:#ffffffed;backdrop-filter:blur(14px);display:grid;grid-template-columns:1fr 1fr 1.1fr 1fr 1fr;align-items:end;box-shadow:0 -6px 22px #294f8410}.nav{background:none;color:#9aa9c1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px}.nav .ico{font-size:22px}.nav.active{color:#287cf2;font-weight:800}.wallet{align-self:start;margin-top:-22px;width:67px;height:67px;border-radius:50%;border:5px solid #e7f0ff;background:radial-gradient(circle at 35% 25%,#74b5ff,#1264e5 68%,#073eae);color:white;font-size:13px;font-weight:800}.modal{display:none;position:fixed;z-index:30;inset:0;background:#0b1b3580;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.dialog{width:min(350px,100%);background:white;border-radius:18px;padding:20px;text-align:center;box-shadow:0 20px 60px #0003}.dialog h3{margin:0 0 8px;color:#286fdb}.dialog p{color:#8495b2;font-size:13px;line-height:1.6}.dialog button{background:#2b7cf0;color:white;padding:10px 25px;border-radius:22px;margin-top:8px}.toast{position:fixed;z-index:40;left:50%;bottom:95px;transform:translateX(-50%);background:#24344f;color:#fff;padding:9px 15px;border-radius:20px;font-size:13px;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1}@media(min-width:700px){.app{max-width:520px;margin:auto;box-shadow:0 0 40px #1c3d6a20}.top{max-width:520px}.bottom{left:50%;right:auto;transform:translateX(-50%);width:520px}.game-layout{grid-template-columns:100px minmax(0,1fr)}}
-</style><style>
-:root{--blue:#6f9fe8;--deep:#0a1730;--ink:#e9edf5;--muted:#aab6c9;--bg:#071020;--gold:#d8c39a}
-html,body{background:radial-gradient(ellipse at 50% -10%,#263b5b 0,#101c32 35%,#070d18 78%);color:#e9edf5}
-.top{background:rgba(7,15,29,.9);backdrop-filter:blur(20px);box-shadow:0 1px 0 #d7c69a44}
-.brand{color:#ead9b7;letter-spacing:.5px}.logo{width:auto;height:36px;padding:0 12px;border-radius:12px;background:linear-gradient(145deg,#e5d4ae,#9b8153);color:#15233b;font-size:14px;letter-spacing:1px;box-shadow:inset 0 1px 2px #fff9,0 5px 16px #0007}
-.support{color:#e3d2ae}
-.hero{min-height:205px;border:1px solid #d7c69a66;background:radial-gradient(ellipse at 85% 15%,#d6c39b44,transparent 30%),linear-gradient(120deg,#071329,#12294a 54%,#263b5b);box-shadow:0 18px 35px #0005,inset 0 1px #ffffff22}
-.hero small{color:#ddc99f}.hero b{font-family:Georgia,serif;font-size:30px;letter-spacing:2px}.hero span{color:#d0d9e8}
-.notice,.login,.section,.profile{background:linear-gradient(145deg,#15243aee,#0c1729f2);border:1px solid #d5c49a35;box-shadow:0 12px 28px #0004,inset 0 1px #ffffff12;color:#e8edf5}
-.notice{color:#d7c69a}.avatar{background:linear-gradient(145deg,#344d70,#17263d);color:#d8c69c}
-.quick button,.menu button{background:linear-gradient(145deg,#203653,#122139);color:#e8d7b4;border:1px solid #d6c69a66;box-shadow:inset 0 1px #ffffff20,0 5px 12px #0004}
-.title{color:#e1cfaa}.tile .name{color:#d3dceb}.tile img{border:1px solid #d5c49a55;box-shadow:0 8px 18px #0006}
-.cat{background:linear-gradient(145deg,#1b2e49,#0c182b);border:1px solid #d5c49a55;color:#e7d7b7;box-shadow:inset 0 1px #ffffff20,0 8px 18px #0004}
-.side{background:#0b1628}.side button{color:#b5c1d3}.side button.active{color:#e4d2a9;background:#1b2d48;border-left-color:#d4bf91}
-.panel{background:linear-gradient(180deg,#101d32,#0a1425)}.search{background:#14243b;border-color:#d5c49a44;color:#f3f5f8}.tabs{border-color:#d5c49a33}.tabs button{color:#aab7ca}.tabs button.active{color:#e6d5ae}.tabs button.active:after{background:#d6c49a}
-.activity-card{background:radial-gradient(ellipse at 85% 15%,#d9c49a44,transparent 28%),linear-gradient(110deg,#0c1a30,#1a3150 65%,#34445a);border:1px solid #d8c69b66;box-shadow:0 12px 25px #0005}
-.bottom{background:#081326ee;border-top:1px solid #d4c49a44;box-shadow:0 -10px 28px #0006}.nav{color:#93a4bc}.nav.active{color:#e6d5ae}
-.wallet{border:3px solid #e3d2ae;background:radial-gradient(circle at 35% 25%,#f0dfba,#a78a55 55%,#4b3a25);color:#17243a;box-shadow:0 0 0 4px #b9a47722,0 10px 25px #0008,inset 0 2px 5px #fff9}
-.dialog{background:#13223a;border:1px solid #d7c69a66;color:#eaf0f8}.dialog h3{color:#e4d1a6}.dialog p{color:#bdc8d8}.dialog button,.demo-action{background:linear-gradient(120deg,#e8d7b1,#b49a6b);color:#17243a;box-shadow:inset 0 1px #fff,0 8px 20px #0005}
-.bac-top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;color:#e6d5ae;font-size:12px;letter-spacing:1px}.bac-top button{background:#1a2c46;border:1px solid #d5c49a55;border-radius:22px;padding:8px 12px;color:#e8d8b5}
-.dealer-stage{margin:0 13px;border:1px solid #d5c49a77;border-radius:20px;overflow:hidden;position:relative;height:300px;background:#101e31;box-shadow:0 18px 35px #0007}.dealer-stage img{width:100%;height:100%;object-fit:cover;object-position:center 28%;opacity:.88}.dealer-caption{position:absolute;inset:auto 0 0;padding:45px 18px 16px;background:linear-gradient(transparent,#07101feF);color:white}.dealer-caption small{color:#e5d3ac;letter-spacing:2px}.dealer-caption h2{margin:6px 0;font-size:24px}.dealer-caption p{margin:0;color:#d2d9e5;font-size:12px}
-.table-panel{margin:12px 13px;padding:15px;border-radius:20px;background:linear-gradient(145deg,#132943,#0a1729);border:1px solid #d5c49a55;box-shadow:inset 0 1px #fff2,0 12px 30px #0005}.table-head,.bet-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}.table-head{color:#d7c69a;font-size:12px;letter-spacing:1px;padding:4px 0 12px}.bet-row button{border-radius:13px;padding:14px 4px;background:linear-gradient(145deg,#203c60,#132844);border:1px solid #9eb4d655;color:#f4f6fa;box-shadow:inset 0 1px #fff2,0 5px 12px #0004}.bet-row button:nth-child(2){background:linear-gradient(145deg,#315345,#18382f)}.bet-row button:nth-child(3){background:linear-gradient(145deg,#593b43,#2b1e2a)}.bet-row b{display:block;font-size:11px;margin-top:5px;color:#e4d1a8}.chip-row{display:flex;justify-content:space-around;gap:7px;padding:18px 0}.chip-row button{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 35% 25%,#fff,#bfc9d7 55%,#566477);border:3px dotted #718097;color:#14243a;font-weight:800;box-shadow:0 4px 10px #0007}.roadmap{background:#e8edf3;color:#1a2a40;border-radius:12px;padding:12px;font-size:13px}.road-dots{margin-top:10px;letter-spacing:2px}.demo-action{width:100%;padding:13px;border-radius:24px;margin-top:13px;font-weight:800}
-</style><style>
-:root{--blue:#6f9fe8;--deep:#0a1730;--ink:#e9edf5;--muted:#aab6c9;--bg:#071020;--gold:#d8c39a}
-html,body{background:radial-gradient(ellipse at 50% -10%,#263b5b 0,#101c32 35%,#070d18 78%);color:#e9edf5}
-.top{background:rgba(7,15,29,.92);backdrop-filter:blur(20px);box-shadow:0 1px 0 #d7c69a44}
-.brand{color:#ead9b7}.logo{width:auto;height:36px;padding:0 12px;border-radius:12px;background:linear-gradient(145deg,#e5d4ae,#9b8153);color:#15233b;font-size:14px;letter-spacing:1px;box-shadow:inset 0 1px 2px #fff9,0 5px 16px #0007}
-.support{color:#e3d2ae}.hero{min-height:205px;border:1px solid #d7c69a66;background:radial-gradient(ellipse at 85% 15%,#d6c39b44,transparent 30%),linear-gradient(120deg,#071329,#12294a 54%,#263b5b);box-shadow:0 18px 35px #0005,inset 0 1px #ffffff22}
-.hero small{color:#ddc99f}.hero b{font-family:Georgia,serif;font-size:30px;letter-spacing:2px}.hero span{color:#d0d9e8}
-.notice,.login,.section,.profile{background:linear-gradient(145deg,#15243aee,#0c1729f2);border:1px solid #d5c49a35;box-shadow:0 12px 28px #0004,inset 0 1px #ffffff12;color:#e8edf5}
-.notice{color:#d7c69a}.avatar{background:linear-gradient(145deg,#344d70,#17263d);color:#d8c69c}
-.quick button,.menu button{background:linear-gradient(145deg,#203653,#122139);color:#e8d7b4;border:1px solid #d6c69a66;box-shadow:inset 0 1px #ffffff20,0 5px 12px #0004}
-.title{color:#e1cfaa}.tile .name{color:#d3dceb}.tile img{border:1px solid #d5c49a55;box-shadow:0 8px 18px #0006}
-.cat{background:linear-gradient(145deg,#1b2e49,#0c182b);border:1px solid #d5c49a55;color:#e7d7b7;box-shadow:inset 0 1px #ffffff20,0 8px 18px #0004}
-.side{background:#0b1628}.side button{color:#b5c1d3}.side button.active{color:#e4d2a9;background:#1b2d48;border-left-color:#d4bf91}
-.panel{background:linear-gradient(180deg,#101d32,#0a1425)}.search{background:#14243b;border-color:#d5c49a44;color:#f3f5f8}.tabs{border-color:#d5c49a33}.tabs button{color:#aab7ca}.tabs button.active{color:#e6d5ae}.tabs button.active:after{background:#d6c49a}
-.activity-card{background:radial-gradient(ellipse at 85% 15%,#d9c49a44,transparent 28%),linear-gradient(110deg,#0c1a30,#1a3150 65%,#34445a);border:1px solid #d8c69b66;box-shadow:0 12px 25px #0005}
-.bottom{background:#081326ee;border-top:1px solid #d4c49a44;box-shadow:0 -10px 28px #0006}.nav{color:#93a4bc}.nav.active{color:#e6d5ae}
-.wallet{border:3px solid #e3d2ae;background:radial-gradient(circle at 35% 25%,#f0dfba,#a78a55 55%,#4b3a25);color:#17243a;box-shadow:0 0 0 4px #b9a47722,0 10px 25px #0008,inset 0 2px 5px #fff9}
-.dialog{background:#13223a;border:1px solid #d7c69a66;color:#eaf0f8}.dialog h3{color:#e4d1a6}.dialog p{color:#bdc8d8}.dialog button,.demo-action{background:linear-gradient(120deg,#e8d7b1,#b49a6b);color:#17243a;box-shadow:inset 0 1px #fff,0 8px 20px #0005}
-.bac-top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;color:#e6d5ae;font-size:12px;letter-spacing:1px}.bac-top button{background:#1a2c46;border:1px solid #d5c49a55;border-radius:22px;padding:8px 12px;color:#e8d8b5}
-.dealer-stage{margin:0 13px;border:1px solid #d5c49a77;border-radius:20px;overflow:hidden;position:relative;height:300px;background:#101e31;box-shadow:0 18px 35px #0007}.dealer-stage img{width:100%;height:100%;object-fit:cover;object-position:center 28%;opacity:.88}.dealer-caption{position:absolute;inset:auto 0 0;padding:45px 18px 16px;background:linear-gradient(transparent,#07101f);color:white}.dealer-caption small{color:#e5d3ac;letter-spacing:2px}.dealer-caption h2{margin:6px 0;font-size:24px}.dealer-caption p{margin:0;color:#d2d9e5;font-size:12px}
-.table-panel{margin:12px 13px;padding:15px;border-radius:20px;background:linear-gradient(145deg,#132943,#0a1729);border:1px solid #d5c49a55;box-shadow:inset 0 1px #fff2,0 12px 30px #0005}.table-head,.bet-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}.table-head{color:#d7c69a;font-size:12px;letter-spacing:1px;padding:4px 0 12px}.bet-row button{border-radius:13px;padding:14px 4px;background:linear-gradient(145deg,#203c60,#132844);border:1px solid #9eb4d655;color:#f4f6fa;box-shadow:inset 0 1px #fff2,0 5px 12px #0004}.bet-row button:nth-child(2){background:linear-gradient(145deg,#315345,#18382f)}.bet-row button:nth-child(3){background:linear-gradient(145deg,#593b43,#2b1e2a)}.bet-row b{display:block;font-size:11px;margin-top:5px;color:#e4d1a8}.chip-row{display:flex;justify-content:space-around;gap:7px;padding:18px 0}.chip-row button{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 35% 25%,#fff,#bfc9d7 55%,#566477);border:3px dotted #718097;color:#14243a;font-weight:800;box-shadow:0 4px 10px #0007}.roadmap{background:#e8edf3;color:#1a2a40;border-radius:12px;padding:12px;font-size:13px}.road-dots{margin-top:10px;letter-spacing:2px}.demo-action{width:100%;padding:13px;border-radius:24px;margin-top:13px;font-weight:800}
-</style><style>
-:root{color-scheme:dark}
-body{background:radial-gradient(ellipse at 50% -12%,#243a59 0,#101b2e 38%,#070d17 80%)}
-.hero{position:relative;min-height:228px;padding:23px 21px 20px;background:radial-gradient(ellipse at 82% 18%,#d8c69a33,transparent 28%),linear-gradient(120deg,#081326 0%,#142b49 58%,#283b52 100%);border:1px solid #d5c49a66;border-radius:20px;overflow:hidden}
-.hero:after{content:'LS';position:absolute;right:10px;top:16px;font:italic 112px/1 Georgia,serif;color:#d8c69a12;letter-spacing:-12px;pointer-events:none}
-.hero-kicker{font-size:9px;letter-spacing:2px;color:#d9c9a7;margin-bottom:17px}.hero-kicker i,.notice-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#d7c49a;box-shadow:0 0 10px #d7c49a;vertical-align:middle;margin-right:6px}
-.hero b{font-size:29px;position:relative;z-index:1}.hero-foot{display:flex;justify-content:space-between;border-top:1px solid #d8c69a30;margin-top:20px;padding-top:10px;font-size:9px;letter-spacing:1.5px;color:#b7c2d2}
-.notice{min-height:48px;border-radius:13px}.notice b{font-size:11px;color:#c9b78e;font-weight:500}.section{padding:15px 13px;border-radius:18px}
-.title{font-size:18px;margin:0 4px 13px;color:#ead9b7}.tile img{border-radius:13px;background:#14243a;aspect-ratio:1.08;object-fit:cover}.tile .name{font-size:12px;color:#d9dfeb;padding-top:8px}.tag{background:#07111dcc;border:1px solid #d8c69a55;color:#e3d3b0;letter-spacing:.3px}.star{background:#071326d9;color:#bca981;border:1px solid #d8c69a55}.star.on{color:#f0d79c}
-.cat{height:78px;border-radius:14px;padding:10px 12px}.cat img{width:48px;height:48px;filter:drop-shadow(0 5px 8px #0007)}
-.subpage-head{padding:27px 19px 10px}.subpage-head h1{margin:5px 0;font:600 28px Georgia,serif;color:#f0e4cb}.subpage-head p{margin:7px 0 3px;color:#aebbd0;font-size:12px}.eyebrow{font-size:9px;letter-spacing:2px;color:#a9946d;margin:0 4px 5px}
-.activity-list{padding:12px 13px 24px;gap:14px}.activity-card{min-height:154px;position:relative;overflow:hidden;border-radius:18px;padding:0 18px;border:1px solid #d8c69a66}
-.activity-new{background:radial-gradient(circle at 88% 20%,#d7c49a3b,transparent 29%),linear-gradient(110deg,#132944,#203b5a 72%,#39465a)}.activity-daily{background:radial-gradient(circle at 88% 20%,#b2c5d83b,transparent 29%),linear-gradient(110deg,#15263d,#233a50 72%,#34445a)}.activity-vip{background:radial-gradient(circle at 88% 20%,#d7c49a45,transparent 29%),linear-gradient(110deg,#1d2535,#3a3440 72%,#514538)}
-.activity-copy{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;padding:18px 0;max-width:78%}.activity-copy small{font-size:9px;letter-spacing:2px;color:#d8c69a}.activity-copy b{font:600 22px Georgia,serif;color:#f2e5cb;margin-top:9px}.activity-copy span{font-size:11px;line-height:1.6;color:#c3cede;margin-top:7px}.activity-copy em{font-style:normal;font-size:11px;color:#e5d3aa;margin-top:13px}.activity-art{position:absolute;right:14px;top:23px;font:italic 52px Georgia,serif;color:#e0cfaa35;text-shadow:0 7px 22px #0005}.activity-note{text-align:center;font-size:10px;color:#8493aa;padding:6px 0 10px}
-.mine-banner{margin:13px;padding:19px;border-radius:19px;border:1px solid #d8c69a66;background:radial-gradient(circle at 88% 20%,#d7c49a3b,transparent 32%),linear-gradient(120deg,#132944,#203956 70%,#34445b);box-shadow:0 14px 30px #0005}.mine-topline{display:flex;justify-content:space-between;color:#cbb98e;font-size:9px;letter-spacing:1.7px}.mine-user{display:flex;align-items:center;gap:13px;margin:23px 0 18px}.mine-user .avatar{width:54px;height:54px;border:1px solid #d7c69a88;color:#e4d3ad;font-size:26px}.mine-user h2{font-size:18px;color:#f1e5cf;margin:0}.mine-user p{font-size:11px;color:#b8c5d6;margin:6px 0 0}.mine-login{width:100%;padding:12px;border-radius:12px;background:linear-gradient(110deg,#e8d8b5,#b49a6c);color:#17253a;font-weight:800;letter-spacing:1px}
-.mine-wallet,.mine-menu{margin:12px 13px;padding:16px;border-radius:17px;background:linear-gradient(145deg,#15243a,#0c1729);border:1px solid #d5c49a3d;box-shadow:0 10px 25px #0004}.wallet-label,.mine-menu-title{font-size:14px;color:#e5d5b5;font-weight:700}.wallet-label span,.mine-menu-title span{font-size:8px;letter-spacing:1.5px;color:#9b8b6b;margin-left:7px;font-weight:400}.wallet-value{font:600 24px Georgia,serif;color:#eee4d2;padding:15px 0}.wallet-value small{font:11px -apple-system,BlinkMacSystemFont,sans-serif;color:#98a8be;margin-left:7px}.wallet-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.wallet-actions button{background:#1c304a;border:1px solid #d7c69a4c;border-radius:10px;color:#e4d4b1;padding:10px 2px;font-size:11px}
-.mine-menu .menu{grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}.mine-menu .menu button{display:flex;align-items:center;gap:9px;text-align:left;padding:11px 9px;min-height:59px}.mine-menu .menu i{font-style:normal;font-size:18px;color:#d8c69a}.mine-menu .menu span{display:grid;gap:3px;font-size:11px;color:#e2e8f0;flex:1}.mine-menu .menu small{font-size:8px;letter-spacing:1px;color:#8999b0}.mine-menu .menu b{color:#a99670;font-size:18px;font-weight:400}.mine-foot{text-align:center;padding:8px 0 24px;font-size:8px;letter-spacing:2px;color:#6f8098}
-.bottom{height:calc(72px + env(safe-area-inset-bottom));padding-bottom:calc(7px + env(safe-area-inset-bottom))}.wallet{width:62px;height:62px}.panel{padding-top:14px}.search{border-radius:13px;padding:12px 14px}.tabs button{font-size:13px}
-</style><style>
-/* LS99 game lobby refinement */
-.games-head{padding:24px 16px 12px}.games-head h1{font-size:27px;letter-spacing:.5px}
-.game-layout{grid-template-columns:100px minmax(0,1fr);gap:0}
-.side{top:66px;border-right:1px solid #d5c49a20;padding-top:12px}
-.side button{min-height:56px;padding:12px 8px;font-size:12px;gap:6px}
-.side button.active{border-radius:0 13px 13px 0;box-shadow:inset 0 0 18px #d7c49a12}
-.panel{padding:12px 11px 30px}
-.search{height:44px;border-radius:13px;padding-left:40px;background-image:radial-gradient(circle at 17px 17px,transparent 5px,#cbb98e 5.5px,#cbb98e 6.5px,transparent 7px),linear-gradient(45deg,transparent 48%,#cbb98e 49%,#cbb98e 55%,transparent 56%);background-size:24px 24px,8px 8px;background-repeat:no-repeat;background-position:7px 6px,25px 25px}
-.tabs{justify-content:flex-start;gap:22px;overflow:auto;white-space:nowrap}
-.tabs button{font-size:12px;padding:11px 2px 13px}
-.tabs button.active:after{width:100%}
-.game-meta{display:flex;justify-content:space-between;align-items:center;color:#9cabc0;font-size:10px;margin:0 2px 11px}
-.game-meta span:first-child{color:#e3d1aa;font-weight:700;font-size:12px}
-.game-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 9px}
-.game-grid .tile{overflow:hidden;text-align:left;border-radius:13px;background:linear-gradient(145deg,#1b2d46,#0c1728);border:1px solid #d5c49a44;box-shadow:0 8px 18px #0004}
-.game-grid .tile img{width:100%;aspect-ratio:1.22;object-fit:cover;border:0;border-radius:0;box-shadow:none;display:block}
-.game-grid .tile .name{padding:9px 9px 11px;font-size:12px;font-weight:700;color:#e8dfce}
-.game-grid .tag{top:8px;left:8px;padding:4px 7px;border-radius:20px;font-size:9px;background:#081321dc;border:1px solid #d5c49a66}
-.game-grid .star{top:7px;right:7px;width:27px;height:27px}
-.game-grid .tile:active{transform:scale(.98)}
-.catgrid .cat{min-height:80px}
-@media(min-width:700px){.games-head,.game-layout{max-width:520px;margin-left:auto;margin-right:auto}.game-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-</style>
-<style>
-/* Canada game playable practice module */
-.canada-wrap{padding:14px 13px 30px;max-width:560px;margin:auto}
-.canada-head{display:flex;align-items:center;justify-content:space-between;margin:8px 2px 14px}
-.canada-head button{background:#1b2d46;border:1px solid #d5c49a55;color:#e5d4af;border-radius:20px;padding:8px 12px}
-.canada-title{font:600 25px Georgia,serif;color:#f0e4cb;margin:5px 0}
-.canada-sub{font-size:11px;color:#9eacc1}
-.canada-wallet{margin:12px 0;padding:15px;border:1px solid #d5c49a66;border-radius:16px;background:linear-gradient(120deg,#1b304b,#0b1729);display:flex;justify-content:space-between;align-items:center}
-.canada-wallet b{font:600 24px Georgia,serif;color:#e8d6ad}
-.canada-variants{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}
-.canada-variants button,.canada-options button{border:1px solid #d5c49a55;border-radius:11px;padding:11px 8px;background:#14243a;color:#cbd5e3}
-.canada-variants button.active,.canada-options button.active{background:linear-gradient(120deg,#e8d7b1,#b49a6b);color:#17243a;border-color:#e8d7b1;font-weight:800}
-.canada-card{margin:12px 0;padding:15px;border-radius:16px;background:linear-gradient(145deg,#152943,#0b1729);border:1px solid #d5c49a44}
-.canada-label{font-size:12px;color:#d9c69b;margin-bottom:10px;font-weight:700}
-.canada-options{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.canada-options button{padding:12px 3px}
-.canada-stakes{display:flex;gap:8px;flex-wrap:wrap}
-.canada-stakes button{border:1px solid #d5c49a55;border-radius:22px;padding:9px 14px;background:#1b304a;color:#ead9b7}
-.canada-stakes button.active{background:#d8c39a;color:#17243a}
-.canada-draw{display:flex;align-items:center;justify-content:center;gap:12px;padding:20px 5px}
-.canada-ball{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 32% 25%,#fff,#cbd3df 55%,#68778b);color:#14243a;font:700 25px Georgia,serif;box-shadow:0 7px 15px #0007;border:3px solid #d8c39a}
-.canada-sum{font:700 25px Georgia,serif;color:#e8d7b5;margin-left:8px}
-.canada-result{color:#c6d0de;text-align:center;font-size:12px;min-height:22px}
-.canada-play{width:100%;border:0;border-radius:25px;padding:14px;background:linear-gradient(120deg,#e8d7b1,#b49a6b);color:#17243a;font-weight:900;margin-top:12px}
-.canada-history{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
-.canada-history span{background:#0b1729;border:1px solid #d5c49a33;border-radius:9px;padding:9px 2px;text-align:center;color:#e4d3ae;font-size:12px}
-.canada-disclaimer{font-size:10px;line-height:1.6;color:#8999b0;text-align:center;margin:12px 5px}
-</style>
-<style>
-#canadaApiStatus{margin:8px 13px;padding:10px;border:1px solid #d5c49a44;border-radius:10px;background:#101d31;color:#d8c69a;font-size:11px;line-height:1.5}#canadaPeriod,#canadaNiu,#canadaCountdown{margin:6px 0;color:#d9c99f;font-size:11px}#canadaHistory span{line-height:1.65;overflow-wrap:anywhere}
-</style>
-
-<style>
-/* LS999 polish */
-.page{animation:pageIn .28s ease}
-@keyframes pageIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+:root{
+  --bg:#06101f;--panel:#0c1830;--card:#12233f;--line:#2a4a78;
+  --cyan:#4fc3ff;--cyan2:#1ea0ff;--gold:#f0c878;--gold2:#c9963a;
+  --text:#eef5ff;--muted:#8fa6c7;--player:#2f6dff;--tie:#1f9d5a;--banker:#d64545;
+}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Segoe UI","Microsoft YaHei",sans-serif;color:var(--text);background:radial-gradient(ellipse at 50% -20%,#163058 0%,#0a162c 42%,#050d1a 80%)}
+button,input{font:inherit}button{border:0;cursor:pointer;background:none;color:inherit}
+.app{min-height:100vh;max-width:430px;margin:0 auto;padding-bottom:calc(86px + env(safe-area-inset-bottom));position:relative;box-shadow:0 0 60px #0008}
+.page{display:none}.page.active{display:block;animation:in .25s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.page{animation:none}}
-.notice{cursor:pointer;transition:transform .15s,border-color .15s}
-.notice:active{transform:scale(.985)}
-.activity-card{cursor:pointer;transition:transform .18s,box-shadow .18s}
-.activity-card:active{transform:scale(.985)}
-.tile img.broken{object-fit:contain;background:linear-gradient(145deg,#1b2d46,#0c1728);padding:18%}
-.chip-row button.active,.bet-row button.active{outline:2px solid #e8d7b1;box-shadow:0 0 0 2px #d8c39a55,inset 0 0 14px #e8d7b122}
-.canada-meta{margin:6px 0;color:#d9c99f;font-size:11px;line-height:1.55}
+
+/* top */
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(6,14,28,.82);backdrop-filter:blur(18px);border-bottom:1px solid #21406a55}
+.brand{display:flex;align-items:center;gap:10px}
+.logo-mark{width:38px;height:38px;border-radius:12px;background:conic-gradient(from 210deg,#7ad5ff,#2a78ff,#7ad5ff);display:grid;place-items:center;box-shadow:0 0 18px #2f8dff66,inset 0 0 10px #fff6}
+.logo-mark span{width:28px;height:28px;border-radius:8px;background:linear-gradient(160deg,#0b1a33,#12305a);display:grid;place-items:center;font:800 12px/1 Georgia,serif;color:#9fd8ff;letter-spacing:.5px}
+.brand-txt b{display:block;font-size:15px;font-weight:800;letter-spacing:.5px}
+.brand-txt small{color:var(--cyan);font-size:10px;letter-spacing:1px}
+.top-actions{display:flex;gap:8px}
+.icon-btn{width:34px;height:34px;border-radius:10px;background:#122740;border:1px solid #2b4d7888;color:#cfe4ff;display:grid;place-items:center;position:relative}
+.icon-btn .dot{position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:#ff4d4f;box-shadow:0 0 8px #ff4d4f}
+
+/* home */
+.hero{margin:12px 12px 10px;border-radius:18px;overflow:hidden;position:relative;height:168px;border:1px solid #3a6aa855;box-shadow:0 12px 30px #0006}
+.hero img{width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:saturate(1.05) brightness(.9)}
+.hero-mask{position:absolute;inset:0;background:linear-gradient(100deg,#06111fd9 8%,#06111f33 58%,#06111f88 100%)}
+.hero-copy{position:absolute;left:16px;bottom:16px;right:16px;z-index:1}
+.hero-copy h1{margin:0;font-size:24px;font-weight:900;letter-spacing:1px;text-shadow:0 4px 18px #000a}
+.hero-copy p{margin:8px 0 0;font-size:11px;color:#d7e7ff;opacity:.92}
+.hero-arrow{position:absolute;right:14px;bottom:16px;z-index:1;width:30px;height:30px;border-radius:50%;background:#ffffff22;border:1px solid #fff4;display:grid;place-items:center}
+
+.notice{margin:0 12px 10px;padding:9px 12px;border-radius:12px;background:linear-gradient(90deg,#132844cc,#0e1d35cc);border:1px solid #2d4f7a66;display:flex;align-items:center;gap:8px;color:#b7cae6;font-size:12px}
+.notice i{color:var(--gold)}
+
+.vip-card{margin:0 12px 12px;padding:14px;border-radius:16px;background:linear-gradient(135deg,#16325aee,#0d1d38f2 55%,#152a48);border:1px solid #3f6aa988;box-shadow:0 10px 28px #0005,inset 0 1px #ffffff18;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.vip-meta{display:flex;align-items:center;gap:7px;color:var(--gold);font-size:12px;margin-bottom:10px}
+.vip-badge{background:linear-gradient(120deg,#f6d48a,#c8943a);color:#1a1408;font-size:10px;font-weight:800;padding:2px 7px;border-radius:8px}
+.balance-label{font-size:11px;color:var(--muted)}
+.balance-row{display:flex;align-items:center;gap:8px;margin-top:4px}
+.balance-row b{font:800 24px/1.1 Georgia,"Times New Roman",serif;letter-spacing:.5px}
+.eye{width:28px;height:28px;border-radius:8px;background:#1a3050;color:#9fbadc}
+.recharge{min-width:92px;padding:12px 14px;border-radius:12px;background:linear-gradient(135deg,#ffe0a0,#e0b35a 45%,#b8842f);color:#1c1406;font-weight:800;box-shadow:0 8px 18px #b8842f55,inset 0 1px #fff8}
+
+.quick{margin:4px 12px 14px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.quick button{display:grid;gap:7px;justify-items:center;color:#d7e6fb;font-size:11px}
+.qico{width:46px;height:46px;border-radius:14px;background:linear-gradient(160deg,#1a3358,#101f38);border:1px solid #35598788;display:grid;place-items:center;font-size:18px;box-shadow:inset 0 1px #fff2}
+
+.promo{margin:0 12px 14px;border-radius:16px;overflow:hidden;position:relative;height:92px;border:1px solid #3d679a77;background:linear-gradient(120deg,#1a3a68,#102446)}
+.promo img{position:absolute;right:0;top:0;height:100%;width:48%;object-fit:cover;opacity:.85;mask-image:linear-gradient(90deg,transparent,#000 30%)}
+.promo-copy{position:relative;z-index:1;padding:18px 16px}
+.promo-copy small{color:var(--gold);letter-spacing:1px;font-size:10px}
+.promo-copy b{display:block;margin-top:6px;font-size:18px}
+
+.section{margin:0 12px 16px}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin:0 2px 10px}
+.section-head h2{margin:0;font-size:16px}
+.section-head button{color:var(--muted);font-size:12px}
+.hot-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.hot-tile{position:relative;border-radius:16px;overflow:hidden;min-height:108px;border:1px solid #3a628f77;background:#10233f;box-shadow:0 8px 20px #0005}
+.hot-tile img{width:100%;height:100%;object-fit:cover;display:block;min-height:108px}
+.hot-tile .shade{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,#06101fe8)}
+.hot-tile .label{position:absolute;left:12px;bottom:12px;font-weight:800;font-size:14px}
+.live-tag{position:absolute;left:10px;top:10px;background:#e11d48;color:#fff;font-size:10px;font-weight:800;padding:3px 7px;border-radius:7px;letter-spacing:.5px}
+
+/* games lobby */
+.sub-head{padding:18px 16px 8px}
+.sub-head .eyebrow{font-size:10px;letter-spacing:2px;color:#7ea4d4}
+.sub-head h1{margin:6px 0 4px;font-size:26px}
+.sub-head p{margin:0;color:var(--muted);font-size:12px}
+.game-layout{display:grid;grid-template-columns:88px 1fr;min-height:60vh}
+.side{padding:8px 0 20px;border-right:1px solid #23416655}
+.side button{width:100%;padding:14px 6px;display:grid;gap:4px;justify-items:center;color:#8ea8c8;font-size:11px;border-left:3px solid transparent}
+.side button.active{color:var(--cyan);background:linear-gradient(90deg,#15345f88,transparent);border-left-color:var(--cyan)}
+.side .ico{font-size:16px}
+.panel{padding:10px 10px 24px}
+.search{width:100%;height:42px;border-radius:12px;border:1px solid #2f5485;background:#0e1d35;color:var(--text);padding:0 12px 0 36px;outline:none;margin-bottom:10px;background-image:radial-gradient(circle at 16px 16px,transparent 5px,#7ea4d4 5.5px,#7ea4d4 6.5px,transparent 7px);background-repeat:no-repeat}
+.tabs{display:flex;gap:16px;border-bottom:1px solid #23416666;margin-bottom:10px;overflow:auto}
+.tabs button{padding:10px 2px 12px;color:#7f99b8;position:relative;white-space:nowrap;font-size:13px}
+.tabs button.active{color:var(--cyan);font-weight:800}
+.tabs button.active:after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--cyan);border-radius:2px}
+.game-meta{display:flex;justify-content:space-between;color:#7f99b8;font-size:11px;margin-bottom:10px}
+.game-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{position:relative;border-radius:14px;overflow:hidden;background:#10233f;border:1px solid #35598766;text-align:left}
+.tile img{width:100%;aspect-ratio:1.2;object-fit:cover;display:block;background:#0d1b31}
+.tile .name{padding:8px 9px 10px;font-size:12px;font-weight:700}
+.tile .tag{position:absolute;left:8px;top:8px;background:#06111ecc;border:1px solid #4fc3ff55;color:#cfefff;font-size:9px;padding:3px 6px;border-radius:999px}
+.tile .star{position:absolute;right:7px;top:7px;width:28px;height:28px;border-radius:50%;background:#06111ed8;border:1px solid #4fc3ff44;color:#9eb6d4}
+.tile .star.on{color:var(--gold);border-color:var(--gold)}
+.external-hint{display:inline-block;margin-left:4px;font-size:9px;color:var(--gold);border:1px solid #f0c87855;border-radius:7px;padding:1px 5px}
+
+/* baccarat */
+.bac-page{padding-bottom:12px}
+.bac-top{display:flex;align-items:center;justify-content:space-between;padding:12px 14px}
+.bac-top .left{display:flex;align-items:center;gap:8px}
+.bac-top h2{margin:0;font-size:18px}
+.live-pill{font-size:10px;padding:3px 7px;border-radius:999px;background:#12345a;border:1px solid #3d7cff88;color:#9fd0ff}
+.dealer-stage{margin:0 12px;border-radius:16px;overflow:hidden;position:relative;height:220px;border:1px solid #3a6aa866;background:#0b172b}
+.dealer-stage img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
+.live-overlay{position:absolute;left:10px;top:10px;display:flex;gap:8px;align-items:center}
+.live-now{background:#e11d48;color:#fff;font-size:10px;font-weight:800;padding:4px 8px;border-radius:999px}
+.viewers{background:#06111ecc;border:1px solid #ffffff22;padding:4px 8px;border-radius:999px;font-size:10px}
+.table-id{position:absolute;right:10px;top:10px;background:#06111ecc;border:1px solid #ffffff22;padding:4px 8px;border-radius:999px;font-size:10px;color:#c9dbf5}
+.signal{position:absolute;right:10px;bottom:10px;font-size:11px;color:#9fe870}
+
+.table-panel{margin:12px}
+.bet-main{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px}
+.bet-main button,.bet-side button{border-radius:14px;padding:14px 8px;border:1px solid transparent;box-shadow:inset 0 1px #fff2,0 8px 16px #0004}
+.bet-main button b,.bet-side button b{display:block;margin-top:4px;font-size:11px;opacity:.9;font-weight:600}
+.bet-player{background:linear-gradient(160deg,#3d7bff,#1f4fd0);border-color:#7eb0ff88!important}
+.bet-tie{background:linear-gradient(160deg,#2bb56f,#178a4d);border-color:#7dffb588!important}
+.bet-banker{background:linear-gradient(160deg,#e85a5a,#b52f2f);border-color:#ff9a9a88!important}
+.bet-side{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.bet-side button{background:linear-gradient(160deg,#1a3358,#101f38);border-color:#35598788!important;color:#dce9ff;font-size:13px}
+.bet-main button.active,.bet-side button.active,.chip-row button.active{outline:2px solid var(--gold);box-shadow:0 0 0 3px #f0c87833,0 8px 18px #0005}
+
+.chip-row{display:flex;gap:8px;overflow:auto;padding:14px 0 8px}
+.chip-row button{flex:0 0 auto;width:46px;height:46px;border-radius:50%;font-weight:800;font-size:12px;color:#102038;border:3px solid #9eb0c8;background:radial-gradient(circle at 35% 30%,#fff,#c9d4e4 55%,#7f91a8);box-shadow:0 4px 10px #0007}
+.chip-row button.custom{width:auto;padding:0 12px;border-radius:24px;background:#142844;color:#d7e7ff;border-color:#3d679a}
+.chip-row button.active{border-color:var(--gold);box-shadow:0 0 0 3px #f0c87855,0 0 16px #f0c87844}
+
+.roadmap{margin-top:8px;border-radius:14px;background:#0e1d35;border:1px solid #2f5485;padding:10px;display:grid;grid-template-columns:1fr 92px;gap:8px}
+.road-tabs{display:flex;gap:10px;margin-bottom:8px;font-size:12px;color:#7f99b8}
+.road-tabs span.active{color:var(--cyan);font-weight:800}
+.road-dots{display:grid;grid-template-columns:repeat(8,1fr);gap:5px}
+.road-dots i{width:14px;height:14px;border-radius:50%;display:block;margin:auto}
+.road-dots i.p{background:#3d7bff}.road-dots i.b{background:#e85a5a}.road-dots i.t{background:#2bb56f}
+.road-stats{border-left:1px solid #2f548555;padding-left:10px;font-size:11px;color:#9eb6d4;display:grid;align-content:center;gap:6px}
+.road-stats b{color:#fff}
+
+.bac-actions{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:8px;margin-top:12px}
+.bac-actions button{padding:13px 8px;border-radius:12px;font-weight:800}
+.bac-clear,.bac-repeat{background:#152844;border:1px solid #35598788;color:#d7e7ff}
+.bac-confirm{background:linear-gradient(135deg,#ffe0a0,#e0b35a 45%,#b8842f);color:#1c1406;box-shadow:0 8px 18px #b8842f55}
+.bet-summary{margin-top:8px;text-align:center;color:#9eb6d4;font-size:12px;min-height:18px}
+
+/* canada / play / activity / mine */
+.wrap{padding:14px 13px 28px}
+.back{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:20px;background:#152844;border:1px solid #35598788;color:#d7e7ff;margin-bottom:10px}
+.card{margin:10px 0;padding:14px;border-radius:16px;background:linear-gradient(145deg,#152943ee,#0c1729f2);border:1px solid #2f548566}
+.canada-variants,.canada-options{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.canada-options{grid-template-columns:repeat(4,1fr)}
+.canada-variants button,.canada-options button,.canada-stakes button{border:1px solid #35598788;border-radius:11px;padding:11px 8px;background:#14243a;color:#cbd5e3}
+.canada-variants button.active,.canada-options button.active,.canada-stakes button.active{background:linear-gradient(120deg,#ffe0a0,#c9963a);color:#1c1406;border-color:#f0c878;font-weight:800}
+.canada-stakes{display:flex;gap:8px;flex-wrap:wrap}
+.canada-draw{display:flex;align-items:center;justify-content:center;gap:12px;padding:18px 0}
+.canada-ball{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 32% 25%,#fff,#cbd3df 55%,#68778b);color:#14243a;font:700 22px Georgia,serif;border:3px solid var(--gold)}
+.canada-sum{font:700 22px Georgia,serif;color:var(--gold)}
+.canada-play,.demo-action{width:100%;padding:13px;border-radius:24px;margin-top:10px;font-weight:900;background:linear-gradient(120deg,#ffe0a0,#c9963a);color:#1c1406}
+.canada-history{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.canada-history span{background:#0b1729;border:1px solid #2f548544;border-radius:9px;padding:8px 2px;text-align:center;color:#e4d3ae;font-size:11px;line-height:1.5}
+.canada-meta,.canada-result,.canada-disclaimer,#canadaApiStatus{font-size:11px;color:#9eb6d4;line-height:1.55;margin:6px 0}
+#canadaApiStatus{padding:10px;border:1px solid #2f548544;border-radius:10px;background:#101d31;color:var(--gold)}
 .canada-match{color:#9fd6b0}.canada-miss{color:#e0b0a4}
-.external-hint{display:inline-block;margin-left:4px;font-size:9px;color:#d8c69a;border:1px solid #d5c49a55;border-radius:8px;padding:1px 5px;vertical-align:middle}
-.toast{max-width:min(88vw,360px);text-align:center}
+
+.activity-list{padding:8px 12px 24px;display:grid;gap:12px}
+.activity-card{min-height:130px;border-radius:16px;padding:18px;border:1px solid #3a6aa866;position:relative;overflow:hidden;background:linear-gradient(120deg,#14325a,#1a2944)}
+.activity-card b{display:block;font-size:18px;margin:6px 0}
+.activity-card span{font-size:12px;color:#b7cae6}
+.activity-card em{display:block;margin-top:12px;font-style:normal;color:var(--gold);font-size:12px}
+
+.mine-banner,.mine-wallet,.mine-menu{margin:12px;padding:16px;border-radius:16px;background:linear-gradient(145deg,#152943,#0c1729);border:1px solid #2f548566}
+.mine-topline{display:flex;justify-content:space-between;color:var(--gold);font-size:10px;letter-spacing:1.5px}
+.mine-user{display:flex;align-items:center;gap:12px;margin:18px 0}
+.avatar{width:52px;height:52px;border-radius:50%;background:#1a3050;border:1px solid #4fc3ff55;display:grid;place-items:center;font-size:22px;color:var(--gold)}
+.mine-login,.mine-menu .menu button{width:100%}
+.mine-login{padding:12px;border-radius:12px;background:linear-gradient(120deg,#ffe0a0,#c9963a);color:#1c1406;font-weight:800}
+.wallet-value{font:700 24px Georgia,serif;padding:12px 0;color:#fff}
+.wallet-actions,.mine-menu .menu{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wallet-actions{grid-template-columns:repeat(4,1fr)}
+.wallet-actions button,.mine-menu .menu button{background:#152844;border:1px solid #35598788;border-radius:12px;padding:11px 8px;color:#d7e7ff;font-size:12px}
+.mine-menu .menu button{display:flex;align-items:center;gap:8px;text-align:left;min-height:58px}
+.mine-menu .menu span{display:grid;gap:2px;flex:1}.mine-menu .menu small{color:#7f99b8;font-size:9px;letter-spacing:1px}
+.mine-foot{text-align:center;padding:8px 0 20px;font-size:10px;letter-spacing:2px;color:#6f8098}
+
+/* bottom nav */
+.bottom{position:fixed;z-index:30;left:50%;transform:translateX(-50%);bottom:0;width:min(430px,100%);height:calc(72px + env(safe-area-inset-bottom));padding:6px 10px calc(8px + env(safe-area-inset-bottom));background:rgba(6,14,28,.92);backdrop-filter:blur(18px);border-top:1px solid #2a4a7888;display:grid;grid-template-columns:1fr 1fr 1.15fr 1fr 1fr;align-items:end}
+.nav{display:flex;flex-direction:column;align-items:center;gap:3px;color:#7f99b8;font-size:10px;padding-bottom:4px}
+.nav .ico{font-size:18px}
+.nav.active{color:var(--cyan)}
+.center-btn{align-self:start;margin-top:-18px;width:58px;height:58px;border-radius:50%;margin-left:auto;margin-right:auto;background:radial-gradient(circle at 35% 25%,#9fd8ff,#2f78ff 58%,#123a7a);border:3px solid #9fd8ff88;box-shadow:0 0 0 4px #2f78ff22,0 10px 24px #0008;color:#fff;font:800 12px/1.1 Georgia,serif;display:grid;place-content:center;letter-spacing:.5px}
+
+/* modal toast */
+.modal{display:none;position:fixed;z-index:50;inset:0;background:#03101fcc;align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}
+.dialog{width:min(340px,100%);background:#12233f;border:1px solid #3a6aa888;border-radius:18px;padding:20px;text-align:center;box-shadow:0 20px 50px #0008}
+.dialog h3{margin:0 0 8px;color:var(--gold)}
+.dialog p{color:#9eb6d4;font-size:13px;line-height:1.6}
+.dialog button{margin-top:10px;padding:10px 24px;border-radius:22px;background:linear-gradient(120deg,#ffe0a0,#c9963a);color:#1c1406;font-weight:800}
+.toast{position:fixed;z-index:60;left:50%;bottom:96px;transform:translateX(-50%);background:#1a2d4acc;border:1px solid #4fc3ff55;color:#fff;padding:9px 14px;border-radius:20px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;max-width:min(88vw,360px);text-align:center;backdrop-filter:blur(10px)}
+.toast.show{opacity:1}
+.play-stage{min-height:160px;border-radius:16px;display:grid;place-items:center;background:#0d1b31;border:1px dashed #35598788;margin:10px 0;padding:20px;text-align:center}
+.reels{display:flex;gap:8px;font-size:36px}
+.hidden-bottom .bottom{display:none}
+.hidden-bottom .app{padding-bottom:12px}
 </style>
-</head><body><div class="app"><header class="top"><div class="brand"><span class="logo" aria-label="LS99">LS99</span><span>联盛娱乐</span></div><button class="support" onclick="toast('客服入口演示：尚未接入客服系统')">♧</button></header>
-<main id="home" class="page active"><div class="hero"><div class="hero-kicker"><i></i> OFFICIAL ENTERTAINMENT CLUB</div><small>PREMIUM · ENTERTAINMENT</small><b>联盛娱乐 LS99</b><span>臻选体验 · 品质服务 · 精致娱乐空间</span><div class="hero-foot"><span>MEMBER EXCLUSIVE</span><span>EST. 2026　✦</span></div></div><div class="notice" role="button" tabindex="0" onclick="modal('平台公告','欢迎体验 LS99 联盛娱乐手机版。收藏、最近浏览已支持本地保存；加拿大玩法可查看官方开奖数据；麻将胡了2 可直达独立试玩页。')"><span><i class="notice-dot"></i> 平台公告与最新消息</span><b>查看详情　›</b></div><div class="login"><div class="avatar">●</div><div class="grow"><b>请您先登录</b><div class="muted">余额：登录后查看</div></div><div class="quick"><button onclick="modal('存款')">存款</button><button onclick="modal('取款')">取款</button></div></div><section class="section"><div class="title">热门精选</div><div class="grid" id="featured"></div></section><section class="section"><div class="title">游戏分类</div><div class="catgrid" id="homeCats"></div></section></main>
-<main id="games" class="page"><div class="subpage-head games-head"><div class="eyebrow">DISCOVER YOUR FAVORITES</div><h1>游戏大厅</h1><p>精选游戏 · 清晰分类 · 快速查找</p></div><div class="game-layout"><aside class="side" id="side"></aside><section class="panel"><input id="search" class="search" placeholder="搜索游戏名称" autocomplete="off"><div class="tabs"><button data-tab="hot" class="active">全部精选</button><button data-tab="recent">最近浏览</button><button data-tab="fav">我的收藏</button></div><div class="game-meta"><span id="gameCount">精选游戏</span><span>点击卡片查看详情</span></div><div class="grid game-grid" id="gameGrid"></div></section></div></main>
-<main id="baccarat" class="page"><div class="bac-top"><button onclick="go('games','真人')">‹ 返回游戏大厅</button><span>LIVE BACCARAT · 真人百家乐</span><button onclick="toast('已加入收藏')">♡</button></div><section class="dealer-stage"><img src="dealer-db.webp" alt="百家乐荷官"><div class="dealer-caption"><small>LIVE TABLE · 现场牌桌</small><h2>百家乐 · 贵宾厅</h2><p>独立荷官画面 · 蓝曜牌桌氛围</p></div></section><section class="table-panel"><div class="table-head"><span>PLAYER 闲</span><span>TIE 和</span><span>BANKER 庄</span></div><div class="bet-row"><button>闲 <b>1 : 1</b></button><button>和 <b>1 : 8</b></button><button>庄 <b>0.95 : 1</b></button></div><div class="chip-row"><button>10</button><button>50</button><button>100</button><button>500</button><button>1K</button></div><div class="roadmap"><b>牌路记录</b><div class="road-dots">🔴 🔵 🔴 🔴 🔵 🔵 🔴 🟢 🔵 🔴 🔵 🔴</div></div><button class="demo-action" onclick="modal('演示桌台','当前为界面演示，尚未连接真实游戏供应商、账户或投注系统。')">进入演示桌台</button></section></main>
+</head>
+<body>
+<div class="app" id="app">
+<header class="top" id="mainTop">
+  <div class="brand">
+    <div class="logo-mark" aria-hidden="true"><span>LR</span></div>
+    <div class="brand-txt"><b>LR娱乐</b><small>LR.COM</small></div>
+  </div>
+  <div class="top-actions">
+    <button class="icon-btn" onclick="toast('客服入口演示')" aria-label="客服">☎</button>
+    <button class="icon-btn" onclick="toast('暂无新消息')" aria-label="通知"><span class="dot"></span>🔔</button>
+    <button class="icon-btn" onclick="go('mine')" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<main id="home" class="page active">
+  <section class="hero">
+    <img src="dealer-solaire.webp" alt="">
+    <div class="hero-mask"></div>
+    <div class="hero-copy">
+      <h1>LR娱乐</h1>
+      <p>真人视讯 · 电竞电子 · 体育赛事 · 彩票游戏</p>
+    </div>
+    <button class="hero-arrow" onclick="go('games')" aria-label="进入游戏">›</button>
+  </section>
+  <div class="notice" role="button" tabindex="0" onclick="modal('平台公告','系统维护升级已完成，欢迎体验 LR 手机版演示。收藏与最近浏览已本地保存。')">
+    <i>📢</i><span>平台公告：系统维护升级已完成，欢迎体验…</span>
+  </div>
+  <section class="vip-card">
+    <div>
+      <div class="vip-meta">♛ 尊贵会员 <span class="vip-badge">VIP3</span></div>
+      <div class="balance-label">账户余额 (MYR)</div>
+      <div class="balance-row"><b id="homeBalance">8,560.00</b><button class="eye" id="toggleBal" aria-label="显示或隐藏余额">👁</button></div>
+    </div>
+    <button class="recharge" onclick="modal('充值','当前为前端演示，未连接真实充值通道。')">充值 ›</button>
+  </section>
+  <div class="quick">
+    <button onclick="modal('提现')"><span class="qico">🪙</span>提现</button>
+    <button onclick="go('activity')"><span class="qico">🎁</span>优惠</button>
+    <button onclick="modal('任务','任务中心演示位，正式活动上线后同步。')"><span class="qico">📋</span>任务</button>
+    <button onclick="toast('客服入口演示')"><span class="qico">🎧</span>客服</button>
+  </div>
+  <section class="promo">
+    <img src="network-bonus.webp" alt="">
+    <div class="promo-copy"><small>NEW MEMBER</small><b>新人专享礼</b></div>
+  </section>
+  <section class="section">
+    <div class="section-head"><h2>热门游戏</h2><button onclick="go('games')">更多 ›</button></div>
+    <div class="hot-grid">
+      <button class="hot-tile" onclick="go('games','真人')"><img src="cat-live.webp" alt=""><span class="live-tag">LIVE</span><div class="shade"></div><div class="label">真人视讯</div></button>
+      <button class="hot-tile" onclick="go('games','电子')"><img src="cat-slots.webp" alt=""><div class="shade"></div><div class="label">电子游戏</div></button>
+      <button class="hot-tile" onclick="go('games','棋牌')"><img src="cat-cards.webp" alt=""><div class="shade"></div><div class="label">棋牌游戏</div></button>
+      <button class="hot-tile" onclick="go('games','体育')"><img src="football.webp" alt=""><div class="shade"></div><div class="label">体育赛事</div></button>
+    </div>
+  </section>
+</main>
+
+<main id="games" class="page">
+  <div class="sub-head"><div class="eyebrow">DISCOVER</div><h1>游戏大厅</h1><p>精选分类 · 快速进入试玩</p></div>
+  <div class="game-layout">
+    <aside class="side" id="side"></aside>
+    <section class="panel">
+      <input id="search" class="search" placeholder="搜索游戏名称" autocomplete="off">
+      <div class="tabs">
+        <button data-tab="hot" class="active">全部精选</button>
+        <button data-tab="recent">最近浏览</button>
+        <button data-tab="fav">我的收藏</button>
+      </div>
+      <div class="game-meta"><span id="gameCount">精选游戏</span><span>点击进入试玩</span></div>
+      <div class="grid game-grid" id="gameGrid"></div>
+    </section>
+  </div>
+</main>
+
+<main id="baccarat" class="page bac-page">
+  <div class="bac-top">
+    <div class="left">
+      <button class="back" style="margin:0" onclick="exitGame('真人')">‹</button>
+      <h2>百家乐</h2>
+      <span class="live-pill">真人视讯</span>
+    </div>
+    <div class="top-actions">
+      <button class="icon-btn" onclick="toast('已加入收藏')">♡</button>
+      <button class="icon-btn" onclick="toast('全屏演示')">⛶</button>
+    </div>
+  </div>
+  <section class="dealer-stage">
+    <img id="bacDealer" src="dealer-db.webp" alt="百家乐荷官">
+    <div class="live-overlay"><span class="live-now">● 直播中</span><span class="viewers">👁 3,426</span></div>
+    <div class="table-id">局号 B0087326</div>
+    <div class="signal">📶 信号良好</div>
+  </section>
+  <section class="table-panel">
+    <div class="bet-main">
+      <button class="bet-player" data-bet="闲">闲 <b>1 : 1</b></button>
+      <button class="bet-tie" data-bet="和">和 <b>1 : 8</b></button>
+      <button class="bet-banker" data-bet="庄">庄 <b>1 : 0.95</b></button>
+    </div>
+    <div class="bet-side">
+      <button data-bet="闲对">闲对 <b>1 : 11</b></button>
+      <button data-bet="完美对">完美对 <b>1 : 25</b></button>
+      <button data-bet="庄对">庄对 <b>1 : 11</b></button>
+    </div>
+    <div class="chip-row" id="chipRow">
+      <button data-chip="10">10</button>
+      <button data-chip="50">50</button>
+      <button data-chip="100" class="active">100</button>
+      <button data-chip="500">500</button>
+      <button data-chip="1000">1K</button>
+      <button class="custom" onclick="toast('自定义筹码演示')">自定义</button>
+    </div>
+    <div class="roadmap">
+      <div>
+        <div class="road-tabs"><span class="active">路单</span><span>大路</span><span>大眼仔</span><span>小路</span></div>
+        <div class="road-dots" id="roadDots"></div>
+      </div>
+      <div class="road-stats">
+        <div>闲 <b id="statP">28</b></div>
+        <div>庄 <b id="statB">32</b></div>
+        <div>和 <b id="statT">5</b></div>
+      </div>
+    </div>
+    <div class="bet-summary" id="betSummary">请选择筹码并点击投注区</div>
+    <div class="bac-actions">
+      <button class="bac-clear" id="bacClear">✕ 清空</button>
+      <button class="bac-repeat" id="bacRepeat">↻ 重复</button>
+      <button class="bac-confirm" id="bacConfirm">✓ 确认下注</button>
+    </div>
+  </section>
+</main>
+
 <main id="canada" class="page">
-<div class="canada-wrap">
-<div class="canada-head"><button onclick="go('games','彩票')">‹ 返回游戏大厅</button><span class="canada-sub">CANADA LOTTERY · 试玩模式</span></div>
-<h1 class="canada-title">加拿大游戏</h1><div class="canada-sub">官方开奖展示 · 玩法对照 · 非真实下注</div>
-<div class="canada-wallet"><div><div class="canada-sub">试玩积分（非现金）</div><b id="canadaCredit">10,000</b></div><span class="canada-sub">DEMO POINTS</span></div>
-<div class="canada-variants">
-<button class="active" data-variant="加拿大28">加拿大28</button>
-<button data-variant="加拿大满倍">加拿大满倍</button>
-<button data-variant="加拿大4.2 / 4.6">加拿大4.2 / 4.6</button>
-<button data-variant="加拿大2.8 / 5.0">加拿大2.8 / 5.0</button>
+  <div class="wrap">
+    <button class="back" onclick="exitGame('彩票')">‹ 返回游戏大厅</button>
+    <div class="eyebrow" style="color:#7ea4d4;letter-spacing:2px;font-size:10px">CANADA LOTTERY</div>
+    <h1 style="margin:6px 0;font-size:26px">加拿大游戏</h1>
+    <p style="color:var(--muted);font-size:12px;margin:0 0 10px">官方开奖展示 · 玩法对照 · 非真实下注</p>
+    <div class="card" style="display:flex;justify-content:space-between;align-items:center">
+      <div><div style="font-size:11px;color:var(--muted)">试玩积分（非现金）</div><b id="canadaCredit" style="font:700 24px Georgia,serif;color:var(--gold)">10,000</b></div>
+      <span style="font-size:11px;color:var(--muted)">DEMO</span>
+    </div>
+    <div class="canada-variants">
+      <button class="active" data-variant="加拿大28">加拿大28</button>
+      <button data-variant="加拿大满倍">加拿大满倍</button>
+      <button data-variant="加拿大4.2 / 4.6">加拿大4.2 / 4.6</button>
+      <button data-variant="加拿大2.8 / 5.0">加拿大2.8 / 5.0</button>
+    </div>
+    <section class="card"><div style="color:var(--gold);font-size:12px;margin-bottom:10px;font-weight:700">选择玩法</div>
+      <div class="canada-options" id="canadaChoices">
+        <button class="active" data-choice="大">大</button><button data-choice="小">小</button>
+        <button data-choice="单">单</button><button data-choice="双">双</button>
+      </div>
+    </section>
+    <section class="card"><div style="color:var(--gold);font-size:12px;margin-bottom:10px;font-weight:700">演示筹码</div>
+      <div class="canada-stakes">
+        <button data-stake="10" class="active">10</button><button data-stake="50">50</button>
+        <button data-stake="100">100</button><button data-stake="500">500</button>
+      </div>
+    </section>
+    <section class="card">
+      <div style="color:var(--gold);font-size:12px;margin-bottom:10px;font-weight:700">最新官方开奖</div>
+      <div class="canada-draw" id="canadaDraw">
+        <span class="canada-ball" id="c1">?</span><span class="canada-ball" id="c2">?</span>
+        <span class="canada-ball" id="c3">?</span><span class="canada-sum" id="cSum">—</span>
+      </div>
+      <div class="canada-result" id="canadaResult">选择大小单双后，可对照官方开奖结果</div>
+      <button class="canada-play" id="canadaPlay">刷新官方开奖结果</button>
+    </section>
+    <section class="card">
+      <div style="color:var(--gold);font-size:12px;margin-bottom:10px;font-weight:700">近期官方开奖</div>
+      <div class="canada-history" id="canadaHistory"><span>等待开奖</span></div>
+    </section>
+    <div class="canada-disclaimer">本页展示官方开奖数据，仅供界面演示。积分不具现金价值。</div>
+  </div>
+</main>
+
+<main id="play" class="page">
+  <div class="wrap">
+    <button class="back" id="playBack">‹ 返回游戏大厅</button>
+    <div class="eyebrow" id="playEyebrow" style="color:#7ea4d4;letter-spacing:2px;font-size:10px">DEMO PLAY</div>
+    <h1 id="playTitle" style="margin:6px 0;font-size:24px">游戏试玩</h1>
+    <p id="playSub" style="color:var(--muted);font-size:12px;margin:0 0 10px">本地演示 · 非真实投注</p>
+    <div class="card" style="padding:0;overflow:hidden">
+      <img id="playCover" src="placeholder-game.svg" alt="" style="width:100%;aspect-ratio:1.8;object-fit:cover;display:block">
+    </div>
+    <div class="card" style="display:flex;justify-content:space-between;align-items:center">
+      <div><div style="font-size:11px;color:var(--muted)">试玩积分</div><b id="playCredit" style="font:700 22px Georgia,serif;color:var(--gold)">10,000</b></div>
+      <div class="canada-stakes" id="playStakes">
+        <button data-pstake="10" class="active">10</button>
+        <button data-pstake="50">50</button>
+        <button data-pstake="100">100</button>
+      </div>
+    </div>
+    <div class="play-stage" id="playStage"><div class="reels" id="playReels"><span>🍒</span><span>🍋</span><span>⭐</span></div></div>
+    <div class="canada-result" id="playResult">选择筹码后开始试玩</div>
+    <button class="canada-play" id="playGo">开始试玩</button>
+    <div class="canada-disclaimer">此为前端交互演示，不会进行真实投注或派彩。</div>
+  </div>
+</main>
+
+<main id="activity" class="page">
+  <div class="sub-head"><div class="eyebrow">PRIVILEGES</div><h1>优惠活动</h1><p>精选会员礼遇与最新资讯</p></div>
+  <div class="activity-list">
+    <article class="activity-card" onclick="modal('新人专享礼遇','活动规则以平台正式公告为准。当前为前端展示。')"><small style="color:var(--gold)">WELCOME</small><b>新人专享礼遇</b><span>开启专属会员体验</span><em>了解详情 ›</em></article>
+    <article class="activity-card" onclick="modal('每日专属礼遇','每日活动资讯展示位。')"><small style="color:var(--gold)">DAILY</small><b>每日专属礼遇</b><span>每日活动与会员权益</span><em>查看活动 ›</em></article>
+    <article class="activity-card" onclick="modal('尊享会员计划','会员等级与专属服务介绍。')"><small style="color:var(--gold)">VIP</small><b>尊享会员计划</b><span>等级权益与专属服务</span><em>探索权益 ›</em></article>
+  </div>
+</main>
+
+<main id="mine" class="page">
+  <div class="mine-banner">
+    <div class="mine-topline"><span>MEMBER CENTER</span><span>LR ✦</span></div>
+    <div class="mine-user"><div class="avatar">♛</div><div><h2 style="margin:0;font-size:18px">欢迎来到 LR</h2><p style="margin:6px 0 0;color:var(--muted);font-size:12px">登录后开启专属会员空间</p></div></div>
+    <button class="mine-login" onclick="modal('登录 / 注册')">登录 / 注册 ›</button>
+  </div>
+  <section class="mine-wallet">
+    <div style="font-size:14px;color:var(--gold);font-weight:700">我的账户 <span style="font-size:9px;color:#7f99b8;margin-left:6px">ACCOUNT</span></div>
+    <div class="wallet-value">8,560.00 <small style="font:11px sans-serif;color:#7f99b8">MYR · 演示</small></div>
+    <div class="wallet-actions">
+      <button onclick="modal('存款')">存款</button><button onclick="modal('取款')">取款</button>
+      <button onclick="modal('转账')">转账</button><button onclick="modal('记录')">记录</button>
+    </div>
+  </section>
+  <section class="mine-menu">
+    <div style="font-size:14px;color:var(--gold);font-weight:700;margin-bottom:10px">账户服务</div>
+    <div class="menu">
+      <button onclick="modal('个人资料')"><span>个人资料<small>PROFILE</small></span>›</button>
+      <button onclick="modal('账户安全')"><span>账户安全<small>SECURITY</small></span>›</button>
+      <button onclick="modal('交易记录')"><span>交易记录<small>HISTORY</small></span>›</button>
+      <button onclick="modal('客服中心')"><span>客服中心<small>SUPPORT</small></span>›</button>
+      <button onclick="modal('设置')"><span>偏好设置<small>SETTINGS</small></span>›</button>
+      <button onclick="modal('关于 LR','LR 手机版前端演示。')"><span>关于 LR<small>ABOUT LR</small></span>›</button>
+    </div>
+  </section>
+  <div class="mine-foot">LR · PREMIUM MEMBER EXPERIENCE</div>
+</main>
+
+<nav class="bottom" id="bottomNav">
+  <button class="nav active" data-page="home"><span class="ico">⌂</span>首页</button>
+  <button class="nav" data-page="games"><span class="ico">▣</span>游戏大厅</button>
+  <button class="center-btn" onclick="go('home')" aria-label="LR">LR</button>
+  <button class="nav" data-page="activity"><span class="ico">⚑</span>优惠活动</button>
+  <button class="nav" data-page="mine"><span class="ico">♟</span>我的</button>
+</nav>
 </div>
-<section class="canada-card"><div class="canada-label">选择玩法</div><div class="canada-options" id="canadaChoices">
-<button class="active" data-choice="大">大</button><button data-choice="小">小</button><button data-choice="单">单</button><button data-choice="双">双</button>
-</div></section>
-<section class="canada-card"><div class="canada-label">演示筹码（仅展示，不扣分）</div><div class="canada-stakes"><button data-stake="10" class="active">10</button><button data-stake="50">50</button><button data-stake="100">100</button><button data-stake="500">500</button></div></section>
-<section class="canada-card"><div class="canada-label">最新官方开奖</div><div class="canada-draw" id="canadaDraw"><span class="canada-ball" id="c1">?</span><span class="canada-ball" id="c2">?</span><span class="canada-ball" id="c3">?</span><span class="canada-sum" id="cSum">—</span></div><div class="canada-result" id="canadaResult">选择大小单双后，可对照官方开奖结果</div><button class="canada-play" id="canadaPlay">刷新官方开奖结果</button></section>
-<section class="canada-card"><div class="canada-label">近期官方开奖</div><div class="canada-history" id="canadaHistory"><span>等待开奖</span></div></section>
-<div class="canada-disclaimer">本页展示官方开奖数据，仅供界面演示与玩法对照。积分不具现金价值，不支持充值、提现或真实下注。</div>
-</div></main><main id="activity" class="page"><div class="subpage-head"><div class="eyebrow">MEMBER PRIVILEGES</div><h1>活动中心</h1><p>精选会员礼遇与平台最新资讯</p></div><div class="activity-list"><article class="activity-card activity-new" onclick="modal('新人专享礼遇','活动规则与领取方式将以平台正式公告为准。当前为前端展示卡片。')"><div class="activity-copy"><small>WELCOME PRIVILEGE</small><b>新人专享礼遇</b><span>开启专属会员体验 · 活动详情敬请留意官方公告</span><em>了解详情　›</em></div><div class="activity-art">01</div></article><article class="activity-card activity-daily" onclick="modal('每日专属礼遇','每日活动资讯展示位。正式活动上线后将在此同步。')"><div class="activity-copy"><small>DAILY EXCLUSIVE</small><b>每日专属礼遇</b><span>每日活动资讯与会员权益展示</span><em>查看活动　›</em></div><div class="activity-art">02</div></article><article class="activity-card activity-vip" onclick="modal('尊享会员计划','会员等级与专属服务介绍展示位。登录体系接入后可查看个人权益。')"><div class="activity-copy"><small>VIP CLUB</small><b>尊享会员计划</b><span>会员等级与专属服务介绍</span><em>探索权益　›</em></div><div class="activity-art">VIP</div></article><div class="activity-note">活动内容与规则以平台正式公告为准</div></div></main>
-<main id="mine" class="page"><div class="mine-banner"><div class="mine-topline"><span>MEMBER CENTER</span><span>LS99　✦</span></div><div class="mine-user"><div class="avatar">♙</div><div><h2>欢迎来到联盛</h2><p>登录后开启专属会员空间</p></div></div><button class="mine-login" onclick="modal('登录 / 注册')">登录 / 注册　›</button></div><section class="mine-wallet"><div class="wallet-label">我的账户 <span>ACCOUNT OVERVIEW</span></div><div class="wallet-value">•••••• <small>登录后查看</small></div><div class="wallet-actions"><button onclick="modal('存款')">存款</button><button onclick="modal('取款')">取款</button><button onclick="modal('转账')">转账</button><button onclick="modal('记录')">交易记录</button></div></section><section class="mine-menu"><div class="mine-menu-title">账户服务 <span>ACCOUNT SERVICES</span></div><div class="menu"><button onclick="modal('个人资料')"><i>♙</i><span>个人资料<small>PROFILE</small></span><b>›</b></button><button onclick="modal('账户安全')"><i>◇</i><span>账户安全<small>SECURITY</small></span><b>›</b></button><button onclick="modal('交易记录')"><i>▤</i><span>交易记录<small>HISTORY</small></span><b>›</b></button><button onclick="modal('客服中心')"><i>✧</i><span>客服中心<small>SUPPORT</small></span><b>›</b></button><button onclick="modal('设置')"><i>⚙</i><span>偏好设置<small>SETTINGS</small></span><b>›</b></button><button onclick="modal('关于我们')"><i>ⓘ</i><span>关于联盛<small>ABOUT LS99</small></span><b>›</b></button></div></section><div class="mine-foot">LS99 · PREMIUM MEMBER EXPERIENCE</div></main>
-<nav class="bottom"><button class="nav active" data-page="home"><span class="ico">⌂</span>首页</button><button class="nav" data-page="games"><span class="ico">▣</span>游戏</button><button class="wallet" onclick="modal('钱包')">◇<br>钱包</button><button class="nav" data-page="activity"><span class="ico">⚑</span>活动</button><button class="nav" data-page="mine"><span class="ico">♟</span>我的</button></nav></div>
-<div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="dialog"><h3 id="modalTitle">提示</h3><p id="modalText">这是前端演示页面，未连接真实账户、充值、提现、投注、彩票开奖或第三方游戏服务。</p><button onclick="closeModal()">知道了</button></div></div><div class="toast" id="toast"></div>
-<script>const games=[{"name":"索莱尔视讯","cat":"真人","img":"dealer-solaire.webp","sym":"♛"},{"name":"DB视讯","cat":"真人","img":"dealer-db.webp","sym":"LIVE"},{"name":"旗舰厅真人","cat":"真人","img":"cat-live.webp","sym":"LIVE"},{"name":"美女荷官","cat":"真人","img":"dealer-solaire.webp","sym":"♛"},{"name":"香港六合彩","cat":"彩票","img":"hk-lottery.webp","sym":"6"},{"name":"幸运快三","cat":"彩票","img":"cat-lottery.webp","sym":"快"},{"name":"北京赛车","cat":"彩票","img":"cat-lottery.webp","sym":"赛"},{"name":"幸运飞艇","cat":"彩票","img":"cat-lottery.webp","sym":"✈"},{"name":"时时彩","cat":"彩票","img":"cat-lottery.webp","sym":"彩"},{"name":"加拿大28","cat":"彩票","img":"placeholder-28.svg","sym":"28"},{"name":"加拿大满倍","cat":"彩票","img":"network-bonus.webp","sym":"28"},{"name":"加拿大4.2 / 4.6","cat":"彩票","img":"placeholder-4-2-4-6.svg","sym":"4.6"},{"name":"加拿大2.8 / 5.0","cat":"彩票","img":"placeholder-2-8-5-0.svg","sym":"5.0"},{"name":"极速糖果","cat":"电子","img":"sugar-rush.webp","sym":"🍬"},{"name":"极速糖果1000","cat":"电子","img":"sugar-rush-1000.webp","sym":"🍭"},{"name":"麻将胡了2","cat":"电子","img":"mahjong-hu-le.webp","sym":"🀄"},{"name":"寻宝黄金城","cat":"电子","img":"golden-city.webp","sym":"♛"},{"name":"赏金女王","cat":"电子","img":"bounty-queen.webp","sym":"👑"},{"name":"人鱼公主","cat":"电子","img":"mermaid-princess.webp","sym":"🧜"},{"name":"比特淘金","cat":"电子","img":"bitcoin-gold.webp","sym":"₿"},{"name":"水果派对","cat":"电子","img":"cat-slots.webp","sym":"🍉"},{"name":"幸运转盘","cat":"电子","img":"cat-slots.webp","sym":"✦"},{"name":"黄金矿工","cat":"电子","img":"cat-slots.webp","sym":"⛏"},{"name":"财神到","cat":"电子","img":"bitcoin-gold.webp","sym":"金"},{"name":"深海捕鱼","cat":"捕鱼","img":"cat-fishing.webp","sym":"🐟"},{"name":"黄金渔场","cat":"捕鱼","img":"cat-fishing.webp","sym":"🐠"},{"name":"海王捕鱼","cat":"捕鱼","img":"cat-fishing.webp","sym":"🐬"},{"name":"龙王捕鱼","cat":"捕鱼","img":"cat-fishing.webp","sym":"🐉"},{"name":"疯狂捕鱼","cat":"捕鱼","img":"cat-fishing.webp","sym":"🦈"},{"name":"极限猎鱼","cat":"捕鱼","img":"cat-fishing.webp","sym":"🎯"},{"name":"经典棋牌","cat":"棋牌","img":"cat-cards.webp","sym":"♠"},{"name":"斗地主","cat":"棋牌","img":"cat-cards.webp","sym":"🃏"},{"name":"麻将","cat":"棋牌","img":"mahjong-hu-le.webp","sym":"🀄"},{"name":"十三水","cat":"13水","img":"cat-thirteen.webp","sym":"🃏"},{"name":"少林足球","cat":"体育","img":"football.webp","sym":"⚽"},{"name":"体育赛事","cat":"体育","img":"cat-sports.webp","sym":"🏆"}];
-const cats=[['热门','🔥'],['真人','🎲'],['电子','🎰'],['彩票','⑧'],['棋牌','♠'],['体育','⚽'],['捕鱼','🐟'],['13水','🃏']];let cat='热门',tab='hot';
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="dialog"><h3 id="modalTitle">提示</h3><p id="modalText">这是前端演示页面，未连接真实账户或投注系统。</p><button onclick="closeModal()">知道了</button></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const games=[
+{name:"索莱尔视讯",cat:"真人",img:"dealer-solaire.webp",sym:"♛"},
+{name:"DB视讯",cat:"真人",img:"dealer-db.webp",sym:"LIVE"},
+{name:"旗舰厅真人",cat:"真人",img:"cat-live.webp",sym:"LIVE"},
+{name:"美女荷官",cat:"真人",img:"dealer-solaire.webp",sym:"♛"},
+{name:"香港六合彩",cat:"彩票",img:"hk-lottery.webp",sym:"6"},
+{name:"幸运快三",cat:"彩票",img:"cat-lottery.webp",sym:"快"},
+{name:"北京赛车",cat:"彩票",img:"cat-lottery.webp",sym:"赛"},
+{name:"幸运飞艇",cat:"彩票",img:"cat-lottery.webp",sym:"✈"},
+{name:"时时彩",cat:"彩票",img:"cat-lottery.webp",sym:"彩"},
+{name:"加拿大28",cat:"彩票",img:"placeholder-28.svg",sym:"28"},
+{name:"加拿大满倍",cat:"彩票",img:"network-bonus.webp",sym:"28"},
+{name:"加拿大4.2 / 4.6",cat:"彩票",img:"placeholder-4-2-4-6.svg",sym:"4.6"},
+{name:"加拿大2.8 / 5.0",cat:"彩票",img:"placeholder-2-8-5-0.svg",sym:"5.0"},
+{name:"极速糖果",cat:"电子",img:"sugar-rush.webp",sym:"🍬"},
+{name:"极速糖果1000",cat:"电子",img:"sugar-rush-1000.webp",sym:"🍭"},
+{name:"麻将胡了2",cat:"电子",img:"mahjong-hu-le.webp",sym:"🀄"},
+{name:"寻宝黄金城",cat:"电子",img:"golden-city.webp",sym:"♛"},
+{name:"赏金女王",cat:"电子",img:"bounty-queen.webp",sym:"👑"},
+{name:"人鱼公主",cat:"电子",img:"mermaid-princess.webp",sym:"🧜"},
+{name:"比特淘金",cat:"电子",img:"bitcoin-gold.webp",sym:"₿"},
+{name:"水果派对",cat:"电子",img:"cat-slots.webp",sym:"🍉"},
+{name:"幸运转盘",cat:"电子",img:"cat-slots.webp",sym:"✦"},
+{name:"黄金矿工",cat:"电子",img:"cat-slots.webp",sym:"⛏"},
+{name:"财神到",cat:"电子",img:"bitcoin-gold.webp",sym:"金"},
+{name:"深海捕鱼",cat:"捕鱼",img:"cat-fishing.webp",sym:"🐟"},
+{name:"黄金渔场",cat:"捕鱼",img:"cat-fishing.webp",sym:"🐠"},
+{name:"海王捕鱼",cat:"捕鱼",img:"cat-fishing.webp",sym:"🐬"},
+{name:"龙王捕鱼",cat:"捕鱼",img:"cat-fishing.webp",sym:"🐉"},
+{name:"疯狂捕鱼",cat:"捕鱼",img:"cat-fishing.webp",sym:"🦈"},
+{name:"极限猎鱼",cat:"捕鱼",img:"cat-fishing.webp",sym:"🎯"},
+{name:"经典棋牌",cat:"棋牌",img:"cat-cards.webp",sym:"♠"},
+{name:"斗地主",cat:"棋牌",img:"cat-cards.webp",sym:"🃏"},
+{name:"麻将",cat:"棋牌",img:"mahjong-hu-le.webp",sym:"🀄"},
+{name:"十三水",cat:"13水",img:"cat-thirteen.webp",sym:"🃏"},
+{name:"少林足球",cat:"体育",img:"football.webp",sym:"⚽"},
+{name:"体育赛事",cat:"体育",img:"cat-sports.webp",sym:"🏆"}
+];
+const cats=[['热门','🔥'],['真人','🎲'],['电子','🎰'],['彩票','⑧'],['棋牌','♠'],['体育','⚽'],['捕鱼','🐟'],['13水','🃏']];
+let cat='热门',tab='hot';
 const readList=(key)=>{try{const v=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(v)?v:[]}catch{return []}};
 const writeList=(key,v)=>{try{localStorage.setItem(key,JSON.stringify(v))}catch{}};
-let fav=new Set(readList('ls99-favorites')),recent=readList('ls99-recent');
-const featuredGames=[games[1],games[12],games[16],games[23],games[29],games[33]];
-const side=document.getElementById('side');
-cats.forEach(([n,i])=>{let b=document.createElement('button');b.innerHTML=`<span class="ico">${i}</span>${n}`;b.onclick=()=>{cat=n;side.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));render()};side.append(b)});
+let fav=new Set(readList('lr-favorites')),recent=readList('lr-recent');
 const EXTERNAL_GAMES={'麻将胡了2':'https://mahjong-hulu2-mobile.aaamao666666.workers.dev'};
-function card(g){let f=fav.has(g.name);const ext=EXTERNAL_GAMES[g.name]?'<span class="external-hint">试玩</span>':'';return `<article class="tile" data-game="${g.name}"><span class="tag">${g.cat}</span><img src="${g.img}" alt="${g.name}" loading="lazy" onerror="this.classList.add('broken');this.onerror=null;this.src='placeholder-game.svg'"><button class="star ${f?'on':''}" data-star="${g.name}" aria-label="${f?'取消收藏':'加入收藏'} ${g.name}">${f?'★':'☆'}</button><div class="name">${g.name}${ext}</div></article>`}
-function openGame(n){recent=[n,...recent.filter(x=>x!==n)].slice(0,30);writeList('ls99-recent',recent);const game=games.find(x=>x.name===n);if(EXTERNAL_GAMES[n]){toast('正在打开 '+n+' 试玩页');window.open(EXTERNAL_GAMES[n],'_blank','noopener,noreferrer');return}if(game&&game.cat==='真人'){go('baccarat')}else if(game&&game.name.startsWith('加拿大')){go('canada')}else{modal(n,'该游戏入口尚未接入授权游戏服务。当前仅展示游戏目录，不会模拟真实游戏或投注。')}}
-function toggleFavorite(n){fav.has(n)?fav.delete(n):fav.add(n);writeList('ls99-favorites',[...fav]);render();renderFeatured()}
-function bindCards(root){root.querySelectorAll('[data-star]').forEach(b=>b.onclick=e=>{e.stopPropagation();toggleFavorite(b.dataset.star)});root.querySelectorAll('[data-game]').forEach(el=>el.onclick=()=>openGame(el.dataset.game))}
-function render(){let q=document.getElementById('search').value.trim().toLowerCase();let list=games.filter(g=>(cat==='热门'||g.cat===cat)&&g.name.toLowerCase().includes(q));if(tab==='fav')list=list.filter(g=>fav.has(g.name));if(tab==='recent')list=list.filter(g=>recent.includes(g.name));document.getElementById('gameCount').textContent=`${list.length} 款游戏`;const grid=document.getElementById('gameGrid');grid.innerHTML=list.map(card).join('')||'<p style="grid-column:1/-1;text-align:center;color:#93a4c2;padding:40px 0">暂无记录</p>';bindCards(grid)}
+const side=document.getElementById('side');
+cats.forEach(([n,i])=>{const b=document.createElement('button');b.innerHTML=`<span class="ico">${i}</span>${n}`;b.onclick=()=>{cat=n;side.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));render()};side.append(b)});
+side.querySelector('button')?.classList.add('active');
+
+function card(g){
+  const f=fav.has(g.name);
+  const ext=EXTERNAL_GAMES[g.name]?'<span class="external-hint">试玩</span>':'';
+  return `<article class="tile" data-game="${g.name}"><span class="tag">${g.cat}</span><img src="${g.img}" alt="${g.name}" loading="lazy" onerror="this.src='placeholder-game.svg'"><button class="star ${f?'on':''}" data-star="${g.name}" aria-label="收藏">${f?'★':'☆'}</button><div class="name">${g.name}${ext}</div></article>`;
+}
+function openGame(n){
+  recent=[n,...recent.filter(x=>x!==n)].slice(0,30);writeList('lr-recent',recent);
+  const game=games.find(x=>x.name===n);
+  if(EXTERNAL_GAMES[n]){toast('正在打开 '+n+' 试玩页');window.open(EXTERNAL_GAMES[n],'_blank','noopener,noreferrer');return}
+  if(game&&game.cat==='真人'){enterGame('baccarat');setupBaccarat(game);return}
+  if(game&&game.name.startsWith('加拿大')){enterGame('canada');return}
+  if(game){enterGame('play');setupPlay(game);return}
+}
+function toggleFavorite(n){fav.has(n)?fav.delete(n):fav.add(n);writeList('lr-favorites',[...fav]);render()}
+function bindCards(root){
+  root.querySelectorAll('[data-star]').forEach(b=>b.onclick=e=>{e.stopPropagation();toggleFavorite(b.dataset.star)});
+  root.querySelectorAll('[data-game]').forEach(el=>el.onclick=()=>openGame(el.dataset.game));
+}
+function render(){
+  const q=document.getElementById('search').value.trim().toLowerCase();
+  let list=games.filter(g=>(cat==='热门'||g.cat===cat)&&g.name.toLowerCase().includes(q));
+  if(tab==='fav')list=list.filter(g=>fav.has(g.name));
+  if(tab==='recent')list=list.filter(g=>recent.includes(g.name));
+  document.getElementById('gameCount').textContent=`${list.length} 款游戏`;
+  const grid=document.getElementById('gameGrid');
+  grid.innerHTML=list.map(card).join('')||'<p style="grid-column:1/-1;text-align:center;color:#7f99b8;padding:40px 0">暂无记录</p>';
+  bindCards(grid);
+}
 document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{tab=b.dataset.tab;document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('active',x===b));render()});
 document.getElementById('search').addEventListener('input',render);
-function go(p,c){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===p));document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x.dataset.page===p));if(c){cat=c;side.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.textContent.trim().includes(c)))}if(p==='games')render();window.scrollTo(0,0)}
-document.querySelectorAll('.nav').forEach(b=>b.onclick=()=>go(b.dataset.page));
-function modal(t,msg){document.getElementById('modalTitle').textContent=t;document.getElementById('modalText').textContent=msg||'这是前端演示页面，未连接真实账户、充值、提现、投注或第三方游戏服务。';document.getElementById('modal').classList.add('show')}
-function closeModal(){document.getElementById('modal').classList.remove('show')}
-let timer;
-function toast(t){let e=document.getElementById('toast');e.textContent=t;e.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>e.classList.remove('show'),1800)}
-function renderFeatured(){const root=document.getElementById('featured');root.innerHTML=featuredGames.map(card).join('');bindCards(root)}
-renderFeatured();
-document.getElementById('homeCats').innerHTML=cats.slice(1).map(([n])=>{let g=games.find(x=>x.cat===n);return `<button class="cat" onclick="go('games','${n}')"><span>${n}</span><img src="${g.img}" alt="${n}"></button>`}).join('');
 
-document.querySelectorAll('.bet-row button,.chip-row button').forEach(b=>b.addEventListener('click',()=>{
- const group=b.parentElement;group.querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
- toast(b.parentElement.classList.contains('chip-row')?'已选择筹码 '+b.textContent:'已选择投注区：'+b.textContent.replace(/\s+/g,' ').trim());
-}));
+function setChrome(hide){
+  document.body.classList.toggle('hidden-bottom',hide);
+  document.getElementById('mainTop').style.display=hide?'none':'flex';
+  document.getElementById('bottomNav').style.display=hide?'none':'grid';
+}
+function enterGame(id){
+  document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===id));
+  document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));
+  setChrome(true);window.scrollTo(0,0);
+}
+function exitGame(c){setChrome(false);go('games',c)}
+function go(p,c){
+  setChrome(false);
+  document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===p));
+  document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x.dataset.page===p));
+  if(c){cat=c;side.querySelectorAll('button').forEach(b=>b.classList.toggle('active',b.textContent.trim().includes(c)))}
+  if(p==='games')render();
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('.nav').forEach(b=>b.onclick=()=>go(b.dataset.page));
+function modal(t,msg){document.getElementById('modalTitle').textContent=t;document.getElementById('modalText').textContent=msg||'这是前端演示页面，未连接真实账户、充值、提现或第三方游戏服务。';document.getElementById('modal').classList.add('show')}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+let timer;function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>e.classList.remove('show'),1800)}
+
+let balHidden=false;
+document.getElementById('toggleBal').onclick=()=>{
+  balHidden=!balHidden;
+  document.getElementById('homeBalance').textContent=balHidden?'••••••':'8,560.00';
+};
+
+/* baccarat demo */
+const roadSeed=['p','b','p','p','b','b','p','t','b','p','b','p','p','b','t','b','p','b','p','p','b','p','b','b'];
+function paintRoad(arr){
+  const root=document.getElementById('roadDots');
+  root.innerHTML=arr.slice(-24).map(x=>`<i class="${x}"></i>`).join('');
+  const c={p:0,b:0,t:0};arr.forEach(x=>c[x]++);
+  document.getElementById('statP').textContent=c.p;
+  document.getElementById('statB').textContent=c.b;
+  document.getElementById('statT').textContent=c.t;
+}
+paintRoad(roadSeed);
+let chip=100,bets={},lastBets={},road=roadSeed.slice();
+function setupBaccarat(game){
+  document.getElementById('bacDealer').src=game.img||'dealer-db.webp';
+  bets={};updateBetSummary();
+}
+function updateBetSummary(){
+  const entries=Object.entries(bets).filter(([,v])=>v>0);
+  document.getElementById('betSummary').textContent=entries.length?('本局：'+entries.map(([k,v])=>k+' '+v).join(' · ')):'请选择筹码并点击投注区';
+  document.querySelectorAll('[data-bet]').forEach(b=>{
+    const k=b.dataset.bet;const v=bets[k]||0;
+    const base=b.innerHTML.split('<b>')[0].trim().replace(/\s+\d+$/,'');
+    // keep odds label
+  });
+}
+document.querySelectorAll('#chipRow [data-chip]').forEach(b=>b.onclick=()=>{
+  chip=Number(b.dataset.chip);document.querySelectorAll('#chipRow button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
+  toast('已选择筹码 '+b.textContent);
+});
+document.querySelectorAll('[data-bet]').forEach(b=>b.onclick=()=>{
+  const k=b.dataset.bet;bets[k]=(bets[k]||0)+chip;
+  document.querySelectorAll('[data-bet]').forEach(x=>x.classList.toggle('active',(bets[x.dataset.bet]||0)>0));
+  updateBetSummary();
+});
+document.getElementById('bacClear').onclick=()=>{bets={};document.querySelectorAll('[data-bet]').forEach(x=>x.classList.remove('active'));updateBetSummary();toast('已清空')};
+document.getElementById('bacRepeat').onclick=()=>{
+  if(!Object.keys(lastBets).length){toast('暂无上局可重复');return}
+  bets={...lastBets};document.querySelectorAll('[data-bet]').forEach(x=>x.classList.toggle('active',(bets[x.dataset.bet]||0)>0));updateBetSummary();toast('已重复上局');
+};
+document.getElementById('bacConfirm').onclick=()=>{
+  if(!Object.keys(bets).length){toast('请先下注');return}
+  lastBets={...bets};
+  const result=['p','b','t'][Math.floor(Math.random()*3)];
+  const map={p:'闲',b:'庄',t:'和'};
+  road=[...road,result];paintRoad(road);
+  toast('演示开奖：'+map[result]+' 胜 · 非真实派彩');
+  bets={};document.querySelectorAll('[data-bet]').forEach(x=>x.classList.remove('active'));updateBetSummary();
+};
+
+/* play demo for other games */
+let playStake=10,playCredit=10000,currentPlay=null;
+const symbols=['🍒','🍋','⭐','7️⃣','💎','🔔','🍇','🍉'];
+function setupPlay(game){
+  currentPlay=game;
+  document.getElementById('playTitle').textContent=game.name;
+  document.getElementById('playEyebrow').textContent=game.cat.toUpperCase()+' · DEMO';
+  document.getElementById('playSub').textContent=game.cat+'本地试玩 · 非真实投注';
+  document.getElementById('playCover').src=game.img;
+  document.getElementById('playBack').onclick=()=>exitGame(game.cat==='13水'?'13水':game.cat);
+  const stage=document.getElementById('playStage');
+  if(game.cat==='捕鱼') stage.innerHTML=`<div style="font-size:48px">${game.sym||'🐟'}</div><div style="margin-top:8px;color:#9eb6d4">点击开始捕获演示</div>`;
+  else if(game.cat==='棋牌'||game.cat==='13水') stage.innerHTML=`<div style="font-size:42px">♠ ♥ ♣ ♦</div><div style="margin-top:8px;color:#9eb6d4">发牌演示</div>`;
+  else if(game.cat==='彩票') stage.innerHTML=`<div style="font-size:28px;letter-spacing:6px">-- -- --</div><div style="margin-top:8px;color:#9eb6d4">开奖演示</div>`;
+  else if(game.cat==='体育') stage.innerHTML=`<div style="font-size:42px">⚽</div><div style="margin-top:8px;color:#9eb6d4">赛事盘口演示</div>`;
+  else stage.innerHTML=`<div class="reels" id="playReels"><span>🍒</span><span>🍋</span><span>⭐</span></div>`;
+  document.getElementById('playResult').textContent='选择筹码后开始试玩';
+  document.getElementById('playCredit').textContent=playCredit.toLocaleString();
+}
+document.querySelectorAll('#playStakes [data-pstake]').forEach(b=>b.onclick=()=>{
+  playStake=Number(b.dataset.pstake);
+  document.querySelectorAll('#playStakes button').forEach(x=>x.classList.toggle('active',x===b));
+});
+document.getElementById('playGo').onclick=()=>{
+  if(!currentPlay)return;
+  if(playCredit<playStake){toast('试玩积分不足');return}
+  playCredit-=playStake;
+  const win=Math.random()<.42;
+  const prize=win?playStake*(2+Math.floor(Math.random()*4)):0;
+  if(prize)playCredit+=prize;
+  document.getElementById('playCredit').textContent=playCredit.toLocaleString();
+  if(currentPlay.cat==='电子'||!['捕鱼','棋牌','13水','彩票','体育'].includes(currentPlay.cat)){
+    const r=[0,1,2].map(()=>symbols[Math.floor(Math.random()*symbols.length)]);
+    const el=document.getElementById('playStage');
+    el.innerHTML=`<div class="reels"><span>${r[0]}</span><span>${r[1]}</span><span>${r[2]}</span></div>`;
+  }else if(currentPlay.cat==='捕鱼'){
+    document.getElementById('playStage').innerHTML=`<div style="font-size:48px">${win?'🐠✨':'🌊'}</div><div style="margin-top:8px;color:#9eb6d4">${win?'捕获成功':'未捕获'}</div>`;
+  }else if(currentPlay.cat==='彩票'){
+    const n=[0,1,2].map(()=>Math.floor(Math.random()*10));
+    document.getElementById('playStage').innerHTML=`<div style="font-size:28px;letter-spacing:6px">${n.join(' + ')}</div>`;
+  }else if(currentPlay.cat==='体育'){
+    document.getElementById('playStage').innerHTML=`<div style="font-size:22px">${win?'主队 2 : 1':'主队 0 : 1'}</div>`;
+  }else{
+    document.getElementById('playStage').innerHTML=`<div style="font-size:42px">${win?'♠ A':'♣ 7'}</div>`;
+  }
+  document.getElementById('playResult').textContent=win?`演示结果：赢得 ${prize} 试玩积分`:`演示结果：未中奖（已扣 ${playStake}）`;
+  toast(win?'试玩中奖':'未中奖');
+};
+
 go('home');render();
 </script>
 <script>
 (function(){
 const API='https://www.lspcpc28.com/api/pc28/list';
 const $=id=>document.getElementById(id);
-let latest=null,rows=[],timer=null,countdownTimer=null,secondsLeft=0,variant='加拿大28';
-const status=document.createElement('div');status.className='canada-result';status.id='canadaApiStatus';status.textContent='正在连接官方开奖数据…';
+let latest=null,rows=[],countdownTimer=null,secondsLeft=0,variant='加拿大28';
+const status=document.createElement('div');status.id='canadaApiStatus';status.textContent='正在连接官方开奖数据…';
 $('canadaResult').before(status);
 const period=document.createElement('div');period.className='canada-meta';period.id='canadaPeriod';
 const niu=document.createElement('div');niu.className='canada-meta';niu.id='canadaNiu';
@@ -206,74 +677,79 @@ const compare=document.createElement('div');compare.className='canada-meta';comp
 $('canadaResult').before(period);$('canadaResult').before(niu);$('canadaResult').before(next);$('canadaResult').before(compare);
 let choice=document.querySelector('#canadaChoices .active')?.dataset.choice||'大';
 document.querySelectorAll('#canadaChoices [data-choice]').forEach(b=>b.addEventListener('click',()=>{
- choice=b.dataset.choice;
- document.querySelectorAll('#canadaChoices [data-choice]').forEach(x=>x.classList.toggle('active',x===b));
- if(latest)updateCompare(latest);
+  choice=b.dataset.choice;
+  document.querySelectorAll('#canadaChoices [data-choice]').forEach(x=>x.classList.toggle('active',x===b));
+  if(latest)updateCompare(latest);
 }));
 document.querySelectorAll('.canada-stakes [data-stake]').forEach(b=>b.addEventListener('click',()=>{
- document.querySelectorAll('.canada-stakes [data-stake]').forEach(x=>x.classList.toggle('active',x===b));
+  document.querySelectorAll('.canada-stakes [data-stake]').forEach(x=>x.classList.toggle('active',x===b));
 }));
-function updateCompare(d){
- const nums=parseNumbers(d.openCode);if(!nums){compare.textContent='';return}
- const sum=nums.reduce((a,b)=>a+b,0);
- const map={大:sum>=14,小:sum<=13,单:sum%2===1,双:sum%2===0};
- const hit=!!map[choice];
- compare.className='canada-meta '+(hit?'canada-match':'canada-miss');
- compare.textContent='玩法对照：你选「'+choice+'」· 本期为 '+(sum>=14?'大':'小')+' / '+(sum%2?'单':'双')+' · '+(hit?'相符':'不相符')+'（仅演示，无派彩）';
-}
 document.querySelectorAll('[data-variant]').forEach(b=>b.addEventListener('click',()=>{
- variant=b.dataset.variant;
- document.querySelectorAll('[data-variant]').forEach(x=>x.classList.toggle('active',x===b));
- $('canadaResult').textContent='当前玩法：'+variant+'；所有加拿大玩法共用同一期官方开奖结果';
+  variant=b.dataset.variant;
+  document.querySelectorAll('[data-variant]').forEach(x=>x.classList.toggle('active',x===b));
+  $('canadaResult').textContent='当前玩法：'+variant+'；所有加拿大玩法共用同一期官方开奖结果';
 }));
 function parseNumbers(value){
- const parts=String(value??'').match(/\d+/g)||[];
- if(parts.length!==3||parts.some(x=>Number(x)>9))return null;
- return parts.map(Number);
+  const raw=String(value??'').trim();
+  if(/^\d{3}$/.test(raw)) return raw.split('').map(Number);
+  const parts=raw.match(/\d+/g)||[];
+  if(parts.length===3 && parts.every(x=>Number(x)<=9)) return parts.map(Number);
+  if(parts.length===1 && /^\d{3}$/.test(parts[0])) return parts[0].split('').map(Number);
+  return null;
+}
+function updateCompare(d){
+  const nums=parseNumbers(d.openCode);if(!nums){compare.textContent='';return}
+  const sum=nums.reduce((a,b)=>a+b,0);
+  const map={大:sum>=14,小:sum<=13,单:sum%2===1,双:sum%2===0};
+  const hit=!!map[choice];
+  compare.className='canada-meta '+(hit?'canada-match':'canada-miss');
+  compare.textContent='玩法对照：你选「'+choice+'」· 本期为 '+(sum>=14?'大':'小')+' / '+(sum%2?'单':'双')+' · '+(hit?'相符':'不相符')+'（仅演示）';
 }
 function renderDraw(d){
- const nums=parseNumbers(d.openCode);
- if(!nums)throw new Error('开奖号码格式不正确：'+String(d.openCode));
- const sum=nums.reduce((a,b)=>a+b,0);
- ['c1','c2','c3'].forEach((id,i)=>$(id).textContent=nums[i]);
- $('cSum').textContent=sum;
- $('canadaPeriod').textContent='第 '+d.lotNumber+' 期 · 和值 '+(d.lotResultNo??sum);
- $('canadaResult').textContent='官方开奖结果：'+nums.join(' + ')+' = '+sum+' · '+(sum>=14?'大':'小')+' · '+(sum%2?'单':'双');
- $('canadaNiu').textContent='牛牛结果：'+[d.lotResultOneNo,d.lotResultTwoNo,d.lotResultThreeNo].filter(Boolean).join(' / ');
- updateCompare(d);
+  const nums=parseNumbers(d.openCode);
+  if(!nums)throw new Error('开奖号码格式不正确：'+String(d.openCode));
+  const sum=nums.reduce((a,b)=>a+b,0);
+  ['c1','c2','c3'].forEach((id,i)=>$(id).textContent=nums[i]);
+  $('cSum').textContent=sum;
+  $('canadaPeriod').textContent='第 '+d.lotNumber+' 期 · 和值 '+(d.lotResultNo??sum);
+  $('canadaResult').textContent='官方开奖：'+nums.join(' + ')+' = '+sum+' · '+(sum>=14?'大':'小')+' · '+(sum%2?'单':'双');
+  $('canadaNiu').textContent='牛牛结果：'+[d.lotResultOneNo,d.lotResultTwoNo,d.lotResultThreeNo].filter(Boolean).join(' / ');
+  updateCompare(d);
 }
 function renderHistory(){
- $('canadaHistory').innerHTML=rows.slice(0,8).map(d=>{
-  const ns=parseNumbers(d.openCode);if(!ns)return '';
-  return '<span><b>'+String(d.lotNumber??'')+'</b><br>'+ns.join('+')+'<br>'+ns.reduce((a,b)=>a+b,0)+'</span>';
- }).join('')||'<span>暂无历史记录</span>';
+  $('canadaHistory').innerHTML=rows.slice(0,8).map(d=>{
+    const ns=parseNumbers(d.openCode);if(!ns)return '';
+    return '<span><b>'+String(d.lotNumber??'')+'</b><br>'+ns.join('+')+'<br>'+ns.reduce((a,b)=>a+b,0)+'</span>';
+  }).join('')||'<span>暂无历史记录</span>';
 }
 function renderCountdown(){
- $('canadaCountdown').textContent=secondsLeft>0?'距离下一期开奖：'+String(Math.floor(secondsLeft/60)).padStart(2,'0')+':'+String(secondsLeft%60).padStart(2,'0'):'等待下一期开奖时间';
- if(secondsLeft>0)secondsLeft--;
+  $('canadaCountdown').textContent=secondsLeft>0?'距离下一期：'+String(Math.floor(secondsLeft/60)).padStart(2,'0')+':'+String(secondsLeft%60).padStart(2,'0'):'等待下一期开奖';
+  if(secondsLeft>0)secondsLeft--;
 }
 async function loadDraw(){
- try{
-  const res=await fetch(API,{cache:'no-store'});
-  if(!res.ok)throw new Error('HTTP '+res.status);
-  const json=await res.json(),list=json?.data?.list;
-  if(!json?.success||!Array.isArray(list)||!list.length)throw new Error('接口返回格式异常');
-  rows=list;latest=list[0];renderDraw(latest);renderHistory();
-  const info=json?.data?.nextDrawInfo;
-  if(info?.nextDrawTime&&info?.currentBJTime){
-   const now=new Date('1970-01-01T'+info.currentBJTime.slice(11)+'Z').getTime();
-   const target=new Date('1970-01-01T'+info.nextDrawTime+'Z').getTime();
-   secondsLeft=Math.max(0,Math.floor((target-now)/1000));
-   if(countdownTimer)clearInterval(countdownTimer);
-   renderCountdown();countdownTimer=setInterval(renderCountdown,1000);
+  try{
+    const res=await fetch(API,{cache:'no-store'});
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    const json=await res.json(),list=json?.data?.list;
+    if(!json?.success||!Array.isArray(list)||!list.length)throw new Error('接口返回格式异常');
+    rows=list;latest=list[0];renderDraw(latest);renderHistory();
+    const info=json?.data?.nextDrawInfo;
+    if(info?.nextDrawTime&&info?.currentBJTime){
+      const now=new Date('1970-01-01T'+info.currentBJTime.slice(11)+'Z').getTime();
+      const target=new Date('1970-01-01T'+info.nextDrawTime+'Z').getTime();
+      secondsLeft=Math.max(0,Math.floor((target-now)/1000));
+      if(countdownTimer)clearInterval(countdownTimer);
+      renderCountdown();countdownTimer=setInterval(renderCountdown,1000);
+    }
+    status.textContent='实时开奖已连接 · 每15秒更新';
+  }catch(err){
+    status.textContent='官方开奖暂不可用：'+err.message;
+    console.warn('LR Canada draw API:',err);
   }
-  status.textContent='实时开奖已连接 · 数据源 lspcpc28.com · 每15秒更新';
- }catch(err){
-  status.textContent='官方开奖暂不可用：'+err.message+'。不会用随机号码冒充真实开奖。';
-  console.warn('LS999 Canada draw API:',err);
- }
 }
 $('canadaPlay').addEventListener('click',loadDraw);
-loadDraw();timer=setInterval(loadDraw,15000);
+loadDraw();setInterval(loadDraw,15000);
 })();
-</script></body></html>
+</script>
+</body>
+</html>
