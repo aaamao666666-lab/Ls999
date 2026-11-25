@@ -1,0 +1,12 @@
+{
+  "name": "ls999",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "build": "rm -rf dist && mkdir -p dist && cp index.html dist/ && cp *.webp *.svg dist/ 2>/dev/null || true",
+    "deploy": "npm run build && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.45.0"
+  }
+}
