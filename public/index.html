@@ -21,10 +21,10 @@ button,input{font:inherit}button{border:0;cursor:pointer;background:none;color:i
 /* top */
 .top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(6,14,28,.82);backdrop-filter:blur(18px);border-bottom:1px solid #21406a55}
 .brand{display:flex;align-items:center;gap:10px}
-.logo-mark{width:36px;height:36px;transform:rotate(45deg);border-radius:8px;background:linear-gradient(145deg,#8ad8ff,#2a78ff 55%,#1250c8);display:grid;place-items:center;box-shadow:0 0 18px #2f8dff77,inset 0 1px #fff8}
-.logo-mark span{transform:rotate(-45deg);font:800 12px/1 Georgia,serif;color:#eaf7ff;letter-spacing:.5px;text-shadow:0 1px 4px #003}
+.logo-mark{width:34px;height:38px;clip-path:polygon(50% 0,100% 18%,100% 72%,50% 100%,0 72%,0 18%);background:linear-gradient(160deg,#9fe0ff,#2f7dff 55%,#1248b8);display:grid;place-items:center;box-shadow:0 0 16px #2f8dff77}
+.logo-mark span{font:800 11px/1 Georgia,serif;color:#eaf7ff;letter-spacing:.5px;text-shadow:0 1px 4px #003;margin-top:-2px}
 .brand-txt b{display:block;font-size:15px;font-weight:800;letter-spacing:.5px}
-.brand-txt small{color:var(--cyan);font-size:10px;letter-spacing:1px}
+.brand-txt small{color:var(--cyan);font-size:10px;letter-spacing:1.2px}
 .top-actions{display:flex;gap:8px}
 .icon-btn{width:34px;height:34px;border-radius:10px;background:#122740;border:1px solid #2b4d7888;color:#cfe4ff;display:grid;place-items:center;position:relative}
 .icon-btn .dot{position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:#ff4d4f;box-shadow:0 0 8px #ff4d4f}
@@ -32,32 +32,32 @@ button,input{font:inherit}button{border:0;cursor:pointer;background:none;color:i
 /* home */
 .hero{margin:12px 12px 10px;border-radius:18px;overflow:hidden;position:relative;height:176px;border:1px solid #3a6aa855;box-shadow:0 12px 30px #0006}
 .hero img{width:100%;height:100%;object-fit:cover;object-position:70% 20%;filter:saturate(1.08) brightness(.92)}
-.hero-mask{position:absolute;inset:0;background:linear-gradient(100deg,#06111ff2 0%,#06111fcc 28%,#06111f22 62%,#06111f66 100%)}
-.hero-copy{position:absolute;left:16px;top:50%;transform:translateY(-50%);right:40%;z-index:1}
-.hero-copy h1{margin:0;font-size:26px;font-weight:900;letter-spacing:1px;text-shadow:0 4px 18px #000a}
+.hero-mask{position:absolute;inset:0;background:linear-gradient(100deg,#06111fff 0%,#06111ff5 22%,#06111f55 48%,#06111f10 70%,#06111f55 100%)}
+.hero-copy{position:absolute;left:16px;top:50%;transform:translateY(-50%);right:38%;z-index:1}
+.hero-copy h1{margin:0;font-size:28px;font-weight:900;letter-spacing:1px;text-shadow:0 4px 18px #000a}
 .hero-copy p{margin:10px 0 0;font-size:11px;color:#d7e7ff;opacity:.95;line-height:1.55}
 .hero-arrow{position:absolute;right:14px;bottom:16px;z-index:1;width:30px;height:30px;border-radius:50%;background:#ffffff22;border:1px solid #fff4;display:grid;place-items:center}
 
 .notice{margin:0 12px 10px;padding:9px 12px;border-radius:12px;background:linear-gradient(90deg,#132844cc,#0e1d35cc);border:1px solid #2d4f7a66;display:flex;align-items:center;gap:8px;color:#b7cae6;font-size:12px}
 .notice i{color:var(--gold)}
 
-.vip-card{margin:0 12px 12px;padding:14px;border-radius:16px;background:linear-gradient(135deg,#16325aee,#0d1d38f2 55%,#152a48);border:1px solid #3f6aa988;box-shadow:0 10px 28px #0005,inset 0 1px #ffffff18;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.vip-card{margin:0 12px 12px;padding:14px;border-radius:18px;background:linear-gradient(135deg,rgba(28,58,102,.72),rgba(12,28,52,.88));border:1px solid rgba(120,180,255,.28);box-shadow:0 12px 30px #0006,inset 0 1px rgba(255,255,255,.16);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:space-between;gap:12px}
 .vip-meta{display:flex;align-items:center;gap:7px;color:var(--gold);font-size:12px;margin-bottom:10px}
 .vip-badge{background:linear-gradient(120deg,#f6d48a,#c8943a);color:#1a1408;font-size:10px;font-weight:800;padding:2px 7px;border-radius:8px}
 .balance-label{font-size:11px;color:var(--muted)}
 .balance-row{display:flex;align-items:center;gap:8px;margin-top:4px}
 .balance-row b{font:800 24px/1.1 Georgia,"Times New Roman",serif;letter-spacing:.5px}
 .eye{width:28px;height:28px;border-radius:8px;background:#1a3050;color:#9fbadc}
-.recharge{min-width:92px;padding:12px 14px;border-radius:12px;background:linear-gradient(135deg,#ffe0a0,#e0b35a 45%,#b8842f);color:#1c1406;font-weight:800;box-shadow:0 8px 18px #b8842f55,inset 0 1px #fff8}
+.recharge{min-width:96px;padding:12px 14px;border-radius:14px;background:linear-gradient(135deg,#ffe9b8,#e0b35a 45%,#b8842f);color:#1c1406;font-weight:800;border:1px solid #f6d48a;box-shadow:0 8px 18px #b8842f55,inset 0 1px #fff8}
 
 .quick{margin:4px 12px 14px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .quick button{display:grid;gap:7px;justify-items:center;color:#d7e6fb;font-size:11px}
-.qico{width:46px;height:46px;border-radius:14px;background:linear-gradient(160deg,#1a3358,#101f38);border:1px solid #35598788;display:grid;place-items:center;font-size:18px;box-shadow:inset 0 1px #fff2}
+.qico{width:52px;height:52px;border-radius:16px;background:linear-gradient(160deg,rgba(40,72,120,.55),rgba(16,32,58,.9));border:1px solid rgba(120,180,255,.25);display:grid;place-items:center;font-size:20px;box-shadow:inset 0 1px rgba(255,255,255,.18),0 8px 16px #0004;backdrop-filter:blur(10px)}
 
-.promo{margin:0 12px 14px;border-radius:16px;overflow:hidden;position:relative;height:92px;border:1px solid #3d679a77;background:linear-gradient(120deg,#1a3a68,#102446)}
-.promo img{position:absolute;right:0;top:0;height:100%;width:48%;object-fit:cover;opacity:.85;mask-image:linear-gradient(90deg,transparent,#000 30%)}
-.promo-copy{position:relative;z-index:1;padding:18px 16px}
-.promo-copy small{color:var(--gold);letter-spacing:1px;font-size:10px}
+.promo{margin:0 12px 14px;border-radius:16px;overflow:hidden;position:relative;height:96px;border:1px solid #3d679a77;background:linear-gradient(120deg,#1a3a68,#102446)}
+.promo img{position:absolute;right:0;top:0;height:100%;width:55%;object-fit:cover;opacity:.95;mask-image:linear-gradient(90deg,transparent,#000 28%)}
+.promo-copy{position:relative;z-index:1;padding:20px 16px}
+.promo-copy small{color:var(--gold);letter-spacing:1.5px;font-size:10px}
 .promo-copy b{display:block;margin-top:6px;font-size:18px}
 
 .section{margin:0 12px 16px}
@@ -103,13 +103,48 @@ button,input{font:inherit}button{border:0;cursor:pointer;background:none;color:i
 .bac-top .left{display:flex;align-items:center;gap:8px}
 .bac-top h2{margin:0;font-size:18px}
 .live-pill{font-size:10px;padding:3px 7px;border-radius:999px;background:#12345a;border:1px solid #3d7cff88;color:#9fd0ff}
-.dealer-stage{margin:0 12px;border-radius:16px;overflow:hidden;position:relative;height:220px;border:1px solid #3a6aa866;background:#0b172b}
-.dealer-stage img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
-.live-overlay{position:absolute;left:10px;top:10px;display:flex;gap:8px;align-items:center}
+.dealer-stage{margin:0 12px;border-radius:18px;overflow:hidden;position:relative;height:340px;border:1px solid #3a6aa866;background:#0b172b;box-shadow:0 14px 28px #0007}
+.dealer-live{position:absolute;inset:0 0 96px;overflow:hidden}
+.dealer-img{width:100%;height:100%;object-fit:cover;object-position:center 18%;transform-origin:center 30%;will-change:transform,filter;filter:brightness(.55) saturate(.85);transition:filter .45s ease}
+.dealer-img.idle{animation:dealerIdle 4.8s ease-in-out infinite}
+.dealer-img.dealing{filter:brightness(1) saturate(1.05);animation:dealerDeal .55s ease-in-out 4}
+.dealer-img.live-bright{filter:brightness(1) saturate(1.05)}
+.dealer-dim{position:absolute;inset:0;background:rgba(4,10,22,.42);pointer-events:none;transition:opacity .4s;z-index:2}
+.dealer-stage.is-open .dealer-dim{opacity:0}
+.dealer-stage.is-open .dealer-img{filter:brightness(1) saturate(1.05)}
+.dealer-glow{position:absolute;inset:auto 0 0;height:70px;background:linear-gradient(transparent,#0a1a12ee);z-index:2}
+@keyframes dealerIdle{0%,100%{transform:scale(1) translateY(0)}50%{transform:scale(1.02) translateY(-3px)}}
+@keyframes dealerDeal{0%,100%{transform:scale(1) rotate(0)}35%{transform:scale(1.04) rotate(-1.2deg) translateY(-3px)}70%{transform:scale(1.02) rotate(1deg)}}
+@media(prefers-reduced-motion:reduce){.dealer-img.idle,.dealer-img.dealing,.pcard,.cd-ring{animation:none!important}}
+.live-overlay{position:absolute;left:10px;top:10px;display:flex;gap:8px;align-items:center;z-index:5}
 .live-now{background:#e11d48;color:#fff;font-size:10px;font-weight:800;padding:4px 8px;border-radius:999px}
 .viewers{background:#06111ecc;border:1px solid #ffffff22;padding:4px 8px;border-radius:999px;font-size:10px}
-.table-id{position:absolute;right:10px;top:10px;background:#06111ecc;border:1px solid #ffffff22;padding:4px 8px;border-radius:999px;font-size:10px;color:#c9dbf5}
-.signal{position:absolute;right:10px;bottom:10px;font-size:11px;color:#9fe870}
+.table-id{position:absolute;right:10px;top:10px;z-index:5;background:#06111ecc;border:1px solid #ffffff22;padding:4px 8px;border-radius:999px;font-size:10px;color:#c9dbf5}
+.signal{position:absolute;right:10px;top:40px;z-index:5;font-size:11px;color:#9fe870}
+.countdown-layer{position:absolute;inset:0 0 96px;z-index:4;display:grid;place-items:center;pointer-events:none}
+.countdown-layer.hide{opacity:0;visibility:hidden;transition:opacity .25s}
+.cd-ring{width:92px;height:92px;border-radius:50%;border:3px solid rgba(240,200,120,.35);box-shadow:0 0 0 10px rgba(0,0,0,.28),0 0 28px rgba(79,195,255,.25);background:rgba(6,14,28,.55);backdrop-filter:blur(8px);display:grid;place-items:center;position:relative}
+.cd-ring:before{content:"";position:absolute;inset:-3px;border-radius:50%;border:3px solid transparent;border-top-color:var(--gold);animation:cdSpin 1s linear infinite}
+@keyframes cdSpin{to{transform:rotate(360deg)}}
+.cd-num{font:800 34px/1 Georgia,serif;color:#fff;text-shadow:0 4px 16px #000a}
+.cd-label{position:absolute;bottom:18px;left:0;right:0;text-align:center;font-size:11px;letter-spacing:2px;color:#d7e7ff;text-shadow:0 2px 8px #000a}
+.felt{position:absolute;left:0;right:0;bottom:0;height:100px;z-index:6;background:radial-gradient(ellipse at 50% 0%,#1f6a45,#0d3a28 70%);border-top:1px solid #3d9a6888;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px;padding:8px 10px}
+.felt-side{text-align:center}
+.felt-side>span{display:block;font-size:10px;color:#c8f0d8;letter-spacing:1px;margin-bottom:4px}
+.felt-side>b{display:block;margin-top:4px;font-size:12px;color:#ffe7a8}
+.card-slot{display:flex;justify-content:center;gap:4px;min-height:46px}
+.felt-center{min-width:78px;text-align:center;font-size:11px;color:#d7ffe8;padding:6px 8px;border-radius:10px;background:#06241899;border:1px solid #3d9a6855}
+.felt-center.win{color:#ffe7a8;border-color:#f0c87888;box-shadow:0 0 16px #f0c87844}
+.pcard{width:32px;height:44px;perspective:400px;opacity:0;transform:translateY(-40px) scale(.6)}
+.pcard.show{animation:cardIn .35s ease forwards}
+.pcard.flip .pcard-inner{transform:rotateY(180deg)}
+@keyframes cardIn{to{opacity:1;transform:translateY(0) scale(1)}}
+.pcard-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .45s ease}
+.pcard-face{position:absolute;inset:0;border-radius:5px;backface-visibility:hidden;display:grid;place-items:center;font-size:11px;font-weight:800;box-shadow:0 3px 8px #0007}
+.pcard-back{background:linear-gradient(145deg,#1d4f9c,#0d2a5c);border:1px solid #7eb0ff88;color:#9fd0ff}
+.pcard-back:before{content:"LR";font:800 9px Georgia,serif;letter-spacing:1px}
+.pcard-front{background:linear-gradient(160deg,#fff,#e8eef8);border:1px solid #d7dde8;color:#1a2438;transform:rotateY(180deg);grid-template-rows:auto 1fr auto;padding:2px}
+.pcard-front .r{font-size:10px;line-height:1}.pcard-front .s{font-size:14px}.pcard-front.red{color:#d64545}
 
 .table-panel{margin:12px}
 .bet-main{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:8px}
@@ -260,7 +295,7 @@ body:not(.is-user) .user-only{display:none!important}
     <button onclick="toast('客服入口演示')"><span class="qico">🎧</span>客服</button>
   </div>
   <section class="promo">
-    <img src="network-bonus.webp" alt="">
+    <img src="promo-gift.webp" alt="" onerror="this.src='network-bonus.webp'">
     <div class="promo-copy"><small>NEW MEMBER</small><b>新人专享礼</b></div>
   </section>
   <section class="section">
@@ -303,11 +338,32 @@ body:not(.is-user) .user-only{display:none!important}
       <button class="icon-btn" onclick="toast('全屏演示')">⛶</button>
     </div>
   </div>
-  <section class="dealer-stage">
-    <img id="bacDealer" src="baccarat-dealer.webp" alt="百家乐荷官">
-    <div class="live-overlay"><span class="live-now">● 直播中</span><span class="viewers">👁 3,426</span></div>
-    <div class="table-id">局号 B0087326</div>
+  <section class="dealer-stage" id="dealerStage">
+    <div class="dealer-live">
+      <img id="bacDealer" class="dealer-img idle" src="baccarat-dealer.webp" alt="百家乐荷官">
+      <div class="dealer-dim" id="dealerDim"></div>
+      <div class="dealer-glow"></div>
+    </div>
+    <div class="live-overlay"><span class="live-now">● 直播中</span><span class="viewers" id="bacViewers">👁 3,426</span></div>
+    <div class="table-id" id="tableId">局号 B0087326</div>
     <div class="signal">📶 信号良好</div>
+    <div class="countdown-layer" id="countdownLayer">
+      <div class="cd-ring"><span class="cd-num" id="cdNum">15</span></div>
+      <div class="cd-label" id="cdLabel">下注倒计时</div>
+    </div>
+    <div class="felt">
+      <div class="felt-side">
+        <span>闲 PLAYER</span>
+        <div class="card-slot" id="pCards"></div>
+        <b id="pScore">—</b>
+      </div>
+      <div class="felt-center" id="dealStatus">静默等待中</div>
+      <div class="felt-side">
+        <span>庄 BANKER</span>
+        <div class="card-slot" id="bCards"></div>
+        <b id="bScore">—</b>
+      </div>
+    </div>
   </section>
   <section class="table-panel">
     <div class="bet-main">
@@ -546,7 +602,7 @@ function openGame(n){
   recent=[n,...recent.filter(x=>x!==n)].slice(0,30);writeList('lr-recent',recent);
   const game=games.find(x=>x.name===n);
   if(EXTERNAL_GAMES[n]){toast('正在打开 '+n+' 试玩页');window.open(EXTERNAL_GAMES[n],'_blank','noopener,noreferrer');return}
-  if(game&&game.cat==='真人'){enterGame('baccarat');setupBaccarat(game);return}
+  if(game&&game.cat==='真人'){enterGame('baccarat');setupBaccarat();return}
   if(game&&game.name.startsWith('加拿大')){enterGame('canada');return}
   if(game){enterGame('play');setupPlay(game);return}
 }
@@ -578,8 +634,13 @@ function enterGame(id){
   document.querySelectorAll('.nav').forEach(x=>x.classList.remove('active'));
   setChrome(true);window.scrollTo(0,0);
 }
-function exitGame(c){setChrome(false);go('games',c)}
+function exitGame(c){
+  if(typeof stopCountdown==='function')stopCountdown();
+  dealing=false;bettingOpen=false;
+  setChrome(false);go('games',c);
+}
 function go(p,c){
+  if(p!=='baccarat' && typeof stopCountdown==='function'){stopCountdown();bettingOpen=false}
   setChrome(false);
   document.querySelectorAll('.page').forEach(x=>x.classList.toggle('active',x.id===p));
   document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x.dataset.page===p));
@@ -617,8 +678,11 @@ document.getElementById('toggleBal').onclick=()=>{
 };
 refreshAuth();
 
-/* baccarat demo */
+/* baccarat demo — dim silent countdown, then open cards */
 const roadSeed=['p','b','p','p','b','b','p','t','b','p','b','p','p','b','t','b','p','b','p','p','b','p','b','b'];
+const SUITS=[{s:'♠',red:false},{s:'♥',red:true},{s:'♣',red:false},{s:'♦',red:true}];
+const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+const BET_SECONDS=12;
 function paintRoad(arr){
   const root=document.getElementById('roadDots');
   root.innerHTML=arr.slice(-24).map(x=>`<i class="${x}"></i>`).join('');
@@ -628,43 +692,164 @@ function paintRoad(arr){
   document.getElementById('statT').textContent=c.t;
 }
 paintRoad(roadSeed);
-let chip=100,bets={},lastBets={},road=roadSeed.slice();
-function setupBaccarat(game){
+let chip=100,bets={},lastBets={},lockedBets={},road=roadSeed.slice();
+let dealing=false,bettingOpen=false,secondsLeft=BET_SECONDS,cdTimer=null,roundNo=87326;
+function cardValue(rank){if(rank==='A')return 1;if(['10','J','Q','K'].includes(rank))return 0;return Number(rank)}
+function handPoint(cards){return cards.reduce((a,c)=>a+cardValue(c.rank),0)%10}
+function drawCard(){return {rank:RANKS[Math.floor(Math.random()*RANKS.length)],...SUITS[Math.floor(Math.random()*SUITS.length)]}}
+function makeCardEl(card){
+  const el=document.createElement('div');
+  el.className='pcard';
+  el.innerHTML=`<div class="pcard-inner"><div class="pcard-face pcard-back"></div><div class="pcard-face pcard-front ${card.red?'red':''}"><div class="r">${card.rank}</div><div class="s">${card.s}</div><div class="r">${card.rank}</div></div></div>`;
+  return el;
+}
+function clearFelt(statusText){
+  document.getElementById('pCards').innerHTML='';
+  document.getElementById('bCards').innerHTML='';
+  document.getElementById('pScore').textContent='—';
+  document.getElementById('bScore').textContent='—';
+  const st=document.getElementById('dealStatus');
+  st.classList.remove('win');st.textContent=statusText||'静默等待中';
+}
+function setVideoPhase(phase){
+  const stage=document.getElementById('dealerStage');
+  const img=document.getElementById('bacDealer');
+  const layer=document.getElementById('countdownLayer');
+  img.classList.remove('idle','dealing','live-bright');
+  if(phase==='countdown'){
+    stage.classList.remove('is-open');
+    img.classList.add('idle');
+    layer.classList.remove('hide');
+    document.getElementById('cdLabel').textContent='下注倒计时 · 画面静默';
+  }else if(phase==='open'){
+    stage.classList.add('is-open');
+    img.classList.add('dealing','live-bright');
+    layer.classList.add('hide');
+  }else{
+    stage.classList.remove('is-open');
+    img.classList.add('idle');
+    layer.classList.remove('hide');
+  }
+}
+function stopCountdown(){if(cdTimer){clearInterval(cdTimer);cdTimer=null}}
+function renderCountdown(){
+  document.getElementById('cdNum').textContent=String(Math.max(0,secondsLeft));
+  document.getElementById('dealStatus').textContent=bettingOpen?('下注中 '+secondsLeft+'s'):'准备开牌';
+}
+function startBettingCountdown(){
+  stopCountdown();
+  dealing=false;bettingOpen=true;secondsLeft=BET_SECONDS;
+  lockedBets={};
+  document.getElementById('bacConfirm').disabled=false;
+  document.getElementById('bacConfirm').textContent='✓ 确认下注';
+  clearFelt('静默等待 · 可下注');
+  setVideoPhase('countdown');
+  renderCountdown();
+  cdTimer=setInterval(async()=>{
+    if(!document.getElementById('baccarat').classList.contains('active'))return;
+    secondsLeft-=1;renderCountdown();
+    if(secondsLeft<=0){
+      stopCountdown();
+      bettingOpen=false;
+      await beginOpenCards();
+    }
+  },1000);
+}
+function setupBaccarat(){
   document.getElementById('bacDealer').src='baccarat-dealer.webp';
   bets={};updateBetSummary();
+  startBettingCountdown();
 }
 function updateBetSummary(){
   const entries=Object.entries(bets).filter(([,v])=>v>0);
-  document.getElementById('betSummary').textContent=entries.length?('本局：'+entries.map(([k,v])=>k+' '+v).join(' · ')):'请选择筹码并点击投注区';
-  document.querySelectorAll('[data-bet]').forEach(b=>{
-    const k=b.dataset.bet;const v=bets[k]||0;
-    const base=b.innerHTML.split('<b>')[0].trim().replace(/\s+\d+$/,'');
-    // keep odds label
-  });
+  document.getElementById('betSummary').textContent=entries.length?('本局：'+entries.map(([k,v])=>k+' '+v).join(' · ')):(bettingOpen?'倒计时内选择筹码并点击投注区':'开牌中，请稍候');
+}
+function wait(ms){return new Promise(r=>setTimeout(r,ms))}
+async function dealTo(slotId,card){
+  const slot=document.getElementById(slotId);
+  const el=makeCardEl(card);
+  slot.appendChild(el);
+  await wait(30);
+  el.classList.add('show');
+  await wait(280);
+  el.classList.add('flip');
+  await wait(420);
+  return el;
+}
+async function beginOpenCards(){
+  if(dealing)return;
+  dealing=true;bettingOpen=false;
+  document.getElementById('bacConfirm').disabled=true;
+  lockedBets=Object.keys(bets).length?{...bets}:{...lastBets};
+  if(Object.keys(bets).length) lastBets={...bets};
+  clearFelt('封盘 · 即将开牌');
+  document.getElementById('cdLabel').textContent='封盘';
+  document.getElementById('countdownLayer').classList.add('hide');
+  await wait(500);
+  roundNo+=1;
+  document.getElementById('tableId').textContent='局号 B'+String(roundNo).padStart(7,'0');
+  document.getElementById('dealStatus').textContent='荷官开牌中…';
+  setVideoPhase('open');
+  const player=[drawCard(),drawCard()];
+  const banker=[drawCard(),drawCard()];
+  await dealTo('pCards',player[0]);
+  await dealTo('bCards',banker[0]);
+  await dealTo('pCards',player[1]);
+  await dealTo('bCards',banker[1]);
+  let p=handPoint(player),b=handPoint(banker);
+  document.getElementById('pScore').textContent=p+' 点';
+  document.getElementById('bScore').textContent=b+' 点';
+  if(p<6 && b<6){
+    document.getElementById('dealStatus').textContent='补牌中…';
+    const extra=drawCard();
+    if(Math.random()<.5){player.push(extra);await dealTo('pCards',extra);p=handPoint(player);document.getElementById('pScore').textContent=p+' 点'}
+    else{banker.push(extra);await dealTo('bCards',extra);b=handPoint(banker);document.getElementById('bScore').textContent=b+' 点'}
+  }
+  const result=p>b?'p':b>p?'b':'t';
+  const map={p:'闲',b:'庄',t:'和'};
+  const st=document.getElementById('dealStatus');
+  st.classList.add('win');
+  st.textContent=map[result]+' 胜 · '+p+':'+b;
+  road=[...road,result];paintRoad(road);
+  toast('开牌完成：'+map[result]+'胜（演示）');
+  bets={};document.querySelectorAll('[data-bet]').forEach(x=>x.classList.remove('active'));updateBetSummary();
+  await wait(2800);
+  dealing=false;
+  if(document.getElementById('baccarat').classList.contains('active')) startBettingCountdown();
 }
 document.querySelectorAll('#chipRow [data-chip]').forEach(b=>b.onclick=()=>{
+  if(!bettingOpen||dealing)return;
   chip=Number(b.dataset.chip);document.querySelectorAll('#chipRow button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
   toast('已选择筹码 '+b.textContent);
 });
 document.querySelectorAll('[data-bet]').forEach(b=>b.onclick=()=>{
+  if(!bettingOpen||dealing){toast(dealing?'正在开牌':'已封盘');return}
   const k=b.dataset.bet;bets[k]=(bets[k]||0)+chip;
   document.querySelectorAll('[data-bet]').forEach(x=>x.classList.toggle('active',(bets[x.dataset.bet]||0)>0));
   updateBetSummary();
 });
-document.getElementById('bacClear').onclick=()=>{bets={};document.querySelectorAll('[data-bet]').forEach(x=>x.classList.remove('active'));updateBetSummary();toast('已清空')};
+document.getElementById('bacClear').onclick=()=>{
+  if(!bettingOpen||dealing)return;
+  bets={};document.querySelectorAll('[data-bet]').forEach(x=>x.classList.remove('active'));updateBetSummary();toast('已清空');
+};
 document.getElementById('bacRepeat').onclick=()=>{
+  if(!bettingOpen||dealing)return;
   if(!Object.keys(lastBets).length){toast('暂无上局可重复');return}
   bets={...lastBets};document.querySelectorAll('[data-bet]').forEach(x=>x.classList.toggle('active',(bets[x.dataset.bet]||0)>0));updateBetSummary();toast('已重复上局');
 };
 document.getElementById('bacConfirm').onclick=()=>{
+  if(dealing)return;
+  if(!bettingOpen){toast('已封盘，等待开牌');return}
   if(!Object.keys(bets).length){toast('请先下注');return}
   lastBets={...bets};
-  const result=['p','b','t'][Math.floor(Math.random()*3)];
-  const map={p:'闲',b:'庄',t:'和'};
-  road=[...road,result];paintRoad(road);
-  toast('演示开奖：'+map[result]+' 胜 · 非真实派彩');
-  bets={};document.querySelectorAll('[data-bet]').forEach(x=>x.classList.remove('active'));updateBetSummary();
+  toast('下注已确认，等待倒计时开牌');
+  document.getElementById('bacConfirm').textContent='✓ 已锁定';
 };
+setInterval(()=>{
+  if(!document.getElementById('baccarat').classList.contains('active'))return;
+  const n=3400+Math.floor(Math.random()*120);
+  document.getElementById('bacViewers').textContent='👁 '+n.toLocaleString();
+},4000);
 
 /* play demo for other games */
 let playStake=10,playCredit=10000,currentPlay=null;
