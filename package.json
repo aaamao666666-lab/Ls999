@@ -3,8 +3,9 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "build": "rm -rf dist && mkdir -p dist && cp index.html dist/ && cp *.webp *.svg dist/ 2>/dev/null || true",
-    "deploy": "npm run build && wrangler deploy"
+    "build": "node -e \"console.log('static assets in public/ — no compile step')\"",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler preview"
   },
   "devDependencies": {
     "wrangler": "^4.45.0"
