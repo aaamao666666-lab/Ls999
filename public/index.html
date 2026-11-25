@@ -21,8 +21,8 @@ button,input{font:inherit}button{border:0;cursor:pointer;background:none;color:i
 /* top */
 .top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(6,14,28,.82);backdrop-filter:blur(18px);border-bottom:1px solid #21406a55}
 .brand{display:flex;align-items:center;gap:10px}
-.logo-mark{width:38px;height:38px;border-radius:12px;background:conic-gradient(from 210deg,#7ad5ff,#2a78ff,#7ad5ff);display:grid;place-items:center;box-shadow:0 0 18px #2f8dff66,inset 0 0 10px #fff6}
-.logo-mark span{width:28px;height:28px;border-radius:8px;background:linear-gradient(160deg,#0b1a33,#12305a);display:grid;place-items:center;font:800 12px/1 Georgia,serif;color:#9fd8ff;letter-spacing:.5px}
+.logo-mark{width:36px;height:36px;transform:rotate(45deg);border-radius:8px;background:linear-gradient(145deg,#8ad8ff,#2a78ff 55%,#1250c8);display:grid;place-items:center;box-shadow:0 0 18px #2f8dff77,inset 0 1px #fff8}
+.logo-mark span{transform:rotate(-45deg);font:800 12px/1 Georgia,serif;color:#eaf7ff;letter-spacing:.5px;text-shadow:0 1px 4px #003}
 .brand-txt b{display:block;font-size:15px;font-weight:800;letter-spacing:.5px}
 .brand-txt small{color:var(--cyan);font-size:10px;letter-spacing:1px}
 .top-actions{display:flex;gap:8px}
@@ -30,12 +30,12 @@ button,input{font:inherit}button{border:0;cursor:pointer;background:none;color:i
 .icon-btn .dot{position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:#ff4d4f;box-shadow:0 0 8px #ff4d4f}
 
 /* home */
-.hero{margin:12px 12px 10px;border-radius:18px;overflow:hidden;position:relative;height:168px;border:1px solid #3a6aa855;box-shadow:0 12px 30px #0006}
-.hero img{width:100%;height:100%;object-fit:cover;object-position:center 20%;filter:saturate(1.05) brightness(.9)}
-.hero-mask{position:absolute;inset:0;background:linear-gradient(100deg,#06111fd9 8%,#06111f33 58%,#06111f88 100%)}
-.hero-copy{position:absolute;left:16px;bottom:16px;right:16px;z-index:1}
-.hero-copy h1{margin:0;font-size:24px;font-weight:900;letter-spacing:1px;text-shadow:0 4px 18px #000a}
-.hero-copy p{margin:8px 0 0;font-size:11px;color:#d7e7ff;opacity:.92}
+.hero{margin:12px 12px 10px;border-radius:18px;overflow:hidden;position:relative;height:176px;border:1px solid #3a6aa855;box-shadow:0 12px 30px #0006}
+.hero img{width:100%;height:100%;object-fit:cover;object-position:70% 20%;filter:saturate(1.08) brightness(.92)}
+.hero-mask{position:absolute;inset:0;background:linear-gradient(100deg,#06111ff2 0%,#06111fcc 28%,#06111f22 62%,#06111f66 100%)}
+.hero-copy{position:absolute;left:16px;top:50%;transform:translateY(-50%);right:40%;z-index:1}
+.hero-copy h1{margin:0;font-size:26px;font-weight:900;letter-spacing:1px;text-shadow:0 4px 18px #000a}
+.hero-copy p{margin:10px 0 0;font-size:11px;color:#d7e7ff;opacity:.95;line-height:1.55}
 .hero-arrow{position:absolute;right:14px;bottom:16px;z-index:1;width:30px;height:30px;border-radius:50%;background:#ffffff22;border:1px solid #fff4;display:grid;place-items:center}
 
 .notice{margin:0 12px 10px;padding:9px 12px;border-radius:12px;background:linear-gradient(90deg,#132844cc,#0e1d35cc);border:1px solid #2d4f7a66;display:flex;align-items:center;gap:8px;color:#b7cae6;font-size:12px}
@@ -183,10 +183,23 @@ button,input{font:inherit}button{border:0;cursor:pointer;background:none;color:i
 
 /* bottom nav */
 .bottom{position:fixed;z-index:30;left:50%;transform:translateX(-50%);bottom:0;width:min(430px,100%);height:calc(72px + env(safe-area-inset-bottom));padding:6px 10px calc(8px + env(safe-area-inset-bottom));background:rgba(6,14,28,.92);backdrop-filter:blur(18px);border-top:1px solid #2a4a7888;display:grid;grid-template-columns:1fr 1fr 1.15fr 1fr 1fr;align-items:end}
-.nav{display:flex;flex-direction:column;align-items:center;gap:3px;color:#7f99b8;font-size:10px;padding-bottom:4px}
-.nav .ico{font-size:18px}
+.nav{display:flex;flex-direction:column;align-items:center;gap:4px;color:#7f99b8;font-size:10px;padding-bottom:4px}
+.nav svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .nav.active{color:var(--cyan)}
-.center-btn{align-self:start;margin-top:-18px;width:58px;height:58px;border-radius:50%;margin-left:auto;margin-right:auto;background:radial-gradient(circle at 35% 25%,#9fd8ff,#2f78ff 58%,#123a7a);border:3px solid #9fd8ff88;box-shadow:0 0 0 4px #2f78ff22,0 10px 24px #0008;color:#fff;font:800 12px/1.1 Georgia,serif;display:grid;place-content:center;letter-spacing:.5px}
+.center-btn{align-self:start;margin-top:-18px;width:58px;height:58px;border-radius:50%;margin-left:auto;margin-right:auto;background:radial-gradient(circle at 35% 25%,#9fd8ff,#2f78ff 58%,#123a7a);border:3px solid #9fd8ff88;box-shadow:0 0 0 4px #2f78ff22,0 10px 24px #0008;color:#fff;font:800 13px/1 Georgia,serif;display:grid;place-content:center;letter-spacing:.5px}
+.sheet{display:none;position:fixed;z-index:55;inset:0;background:#03101fcc;align-items:flex-end;justify-content:center}
+.sheet.show{display:flex}
+.sheet-panel{width:min(430px,100%);background:linear-gradient(180deg,#16325a,#0c1830);border:1px solid #3a6aa888;border-radius:22px 22px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -20px 50px #0008}
+.sheet-panel h3{margin:0 0 6px;color:var(--gold);text-align:center}
+.sheet-panel p{margin:0 0 14px;color:#9eb6d4;font-size:12px;text-align:center}
+.sheet-panel label{display:block;font-size:11px;color:#7ea4d4;margin:0 0 6px}
+.sheet-panel input{width:100%;height:44px;border-radius:12px;border:1px solid #355987;background:#0e1d35;color:#fff;padding:0 12px;margin-bottom:12px;outline:none}
+.sheet-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.sheet-actions button{padding:12px;border-radius:12px;font-weight:800}
+.sheet-cancel{background:#152844;border:1px solid #35598788;color:#d7e7ff}
+.sheet-ok{background:linear-gradient(120deg,#ffe0a0,#c9963a);color:#1c1406}
+body.is-user .guest-only{display:none!important}
+body:not(.is-user) .user-only{display:none!important}
 
 /* modal toast */
 .modal{display:none;position:fixed;z-index:50;inset:0;background:#03101fcc;align-items:center;justify-content:center;padding:20px}
@@ -219,11 +232,11 @@ button,input{font:inherit}button{border:0;cursor:pointer;background:none;color:i
 
 <main id="home" class="page active">
   <section class="hero">
-    <img src="dealer-solaire.webp" alt="">
+    <img src="hero-lr.webp" alt="">
     <div class="hero-mask"></div>
     <div class="hero-copy">
       <h1>LR娱乐</h1>
-      <p>真人视讯 · 电竞电子 · 体育赛事 · 彩票游戏</p>
+      <p>真人视讯 · 电竞电子<br>体育赛事 · 彩票游戏</p>
     </div>
     <button class="hero-arrow" onclick="go('games')" aria-label="进入游戏">›</button>
   </section>
@@ -232,11 +245,13 @@ button,input{font:inherit}button{border:0;cursor:pointer;background:none;color:i
   </div>
   <section class="vip-card">
     <div>
-      <div class="vip-meta">♛ 尊贵会员 <span class="vip-badge">VIP3</span></div>
+      <div class="vip-meta guest-only">请先登录体验</div>
+      <div class="vip-meta user-only">♛ 尊贵会员 <span class="vip-badge">VIP3</span></div>
       <div class="balance-label">账户余额 (MYR)</div>
-      <div class="balance-row"><b id="homeBalance">8,560.00</b><button class="eye" id="toggleBal" aria-label="显示或隐藏余额">👁</button></div>
+      <div class="balance-row"><b id="homeBalance">••••••</b><button class="eye" id="toggleBal" aria-label="显示或隐藏余额">👁</button></div>
     </div>
-    <button class="recharge" onclick="modal('充值','当前为前端演示，未连接真实充值通道。')">充值 ›</button>
+    <button class="recharge guest-only" onclick="openLogin()">登录 ›</button>
+    <button class="recharge user-only" onclick="modal('充值','当前为前端演示，未连接真实充值通道。')">充值 ›</button>
   </section>
   <div class="quick">
     <button onclick="modal('提现')"><span class="qico">🪙</span>提现</button>
@@ -289,7 +304,7 @@ button,input{font:inherit}button{border:0;cursor:pointer;background:none;color:i
     </div>
   </div>
   <section class="dealer-stage">
-    <img id="bacDealer" src="dealer-db.webp" alt="百家乐荷官">
+    <img id="bacDealer" src="baccarat-dealer.webp" alt="百家乐荷官">
     <div class="live-overlay"><span class="live-now">● 直播中</span><span class="viewers">👁 3,426</span></div>
     <div class="table-id">局号 B0087326</div>
     <div class="signal">📶 信号良好</div>
@@ -414,12 +429,18 @@ button,input{font:inherit}button{border:0;cursor:pointer;background:none;color:i
 <main id="mine" class="page">
   <div class="mine-banner">
     <div class="mine-topline"><span>MEMBER CENTER</span><span>LR ✦</span></div>
-    <div class="mine-user"><div class="avatar">♛</div><div><h2 style="margin:0;font-size:18px">欢迎来到 LR</h2><p style="margin:6px 0 0;color:var(--muted);font-size:12px">登录后开启专属会员空间</p></div></div>
-    <button class="mine-login" onclick="modal('登录 / 注册')">登录 / 注册 ›</button>
+    <div class="mine-user"><div class="avatar">♛</div><div>
+      <h2 style="margin:0;font-size:18px" class="guest-only">欢迎来到 LR</h2>
+      <h2 style="margin:0;font-size:18px" class="user-only" id="mineName">LR 会员</h2>
+      <p style="margin:6px 0 0;color:var(--muted);font-size:12px" class="guest-only">登录后开启专属会员空间</p>
+      <p style="margin:6px 0 0;color:var(--muted);font-size:12px" class="user-only">尊贵会员 VIP3 · 演示账号</p>
+    </div></div>
+    <button class="mine-login guest-only" onclick="openLogin()">登录 / 注册 ›</button>
+    <button class="mine-login user-only" onclick="doLogout()">退出演示登录 ›</button>
   </div>
   <section class="mine-wallet">
     <div style="font-size:14px;color:var(--gold);font-weight:700">我的账户 <span style="font-size:9px;color:#7f99b8;margin-left:6px">ACCOUNT</span></div>
-    <div class="wallet-value">8,560.00 <small style="font:11px sans-serif;color:#7f99b8">MYR · 演示</small></div>
+    <div class="wallet-value"><span id="mineBalance">••••••</span> <small style="font:11px sans-serif;color:#7f99b8">MYR · 演示</small></div>
     <div class="wallet-actions">
       <button onclick="modal('存款')">存款</button><button onclick="modal('取款')">取款</button>
       <button onclick="modal('转账')">转账</button><button onclick="modal('记录')">记录</button>
@@ -440,16 +461,30 @@ button,input{font:inherit}button{border:0;cursor:pointer;background:none;color:i
 </main>
 
 <nav class="bottom" id="bottomNav">
-  <button class="nav active" data-page="home"><span class="ico">⌂</span>首页</button>
-  <button class="nav" data-page="games"><span class="ico">▣</span>游戏大厅</button>
+  <button class="nav active" data-page="home"><svg viewBox="0 0 24 24"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z"/></svg>首页</button>
+  <button class="nav" data-page="games"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>游戏大厅</button>
   <button class="center-btn" onclick="go('home')" aria-label="LR">LR</button>
-  <button class="nav" data-page="activity"><span class="ico">⚑</span>优惠活动</button>
-  <button class="nav" data-page="mine"><span class="ico">♟</span>我的</button>
+  <button class="nav" data-page="activity"><svg viewBox="0 0 24 24"><path d="M12 3 14.2 8.2 20 9l-4 3.9.9 5.6L12 16.3 7.1 18.5 8 12.9 4 9l5.8-.8z"/></svg>优惠活动</button>
+  <button class="nav" data-page="mine"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 19.5c1.6-3.2 4-4.8 7-4.8s5.4 1.6 7 4.8"/></svg>我的</button>
 </nav>
 </div>
 
 <div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
   <div class="dialog"><h3 id="modalTitle">提示</h3><p id="modalText">这是前端演示页面，未连接真实账户或投注系统。</p><button onclick="closeModal()">知道了</button></div>
+</div>
+<div class="sheet" id="loginSheet" onclick="if(event.target===this)closeLogin()">
+  <div class="sheet-panel">
+    <h3>登录 / 注册</h3>
+    <p>演示登录：任意账号密码即可进入会员态</p>
+    <label for="loginUser">账号</label>
+    <input id="loginUser" placeholder="请输入账号" autocomplete="username">
+    <label for="loginPass">密码</label>
+    <input id="loginPass" type="password" placeholder="请输入密码" autocomplete="current-password">
+    <div class="sheet-actions">
+      <button class="sheet-cancel" onclick="closeLogin()">取消</button>
+      <button class="sheet-ok" onclick="doLogin()">进入演示</button>
+    </div>
+  </div>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -557,11 +592,30 @@ function modal(t,msg){document.getElementById('modalTitle').textContent=t;docume
 function closeModal(){document.getElementById('modal').classList.remove('show')}
 let timer;function toast(t){const e=document.getElementById('toast');e.textContent=t;e.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>e.classList.remove('show'),1800)}
 
-let balHidden=false;
+const DEMO_BAL='8,560.00';
+let balHidden=true, user=null;
+try{user=localStorage.getItem('lr-user')||null}catch{user=null}
+if(user) balHidden=false;
+function setUser(u){user=u;try{u?localStorage.setItem('lr-user',u):localStorage.removeItem('lr-user')}catch{}}
+function refreshAuth(){
+  document.body.classList.toggle('is-user',!!user);
+  const show=user&&!balHidden?DEMO_BAL:'••••••';
+  document.getElementById('homeBalance').textContent=show;
+  document.getElementById('mineBalance').textContent=show;
+  if(user) document.getElementById('mineName').textContent=user;
+}
+function openLogin(){document.getElementById('loginSheet').classList.add('show');setTimeout(()=>document.getElementById('loginUser').focus(),50)}
+function closeLogin(){document.getElementById('loginSheet').classList.remove('show')}
+function doLogin(){
+  const u=(document.getElementById('loginUser').value||'').trim()||'LR会员';
+  setUser(u);balHidden=false;closeLogin();refreshAuth();toast('欢迎回来，'+u);
+}
+function doLogout(){setUser(null);balHidden=true;refreshAuth();toast('已退出演示登录')}
 document.getElementById('toggleBal').onclick=()=>{
-  balHidden=!balHidden;
-  document.getElementById('homeBalance').textContent=balHidden?'••••••':'8,560.00';
+  if(!user){openLogin();return}
+  balHidden=!balHidden;refreshAuth();
 };
+refreshAuth();
 
 /* baccarat demo */
 const roadSeed=['p','b','p','p','b','b','p','t','b','p','b','p','p','b','t','b','p','b','p','p','b','p','b','b'];
@@ -576,7 +630,7 @@ function paintRoad(arr){
 paintRoad(roadSeed);
 let chip=100,bets={},lastBets={},road=roadSeed.slice();
 function setupBaccarat(game){
-  document.getElementById('bacDealer').src=game.img||'dealer-db.webp';
+  document.getElementById('bacDealer').src='baccarat-dealer.webp';
   bets={};updateBetSummary();
 }
 function updateBetSummary(){
