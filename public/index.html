@@ -739,11 +739,13 @@ function renderCountdown(){
 function startBettingCountdown(){
   stopCountdown();
   dealing=false;bettingOpen=true;secondsLeft=BET_SECONDS;
-  lockedBets={};
+  lockedBets={};bets={};
+  document.querySelectorAll('[data-bet]').forEach(x=>x.classList.remove('active'));
   document.getElementById('bacConfirm').disabled=false;
   document.getElementById('bacConfirm').textContent='✓ 确认下注';
   clearFelt('静默等待 · 可下注');
   setVideoPhase('countdown');
+  updateBetSummary();
   renderCountdown();
   cdTimer=setInterval(async()=>{
     if(!document.getElementById('baccarat').classList.contains('active'))return;
