@@ -104,14 +104,24 @@ button,input{font:inherit}button{border:0;cursor:pointer;background:none;color:i
 .bac-top h2{margin:0;font-size:18px}
 .live-pill{font-size:10px;padding:3px 7px;border-radius:999px;background:#12345a;border:1px solid #3d7cff88;color:#9fd0ff}
 .dealer-stage{margin:0 12px;border-radius:18px;overflow:hidden;position:relative;height:340px;border:1px solid #3a6aa866;background:#0b172b;box-shadow:0 14px 28px #0007}
-.dealer-live{position:absolute;inset:0 0 96px;overflow:hidden}
-.dealer-img{width:100%;height:100%;object-fit:cover;object-position:center 18%;transform-origin:center 30%;will-change:transform,filter;filter:brightness(.55) saturate(.85);transition:filter .45s ease}
-.dealer-img.idle{animation:dealerIdle 4.8s ease-in-out infinite}
-.dealer-img.dealing{filter:brightness(1) saturate(1.05);animation:dealerDeal .55s ease-in-out 4}
-.dealer-img.live-bright{filter:brightness(1) saturate(1.05)}
-.dealer-dim{position:absolute;inset:0;background:rgba(4,10,22,.42);pointer-events:none;transition:opacity .4s;z-index:2}
+.dealer-live{position:absolute;inset:0 0 96px;overflow:hidden;background:#07111d}
+.live-video,.dealer-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;transform-origin:center 30%;will-change:transform,filter;filter:brightness(.55) saturate(.85);transition:filter .45s ease,opacity .35s}
+.live-video{z-index:1;background:#000;display:none}
+.live-video.show{display:block}
+.dealer-img{z-index:0}
+.dealer-img.idle,.live-video.idle{animation:dealerIdle 4.8s ease-in-out infinite}
+.dealer-img.dealing,.live-video.dealing{filter:brightness(1) saturate(1.05);animation:dealerDeal .55s ease-in-out 4}
+.dealer-img.live-bright,.live-video.live-bright{filter:brightness(1) saturate(1.05)}
+.dealer-dim{position:absolute;inset:0;background:rgba(4,10,22,.48);pointer-events:none;transition:opacity .4s;z-index:2}
 .dealer-stage.is-open .dealer-dim{opacity:0}
-.dealer-stage.is-open .dealer-img{filter:brightness(1) saturate(1.05)}
+.dealer-stage.is-open .dealer-img,.dealer-stage.is-open .live-video{filter:brightness(1) saturate(1.05)}
+.dealer-stage.is-sealed .dealer-dim{opacity:1;background:rgba(4,10,22,.62)}
+.dealer-stage.is-sealed .cd-label{color:#f0c878}
+.dealer-stage.is-sealed .cd-ring{border-color:rgba(240,200,120,.55);box-shadow:0 0 0 10px rgba(0,0,0,.35),0 0 32px rgba(240,200,120,.28)}
+.ai-presets{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;margin:0 0 12px;align-items:end}
+.ai-presets label{display:grid;gap:4px;font-size:11px;color:#7ea4d4}
+.ai-presets input{height:36px;border-radius:10px;border:1px solid #355987;background:#122844;color:#fff;padding:0 10px}
+.ai-presets button{height:36px;padding:0 12px;border-radius:10px;background:#1a3f7a;border:1px solid #4fc3ff55;color:#eaf4ff;font-weight:800;font-size:12px}
 .dealer-glow{position:absolute;inset:auto 0 0;height:70px;background:linear-gradient(transparent,#0a1a12ee);z-index:2}
 @keyframes dealerIdle{0%,100%{transform:scale(1) translateY(0)}50%{transform:scale(1.02) translateY(-3px)}}
 @keyframes dealerDeal{0%,100%{transform:scale(1) rotate(0)}35%{transform:scale(1.04) rotate(-1.2deg) translateY(-3px)}70%{transform:scale(1.02) rotate(1deg)}}
@@ -233,6 +243,24 @@ button,input{font:inherit}button{border:0;cursor:pointer;background:none;color:i
 .sheet-actions button{padding:12px;border-radius:12px;font-weight:800}
 .sheet-cancel{background:#152844;border:1px solid #35598788;color:#d7e7ff}
 .sheet-ok{background:linear-gradient(120deg,#ffe0a0,#c9963a);color:#1c1406}
+.ai-studio{display:none;position:fixed;z-index:70;inset:0;background:#020814d8;align-items:flex-end;justify-content:center}
+.ai-studio.show{display:flex}
+.ai-panel{width:min(430px,100%);max-height:min(92vh,760px);overflow:auto;background:linear-gradient(180deg,#16345f,#0a162c);border:1px solid #3d7cff66;border-radius:22px 22px 0 0;padding:16px 14px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -24px 60px #000a}
+.ai-panel h3{margin:0;color:var(--gold);font-size:18px}
+.ai-panel .sub{margin:6px 0 12px;color:#9eb6d4;font-size:11px;line-height:1.5}
+.ai-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ai-hand{background:#0e1d35;border:1px solid #2f5485;border-radius:14px;padding:10px}
+.ai-hand h4{margin:0 0 8px;font-size:13px;color:#9fd0ff}
+.ai-cards{display:grid;gap:6px}
+.ai-card-row{display:grid;grid-template-columns:1fr 1fr auto;gap:6px;align-items:center}
+.ai-card-row select{height:36px;border-radius:10px;border:1px solid #355987;background:#122844;color:#fff;padding:0 8px}
+.ai-card-row button{width:34px;height:36px;border-radius:10px;background:#1a3050;color:#d7e7ff;border:1px solid #35598788}
+.ai-actions{display:grid;gap:8px;margin-top:12px}
+.ai-actions button{padding:12px;border-radius:12px;font-weight:800}
+.ai-primary{background:linear-gradient(120deg,#ffe0a0,#c9963a);color:#1c1406}
+.ai-secondary{background:#152844;border:1px solid #35598788;color:#d7e7ff}
+.ai-status{min-height:36px;margin-top:10px;padding:10px;border-radius:12px;background:#0b1729;border:1px solid #2f548544;color:#c9dbf5;font-size:11px;line-height:1.55}
+.studio-btn{padding:8px 10px;border-radius:999px;background:linear-gradient(120deg,#2a5fff,#1a3f9a);border:1px solid #7eb0ff66;color:#eaf4ff;font-size:11px;font-weight:800}
 body.is-user .guest-only{display:none!important}
 body:not(.is-user) .user-only{display:none!important}
 
@@ -334,13 +362,15 @@ body:not(.is-user) .user-only{display:none!important}
       <span class="live-pill">真人视讯</span>
     </div>
     <div class="top-actions">
+      <button class="studio-btn" onclick="openAiStudio()">AI变牌</button>
       <button class="icon-btn" onclick="toast('已加入收藏')">♡</button>
       <button class="icon-btn" onclick="toast('全屏演示')">⛶</button>
     </div>
   </div>
   <section class="dealer-stage" id="dealerStage">
-    <div class="dealer-live">
-      <img id="bacDealer" class="dealer-img idle" src="baccarat-dealer.webp" alt="百家乐荷官">
+    <div class="dealer-live" id="liveVideoArea">
+      <img id="bacDealer" class="dealer-img idle" src="baccarat-table.webp" alt="百家乐荷官">
+      <video id="liveVideo" class="live-video" playsinline muted loop preload="metadata" poster="baccarat-table.webp"></video>
       <div class="dealer-dim" id="dealerDim"></div>
       <div class="dealer-glow"></div>
     </div>
@@ -542,6 +572,35 @@ body:not(.is-user) .user-only{display:none!important}
     </div>
   </div>
 </div>
+<div class="ai-studio" id="aiStudio" onclick="if(event.target===this)closeAiStudio()">
+  <div class="ai-panel">
+    <h3>AI Card Studio</h3>
+    <div class="sub">自定义闲/庄牌面 → 视讯、开牌框、路单、结算 100% 同步。开奖倒计时末段自动封盘延迟；点击同步后调用 Gemini 生成开牌视频并映射到 LiveVideoArea。</div>
+    <div class="ai-presets">
+      <label>闲家点数<input id="aiPointP" type="number" min="0" max="9" value="8"></label>
+      <label>庄家点数<input id="aiPointB" type="number" min="0" max="9" value="9"></label>
+      <button type="button" onclick="applyAiPoints()">套用点数</button>
+    </div>
+    <div class="ai-grid">
+      <div class="ai-hand">
+        <h4>闲 PLAYER</h4>
+        <div class="ai-cards" id="aiPlayerCards"></div>
+        <button class="ai-secondary" style="width:100%;margin-top:8px" onclick="addAiCard('player')">＋ 补牌</button>
+      </div>
+      <div class="ai-hand">
+        <h4>庄 BANKER</h4>
+        <div class="ai-cards" id="aiBankerCards"></div>
+        <button class="ai-secondary" style="width:100%;margin-top:8px" onclick="addAiCard('banker')">＋ 补牌</button>
+      </div>
+    </div>
+    <div class="ai-actions">
+      <button class="ai-secondary" onclick="randomAiHands()">随机合法牌型</button>
+      <button class="ai-primary" id="aiSyncBtn" onclick="runAiSyncOpen()">AI 一键变牌与同步开奖</button>
+      <button class="ai-secondary" onclick="closeAiStudio()">关闭</button>
+    </div>
+    <div class="ai-status" id="aiStatus">设置牌面后点击同步。无 Gemini Key 时仍会本地对齐开牌/路单/结算；配置后可生成开牌视频并替换 LiveVideoArea。</div>
+  </div>
+</div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -680,9 +739,12 @@ refreshAuth();
 
 /* baccarat demo — dim silent countdown, then open cards */
 const roadSeed=['p','b','p','p','b','b','p','t','b','p','b','p','p','b','t','b','p','b','p','p','b','p','b','b'];
-const SUITS=[{s:'♠',red:false},{s:'♥',red:true},{s:'♣',red:false},{s:'♦',red:true}];
 const RANKS=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+const SUIT_META={S:{s:'♠',red:false},H:{s:'♥',red:true},C:{s:'♣',red:false},D:{s:'♦',red:true}};
+const SUIT_CODES=['S','H','C','D'];
 const BET_SECONDS=12;
+const SEAL_DELAY=3;
+let forcedHands=null;
 function paintRoad(arr){
   const root=document.getElementById('roadDots');
   root.innerHTML=arr.slice(-24).map(x=>`<i class="${x}"></i>`).join('');
@@ -696,7 +758,11 @@ let chip=100,bets={},lastBets={},lockedBets={},road=roadSeed.slice();
 let dealing=false,bettingOpen=false,secondsLeft=BET_SECONDS,cdTimer=null,roundNo=87326;
 function cardValue(rank){if(rank==='A')return 1;if(['10','J','Q','K'].includes(rank))return 0;return Number(rank)}
 function handPoint(cards){return cards.reduce((a,c)=>a+cardValue(c.rank),0)%10}
-function drawCard(){return {rank:RANKS[Math.floor(Math.random()*RANKS.length)],...SUITS[Math.floor(Math.random()*SUITS.length)]}}
+function drawCard(){
+  const rank=RANKS[Math.floor(Math.random()*RANKS.length)];
+  const suit=SUIT_CODES[Math.floor(Math.random()*SUIT_CODES.length)];
+  return {rank,suit,...SUIT_META[suit]};
+}
 function makeCardEl(card){
   const el=document.createElement('div');
   el.className='pcard';
@@ -714,16 +780,29 @@ function clearFelt(statusText){
 function setVideoPhase(phase){
   const stage=document.getElementById('dealerStage');
   const img=document.getElementById('bacDealer');
+  const video=document.getElementById('liveVideo');
   const layer=document.getElementById('countdownLayer');
-  img.classList.remove('idle','dealing','live-bright');
+  [img,video].forEach(el=>el&&el.classList.remove('idle','dealing','live-bright'));
+  stage.classList.remove('is-sealed');
   if(phase==='countdown'){
     stage.classList.remove('is-open');
     img.classList.add('idle');
+    if(video.classList.contains('show')) video.classList.add('idle');
     layer.classList.remove('hide');
     document.getElementById('cdLabel').textContent='下注倒计时 · 画面静默';
+  }else if(phase==='sealed'){
+    stage.classList.remove('is-open');
+    stage.classList.add('is-sealed');
+    img.classList.add('idle');
+    layer.classList.remove('hide');
+    document.getElementById('cdLabel').textContent='封盘延迟 · 即将开牌';
   }else if(phase==='open'){
     stage.classList.add('is-open');
     img.classList.add('dealing','live-bright');
+    if(video.classList.contains('show')){
+      video.classList.add('dealing','live-bright');
+      try{video.currentTime=0;video.play()}catch(e){}
+    }
     layer.classList.add('hide');
   }else{
     stage.classList.remove('is-open');
@@ -731,10 +810,24 @@ function setVideoPhase(phase){
     layer.classList.remove('hide');
   }
 }
+function mapLiveVideo(url){
+  const video=document.getElementById('liveVideo');
+  const img=document.getElementById('bacDealer');
+  if(!url){
+    try{video.pause()}catch(e){}
+    video.removeAttribute('src');video.classList.remove('show');video.load();
+    img.style.opacity='1';
+    return;
+  }
+  video.src=url;video.classList.add('show');img.style.opacity='0';
+  video.onerror=()=>{video.classList.remove('show');img.style.opacity='1';toast('开牌视频播放失败，已回退静图')};
+}
 function stopCountdown(){if(cdTimer){clearInterval(cdTimer);cdTimer=null}}
 function renderCountdown(){
   document.getElementById('cdNum').textContent=String(Math.max(0,secondsLeft));
-  document.getElementById('dealStatus').textContent=bettingOpen?('下注中 '+secondsLeft+'s'):'准备开牌';
+  if(bettingOpen) document.getElementById('dealStatus').textContent='下注中 '+secondsLeft+'s';
+  else if(secondsLeft>0) document.getElementById('dealStatus').textContent='封盘延迟 '+secondsLeft+'s';
+  else document.getElementById('dealStatus').textContent='准备开牌';
 }
 function startBettingCountdown(){
   stopCountdown();
@@ -749,7 +842,14 @@ function startBettingCountdown(){
   renderCountdown();
   cdTimer=setInterval(async()=>{
     if(!document.getElementById('baccarat').classList.contains('active'))return;
-    secondsLeft-=1;renderCountdown();
+    secondsLeft-=1;
+    if(bettingOpen && secondsLeft<=SEAL_DELAY){
+      bettingOpen=false;
+      setVideoPhase('sealed');
+      updateBetSummary();
+      toast('封盘延迟 · 停止接收下注');
+    }
+    renderCountdown();
     if(secondsLeft<=0){
       stopCountdown();
       bettingOpen=false;
@@ -759,12 +859,14 @@ function startBettingCountdown(){
 }
 function setupBaccarat(){
   document.getElementById('bacDealer').src='baccarat-dealer.webp';
+  document.getElementById('liveVideo').setAttribute('poster','baccarat-dealer.webp');
+  mapLiveVideo(null);
   bets={};updateBetSummary();
   startBettingCountdown();
 }
 function updateBetSummary(){
   const entries=Object.entries(bets).filter(([,v])=>v>0);
-  document.getElementById('betSummary').textContent=entries.length?('本局：'+entries.map(([k,v])=>k+' '+v).join(' · ')):(bettingOpen?'倒计时内选择筹码并点击投注区':'开牌中，请稍候');
+  document.getElementById('betSummary').textContent=entries.length?('本局：'+entries.map(([k,v])=>k+' '+v).join(' · ')):(bettingOpen?'倒计时内选择筹码并点击投注区':(dealing?'开牌同步中':'封盘延迟中'));
 }
 function wait(ms){return new Promise(r=>setTimeout(r,ms))}
 async function dealTo(slotId,card){
@@ -778,43 +880,50 @@ async function dealTo(slotId,card){
   await wait(420);
   return el;
 }
-async function beginOpenCards(){
+function localSettle(player,banker){
+  const p=handPoint(player),b=handPoint(banker);
+  const result=p>b?'p':b>p?'b':'t';
+  return {player,banker,playerPoint:p,bankerPoint:b,result,winner:{p:'闲',b:'庄',t:'和'}[result],summary:({p:'闲',b:'庄',t:'和'}[result])+'胜 · '+p+':'+b};
+}
+async function beginOpenCards(settlement){
   if(dealing)return;
   dealing=true;bettingOpen=false;
   document.getElementById('bacConfirm').disabled=true;
   lockedBets=Object.keys(bets).length?{...bets}:{...lastBets};
   if(Object.keys(bets).length) lastBets={...bets};
   clearFelt('封盘 · 即将开牌');
-  document.getElementById('cdLabel').textContent='封盘';
   document.getElementById('countdownLayer').classList.add('hide');
-  await wait(500);
+  await wait(450);
   roundNo+=1;
   document.getElementById('tableId').textContent='局号 B'+String(roundNo).padStart(7,'0');
-  document.getElementById('dealStatus').textContent='荷官开牌中…';
+  document.getElementById('dealStatus').textContent='荷官开牌中 · 同步变牌…';
   setVideoPhase('open');
-  const player=[drawCard(),drawCard()];
-  const banker=[drawCard(),drawCard()];
-  await dealTo('pCards',player[0]);
-  await dealTo('bCards',banker[0]);
-  await dealTo('pCards',player[1]);
-  await dealTo('bCards',banker[1]);
-  let p=handPoint(player),b=handPoint(banker);
-  document.getElementById('pScore').textContent=p+' 点';
-  document.getElementById('bScore').textContent=b+' 点';
-  if(p<6 && b<6){
-    document.getElementById('dealStatus').textContent='补牌中…';
-    const extra=drawCard();
-    if(Math.random()<.5){player.push(extra);await dealTo('pCards',extra);p=handPoint(player);document.getElementById('pScore').textContent=p+' 点'}
-    else{banker.push(extra);await dealTo('bCards',extra);b=handPoint(banker);document.getElementById('bScore').textContent=b+' 点'}
+  let player,banker;
+  if(settlement){
+    player=settlement.player;banker=settlement.banker;
+  }else if(forcedHands){
+    player=forcedHands.player.map(c=>({...c,...SUIT_META[c.suit]}));
+    banker=forcedHands.banker.map(c=>({...c,...SUIT_META[c.suit]}));
+  }else{
+    player=[drawCard(),drawCard()];
+    banker=[drawCard(),drawCard()];
+    if(handPoint(player)<6 && handPoint(banker)<6){
+      if(Math.random()<.5) player.push(drawCard()); else banker.push(drawCard());
+    }
   }
-  const result=p>b?'p':b>p?'b':'t';
-  const map={p:'闲',b:'庄',t:'和'};
+  for(let i=0;i<Math.max(player.length,banker.length);i++){
+    if(player[i]) await dealTo('pCards',player[i]);
+    if(banker[i]) await dealTo('bCards',banker[i]);
+  }
+  const final=settlement||localSettle(player,banker);
+  document.getElementById('pScore').textContent=final.playerPoint+' 点';
+  document.getElementById('bScore').textContent=final.bankerPoint+' 点';
   const st=document.getElementById('dealStatus');
   st.classList.add('win');
-  st.textContent=map[result]+' 胜 · '+p+':'+b;
-  road=[...road,result];paintRoad(road);
-  toast('开牌完成：'+map[result]+'胜（演示）');
-  bets={};document.querySelectorAll('[data-bet]').forEach(x=>x.classList.remove('active'));updateBetSummary();
+  st.textContent=final.summary;
+  road=[...road,final.result];paintRoad(road);
+  toast('同步开奖：'+final.summary+'（演示）');
+  bets={};forcedHands=null;document.querySelectorAll('[data-bet]').forEach(x=>x.classList.remove('active'));updateBetSummary();
   await wait(2800);
   dealing=false;
   if(document.getElementById('baccarat').classList.contains('active')) startBettingCountdown();
@@ -852,6 +961,118 @@ setInterval(()=>{
   const n=3400+Math.floor(Math.random()*120);
   document.getElementById('bacViewers').textContent='👁 '+n.toLocaleString();
 },4000);
+
+const aiHands={player:[],banker:[]};
+function ranksForPoint(target){
+  const t=((Number(target)%10)+10)%10;
+  const pool=RANKS.filter(r=>cardValue(r)>0||r==='A'||['10','J','Q','K'].includes(r));
+  for(let i=0;i<80;i++){
+    const a=pool[Math.floor(Math.random()*pool.length)];
+    const b=pool[Math.floor(Math.random()*pool.length)];
+    if((cardValue(a)+cardValue(b))%10===t) return [a,b];
+  }
+  if(t===0) return ['10','K'];
+  if(t===1) return ['A','10'];
+  return [String(t),'10'];
+}
+function applyAiPoints(){
+  const p=Math.max(0,Math.min(9,Number(document.getElementById('aiPointP').value)||0));
+  const b=Math.max(0,Math.min(9,Number(document.getElementById('aiPointB').value)||0));
+  const pr=ranksForPoint(p), br=ranksForPoint(b);
+  aiHands.player=[{rank:pr[0],suit:SUIT_CODES[0]},{rank:pr[1],suit:SUIT_CODES[1]}];
+  aiHands.banker=[{rank:br[0],suit:SUIT_CODES[2]},{rank:br[1],suit:SUIT_CODES[3]}];
+  renderAiHands();
+  toast('已套用闲 '+p+' / 庄 '+b);
+}
+function openAiStudio(){
+  if(!aiHands.player.length) applyAiPoints();
+  else renderAiHands();
+  document.getElementById('aiStudio').classList.add('show');
+}
+function closeAiStudio(){document.getElementById('aiStudio').classList.remove('show')}
+function renderAiHands(){
+  ['player','banker'].forEach(side=>{
+    const root=document.getElementById(side==='player'?'aiPlayerCards':'aiBankerCards');
+    root.innerHTML=aiHands[side].map((c,i)=>`<div class="ai-card-row">
+      <select data-side="${side}" data-i="${i}" data-k="rank">${RANKS.map(r=>`<option ${r===c.rank?'selected':''}>${r}</option>`).join('')}</select>
+      <select data-side="${side}" data-i="${i}" data-k="suit">${SUIT_CODES.map(u=>`<option value="${u}" ${u===c.suit?'selected':''}>${SUIT_META[u].s}</option>`).join('')}</select>
+      <button onclick="removeAiCard('${side}',${i})" ${aiHands[side].length<=2?'disabled':''}>✕</button>
+    </div>`).join('');
+    root.querySelectorAll('select').forEach(sel=>sel.onchange=()=>{
+      aiHands[sel.dataset.side][Number(sel.dataset.i)][sel.dataset.k]=sel.value;
+      updateAiPreview();
+    });
+  });
+  updateAiPreview();
+}
+function addAiCard(side){
+  if(aiHands[side].length>=3){toast('最多 3 张');return}
+  aiHands[side].push({rank:'A',suit:'S'});renderAiHands();
+}
+function removeAiCard(side,i){
+  if(aiHands[side].length<=2)return;
+  aiHands[side].splice(i,1);renderAiHands();
+}
+function randomAiHands(){
+  aiHands.player=[drawCard(),drawCard()].map(c=>({rank:c.rank,suit:c.suit}));
+  aiHands.banker=[drawCard(),drawCard()].map(c=>({rank:c.rank,suit:c.suit}));
+  if(Math.random()<.45) aiHands.player.push({rank:drawCard().rank,suit:drawCard().suit});
+  if(Math.random()<.45) aiHands.banker.push({rank:drawCard().rank,suit:drawCard().suit});
+  renderAiHands();
+}
+function updateAiPreview(){
+  try{
+    const p=aiHands.player.map(c=>({...c,...SUIT_META[c.suit]}));
+    const b=aiHands.banker.map(c=>({...c,...SUIT_META[c.suit]}));
+    const settle=localSettle(p,b);
+    document.getElementById('aiStatus').textContent=`预览：闲 ${settle.playerPoint} 点 / 庄 ${settle.bankerPoint} 点 → ${settle.summary}。同步后视讯、开牌框、路单、结算将一致。`;
+  }catch(e){
+    document.getElementById('aiStatus').textContent=String(e.message||e);
+  }
+}
+async function runAiSyncOpen(){
+  const btn=document.getElementById('aiSyncBtn');
+  const status=document.getElementById('aiStatus');
+  const player=aiHands.player.map(c=>({rank:c.rank,suit:c.suit}));
+  const banker=aiHands.banker.map(c=>({rank:c.rank,suit:c.suit}));
+  let settlement;
+  try{
+    settlement=localSettle(player.map(c=>({...c,...SUIT_META[c.suit]})),banker.map(c=>({...c,...SUIT_META[c.suit]})));
+  }catch(e){status.textContent=String(e.message||e);return}
+  forcedHands={player,banker};
+  btn.disabled=true;btn.textContent='同步中…';
+  status.textContent='正在请求 AI 开牌视频并同步牌局…';
+  let videoUrl=null;let msg='';
+  try{
+    const res=await fetch('/api/ai-card/generate-video',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        player,banker,
+        sealedDelaySec:SEAL_DELAY,
+        referenceImageUrl:location.origin+'/ai-dealer-ref.jpg'
+      })
+    });
+    const data=await res.json();
+    if(data.success){
+      settlement=data.settlement;
+      videoUrl=data.video&&data.video.videoUrl;
+      msg=(data.video&&data.video.message)||'同步完成';
+      if(data.video&&data.video.demo) msg+='（本地演示回退）';
+    }else{
+      msg=data.error||'接口失败，已用本地结算同步';
+    }
+  }catch(e){
+    msg='后端暂不可用，已用本地 AI 变牌同步（牌面/路单/结算对齐）';
+  }
+  mapLiveVideo(videoUrl||null);
+  status.textContent=msg+' · '+settlement.summary;
+  closeAiStudio();
+  stopCountdown();
+  toast('AI 变牌已注入本局');
+  await beginOpenCards(settlement);
+  btn.disabled=false;btn.textContent='AI 一键变牌与同步开奖';
+}
+
 
 /* play demo for other games */
 let playStake=10,playCredit=10000,currentPlay=null;
