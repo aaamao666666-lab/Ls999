@@ -65,14 +65,32 @@ function settle(player, banker) {
 }
 
 function buildPrompt(settlement) {
-  const fmt = (cards) => cards.map((c) => `${c.rank}${c.s}`).join("、");
+  const fmt = (cards) => cards.map((c) => `${c.rank}${c.s}`).join(", ");
   return [
-    "Cinematic live-dealer baccarat open-card clip, vertical 9:16, luxury navy casino,",
-    "elegant East Asian female dealer in royal-blue gold-embroidered dress,",
-    "blue felt table with card shoe, dim moody lighting then brighter as she deals,",
-    `Player cards ${fmt(settlement.player)}, Banker cards ${fmt(settlement.banker)},`,
-    `final result ${settlement.summary}. No on-screen text logos. Photorealistic.`,
+    "Animate the exact woman in the reference image as a live baccarat dealer.",
+    "Vertical 9:16 cinematic clip: she deals face-down then reveals cards on a navy felt table,",
+    "soft casino lighting brightens as cards open, keep her face, hair, royal-blue gold dress identical.",
+    `Reveal Player hand ${fmt(settlement.player)} on the left and Banker hand ${fmt(settlement.banker)} on the right.`,
+    `End holding on the table after ${settlement.summary}. No on-screen text, logos, or watermarks.`,
   ].join(" ");
+}
+
+function extractVideoPart(payload) {
+  let videoB64 = null;
+  let uri = null;
+  let mime = "video/mp4";
+  for (const step of payload.steps || []) {
+    for (const part of step.content || []) {
+      if (part.type === "video") {
+        if (part.data) {
+          videoB64 = part.data;
+          mime = part.mime_type || mime;
+        }
+        if (part.uri) uri = part.uri;
+      }
+    }
+  }
+  return { videoB64, uri, mime };
 }
 
 async function generateVideo(env, settlement, referenceImageUrl) {
@@ -82,7 +100,7 @@ async function generateVideo(env, settlement, referenceImageUrl) {
       ok: false,
       demo: true,
       videoUrl: null,
-      message: "未配置 GEMINI_API_KEY，已使用本地同步开牌（牌面/路单/结算仍 100% 对齐）。",
+      message: "未配置 GEMINI_API_KEY，将使用本地 AI 荷官开牌视频合成。",
     };
   }
 
@@ -98,7 +116,7 @@ async function generateVideo(env, settlement, referenceImageUrl) {
           for (let i = 0; i < buf.length; i += chunk) {
             binary += String.fromCharCode(...buf.subarray(i, i + chunk));
           }
-          const mime = imgRes.headers.get("content-type") || "image/webp";
+          const mime = imgRes.headers.get("content-type") || "image/jpeg";
           input.push({ type: "image", mime_type: mime, data: btoa(binary) });
         }
       }
@@ -116,12 +134,15 @@ async function generateVideo(env, settlement, referenceImageUrl) {
     body: JSON.stringify({
       model: "gemini-omni-1.2-flash",
       input,
+      response_modalities: ["video"],
       response_format: {
         type: "video",
-        duration: "8s",
+        duration: "6s",
         aspect_ratio: "9:16",
         resolution: "720p",
+        delivery: "uri",
       },
+      video_config: { task: "image_to_video" },
     }),
   });
 
@@ -131,38 +152,52 @@ async function generateVideo(env, settlement, referenceImageUrl) {
       ok: false,
       demo: true,
       videoUrl: null,
-      message: payload?.error?.message || `Gemini 视频生成失败 (${res.status})，已回退本地同步开牌。`,
+      message: payload?.error?.message || `Gemini 视频生成失败 (${res.status})，已回退本地 AI 开牌视频。`,
       rawStatus: res.status,
     };
   }
 
-  let videoB64 = null;
-  let mime = "video/mp4";
-  for (const step of payload.steps || []) {
-    for (const part of step.content || []) {
-      if (part.type === "video" && part.data) {
-        videoB64 = part.data;
-        mime = part.mime_type || mime;
-      }
-    }
+  /* Keep Worker latency short; client already synthesizes a local AI deal clip. */
+  let { videoB64, uri, mime } = extractVideoPart(payload);
+  if (!videoB64 && !uri && payload.id) {
+    await new Promise((r) => setTimeout(r, 2500));
+    const poll = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/interactions/${payload.id}`,
+      { headers: { "x-goog-api-key": key } },
+    );
+    const body = await poll.json().catch(() => ({}));
+    const part = extractVideoPart(body);
+    videoB64 = part.videoB64 || videoB64;
+    uri = part.uri || uri;
+    mime = part.mime || mime;
   }
 
-  if (!videoB64) {
+  if (videoB64) {
     return {
-      ok: false,
-      demo: true,
-      videoUrl: null,
-      message: "Gemini 未返回视频数据，已回退本地同步开牌。",
+      ok: true,
+      demo: false,
+      videoUrl: `data:${mime};base64,${videoB64}`,
       interactionId: payload.id || null,
+      message: "Gemini AI 荷官开牌视频已生成并映射到 LiveVideoArea。",
+    };
+  }
+
+  if (uri) {
+    return {
+      ok: true,
+      demo: false,
+      videoUrl: uri,
+      interactionId: payload.id || null,
+      message: "Gemini AI 荷官开牌视频已生成并映射到 LiveVideoArea。",
     };
   }
 
   return {
-    ok: true,
-    demo: false,
-    videoUrl: `data:${mime};base64,${videoB64}`,
+    ok: false,
+    demo: true,
+    videoUrl: null,
+    message: "Gemini 未返回视频，已回退本地 AI 荷官开牌视频合成。",
     interactionId: payload.id || null,
-    message: "AI 开牌视频已生成并映射到 LiveVideoArea。",
   };
 }
 

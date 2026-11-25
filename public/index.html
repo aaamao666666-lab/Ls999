@@ -575,7 +575,7 @@ body:not(.is-user) .user-only{display:none!important}
 <div class="ai-studio" id="aiStudio" onclick="if(event.target===this)closeAiStudio()">
   <div class="ai-panel">
     <h3>AI Card Studio</h3>
-    <div class="sub">自定义闲/庄牌面 → 视讯、开牌框、路单、结算 100% 同步。开奖倒计时末段自动封盘延迟；点击同步后调用 Gemini 生成开牌视频并映射到 LiveVideoArea。</div>
+    <div class="sub">自定义闲/庄牌面后一键生成 AI 荷官开牌发牌视频（本地合成人物素材；配置 Gemini Key 后走 Omni 生成），并与开牌框 / 路单 / 结算 100% 同步。</div>
     <div class="ai-presets">
       <label>闲家点数<input id="aiPointP" type="number" min="0" max="9" value="8"></label>
       <label>庄家点数<input id="aiPointB" type="number" min="0" max="9" value="9"></label>
@@ -755,7 +755,7 @@ function paintRoad(arr){
 }
 paintRoad(roadSeed);
 let chip=100,bets={},lastBets={},lockedBets={},road=roadSeed.slice();
-let dealing=false,bettingOpen=false,secondsLeft=BET_SECONDS,cdTimer=null,roundNo=87326,openSeq=0;
+let dealing=false,bettingOpen=false,secondsLeft=BET_SECONDS,cdTimer=null,roundNo=87326,openSeq=0,liveBlobUrl=null;
 function cardValue(rank){if(rank==='A')return 1;if(['10','J','Q','K'].includes(rank))return 0;return Number(rank)}
 function handPoint(cards){return cards.reduce((a,c)=>a+cardValue(c.rank),0)%10}
 function drawCard(){
@@ -819,8 +819,18 @@ function mapLiveVideo(url){
     img.style.opacity='1';
     return;
   }
+  if(url!==liveBlobUrl) revokeLiveBlob();
   video.src=url;video.classList.add('show');img.style.opacity='0';
-  video.onerror=()=>{video.classList.remove('show');img.style.opacity='1';toast('开牌视频播放失败，已回退静图')};
+  video.onloadeddata=()=>{try{video.currentTime=0;video.play()}catch(e){}};
+  video.onerror=()=>{
+    if(url!=='dealer-idle-loop.mp4'){
+      video.src='dealer-idle-loop.mp4';
+      try{video.play()}catch(e){}
+      toast('开牌视频回退到荷官动效');
+      return;
+    }
+    video.classList.remove('show');img.style.opacity='1';toast('开牌视频播放失败，已回退静图');
+  };
 }
 function stopCountdown(){if(cdTimer){clearInterval(cdTimer);cdTimer=null}}
 function renderCountdown(){
@@ -1035,6 +1045,136 @@ function updateAiPreview(){
     document.getElementById('aiStatus').textContent=String(e.message||e);
   }
 }
+function revokeLiveBlob(){
+  if(liveBlobUrl){try{URL.revokeObjectURL(liveBlobUrl)}catch(e){} liveBlobUrl=null}
+}
+async function loadImage(src){
+  return new Promise((resolve,reject)=>{
+    const img=new Image();
+    img.onload=()=>resolve(img);
+    img.onerror=reject;
+    img.src=src;
+  });
+}
+function drawRoundRect(ctx,x,y,w,h,r){
+  const rr=Math.min(r,w/2,h/2);
+  ctx.beginPath();
+  ctx.moveTo(x+rr,y);
+  ctx.arcTo(x+w,y,x+w,y+h,rr);
+  ctx.arcTo(x+w,y+h,x,y+h,rr);
+  ctx.arcTo(x,y+h,x,y,rr);
+  ctx.arcTo(x,y,x+w,y,rr);
+  ctx.closePath();
+}
+function paintPlayingCard(ctx,card,x,y,w,h,faceUp){
+  drawRoundRect(ctx,x,y,w,h,8);
+  if(!faceUp){
+    const g=ctx.createLinearGradient(x,y,x+w,y+h);
+    g.addColorStop(0,'#1d4f9c');g.addColorStop(1,'#0d2a5c');
+    ctx.fillStyle=g;ctx.fill();
+    ctx.strokeStyle='rgba(126,176,255,.65)';ctx.lineWidth=2;ctx.stroke();
+    ctx.fillStyle='#9fd0ff';ctx.font='800 14px Georgia,serif';ctx.textAlign='center';
+    ctx.fillText('LR',x+w/2,y+h/2+5);
+    return;
+  }
+  ctx.fillStyle='#f4f7fb';ctx.fill();
+  ctx.strokeStyle='#d0d7e4';ctx.lineWidth=1.5;ctx.stroke();
+  ctx.fillStyle=card.red?'#d64545':'#1a2438';
+  ctx.textAlign='left';ctx.font='800 18px Georgia,serif';
+  ctx.fillText(card.rank,x+8,y+22);
+  ctx.font='800 28px Georgia,serif';ctx.textAlign='center';
+  ctx.fillText(card.s,x+w/2,y+h/2+10);
+  ctx.font='800 16px Georgia,serif';ctx.textAlign='right';
+  ctx.fillText(card.rank,x+w-8,y+h-10);
+}
+/** Always-on AI dealer open-card clip from character still + card sync (MediaRecorder). */
+async function generateAiDealClip(settlement){
+  const W=720,H=1280,FPS=30,DURATION=5.2;
+  const canvas=document.createElement('canvas');
+  canvas.width=W;canvas.height=H;
+  const ctx=canvas.getContext('2d');
+  const dealer=await loadImage('ai-dealer-ref.jpg').catch(()=>loadImage('baccarat-dealer.webp'));
+  const stream=canvas.captureStream(FPS);
+  const mime=[
+    'video/webm;codecs=vp9',
+    'video/webm;codecs=vp8',
+    'video/webm'
+  ].find(t=>window.MediaRecorder&&MediaRecorder.isTypeSupported(t))||'';
+  if(!mime) return {url:'dealer-idle-loop.mp4', local:true, message:'浏览器不支持录制，已使用预生成荷官动效视频'};
+  const chunks=[];
+  const rec=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:3200000});
+  rec.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)};
+  const done=new Promise(resolve=>{rec.onstop=()=>resolve()});
+  rec.start(100);
+  const player=settlement.player.map(c=>({...c,...(c.s?{}:SUIT_META[c.suit])}));
+  const banker=settlement.banker.map(c=>({...c,...(c.s?{}:SUIT_META[c.suit])}));
+  const cards=[
+    ...player.map((c,i)=>({card:c,side:'p',i})),
+    ...banker.map((c,i)=>({card:c,side:'b',i}))
+  ];
+  const t0=performance.now();
+  await new Promise(resolve=>{
+    const tick=()=>{
+      const t=(performance.now()-t0)/1000;
+      if(t>=DURATION){resolve();return}
+      const zoom=1+Math.min(t,DURATION)*0.012;
+      const bright=0.55+Math.min(1,Math.max(0,(t-0.6)/1.2))*0.45;
+      ctx.save();
+      ctx.fillStyle='#07111d';ctx.fillRect(0,0,W,H);
+      const iw=dealer.naturalWidth||dealer.width, ih=dealer.naturalHeight||dealer.height;
+      const scale=Math.max(W/(iw/zoom),H/(ih/zoom));
+      const dw=iw*scale, dh=ih*scale;
+      ctx.filter=`brightness(${bright}) saturate(${0.85+bright*0.2})`;
+      ctx.drawImage(dealer,(W-dw)/2,(H-dh)/2-40*zoom,dw,dh);
+      ctx.filter='none';
+      /* felt band */
+      const feltY=H*0.62;
+      const fg=ctx.createLinearGradient(0,feltY,0,H);
+      fg.addColorStop(0,'rgba(10,40,28,0)');fg.addColorStop(0.18,'rgba(14,70,42,.92)');fg.addColorStop(1,'#0a2a1c');
+      ctx.fillStyle=fg;ctx.fillRect(0,feltY,W,H-feltY);
+      ctx.fillStyle='rgba(200,240,210,.9)';ctx.font='700 18px sans-serif';ctx.textAlign='center';
+      ctx.fillText('闲 PLAYER',W*0.28,feltY+36);
+      ctx.fillText('庄 BANKER',W*0.72,feltY+36);
+      const cw=86,ch=120;
+      cards.forEach((item,idx)=>{
+        const appear=0.55+idx*0.45;
+        const flipAt=appear+0.55;
+        const p=Math.max(0,Math.min(1,(t-appear)/0.45));
+        if(p<=0)return;
+        const faceUp=t>=flipAt;
+        const targetX=item.side==='p'
+          ?(W*0.28-cw/2+(item.i-0.5)*28)
+          :(W*0.72-cw/2+(item.i-0.5)*28);
+        const targetY=feltY+52;
+        const x=targetX+(1-p)*(W*0.78-targetX);
+        const y=targetY+(1-p)*(-180);
+        const s=0.7+0.3*p;
+        ctx.save();
+        ctx.translate(x+cw/2,y+ch/2);
+        ctx.scale(s,s);
+        ctx.rotate((1-p)*-0.25);
+        paintPlayingCard(ctx,item.card,-cw/2,-ch/2,cw,ch,faceUp);
+        ctx.restore();
+      });
+      if(t>DURATION-1.2){
+        ctx.fillStyle='rgba(6,14,28,.55)';
+        drawRoundRect(ctx,W/2-150,feltY+190,300,44,14);ctx.fill();
+        ctx.fillStyle='#ffe7a8';ctx.font='800 20px Georgia,serif';ctx.textAlign='center';
+        ctx.fillText(settlement.summary,W/2,feltY+219);
+      }
+      ctx.restore();
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+  rec.stop();
+  await done;
+  stream.getTracks().forEach(t=>t.stop());
+  revokeLiveBlob();
+  const blob=new Blob(chunks,{type:mime});
+  liveBlobUrl=URL.createObjectURL(blob);
+  return {url:liveBlobUrl, local:true, message:'本地 AI 荷官开牌视频已生成并映射到 LiveVideoArea'};
+}
 async function runAiSyncOpen(){
   const btn=document.getElementById('aiSyncBtn');
   const status=document.getElementById('aiStatus');
@@ -1052,35 +1192,51 @@ async function runAiSyncOpen(){
   forcedHands={player,banker};
   document.getElementById('bacConfirm').disabled=true;
   setVideoPhase('sealed');
-  document.getElementById('cdLabel').textContent='AI 同步开奖中…';
-  document.getElementById('dealStatus').textContent='AI 同步中 · 封盘';
+  document.getElementById('cdLabel').textContent='AI 生成开牌视频中…';
+  document.getElementById('dealStatus').textContent='AI 开牌视频生成中';
   renderCountdown();
-  btn.disabled=true;btn.textContent='同步中…';
-  status.textContent='正在请求 AI 开牌视频并同步牌局…';
-  toast('封盘 · 正在同步开奖');
-  let videoUrl=null;let msg='';
-  try{
-    const res=await fetch('/api/ai-card/generate-video',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        player,banker,
-        sealedDelaySec:SEAL_DELAY,
-        referenceImageUrl:location.origin+'/ai-dealer-ref.jpg'
-      })
-    });
-    const data=await res.json();
-    if(data.success){
-      settlement=data.settlement;
-      videoUrl=data.video&&data.video.videoUrl;
-      msg=(data.video&&data.video.message)||'同步完成';
-      if(data.video&&data.video.demo) msg+='（本地演示回退）';
-    }else{
-      msg=data.error||'接口失败，已用本地结算同步';
+  btn.disabled=true;btn.textContent='生成视频中…';
+  status.textContent='正在生成 AI 荷官开牌发牌视频，并同步牌局…';
+  toast('封盘 · 正在生成 AI 开牌视频');
+  /* Warm LiveVideoArea with motion base while generation runs. */
+  mapLiveVideo('dealer-idle-loop.mp4');
+  setVideoPhase('sealed');
+  const localJob=generateAiDealClip(settlement).catch(err=>({url:null,error:err}));
+  const geminiJob=(async()=>{
+    try{
+      const res=await fetch('/api/ai-card/generate-video',{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          player,banker,
+          sealedDelaySec:SEAL_DELAY,
+          referenceImageUrl:location.origin+'/ai-dealer-ref.jpg'
+        }),
+        signal:AbortSignal.timeout(25000)
+      });
+      return await res.json();
+    }catch(e){
+      return {success:false,error:String(e.message||e)};
     }
-  }catch(e){
-    msg='后端暂不可用，已用本地 AI 变牌同步（牌面/路单/结算对齐）';
+  })();
+  const [localClip, data]=await Promise.all([localJob, geminiJob]);
+  let videoUrl=null;let msg='';
+  if(data&&data.success){
+    settlement=data.settlement||settlement;
+    if(data.video&&data.video.videoUrl&&!data.video.demo){
+      videoUrl=data.video.videoUrl;
+      msg=data.video.message||'Gemini AI 开牌视频已就绪';
+    }else{
+      msg=(data.video&&data.video.message)||'Gemini 未启用';
+    }
+  }else{
+    msg=(data&&data.error)||'后端暂不可用';
   }
-  mapLiveVideo(videoUrl||null);
+  if(!videoUrl && localClip&&localClip.url){
+    videoUrl=localClip.url;
+    msg=(localClip.message||'本地 AI 开牌视频已就绪')+(msg?(' · '+msg):'');
+  }
+  if(!videoUrl) videoUrl='dealer-idle-loop.mp4';
+  mapLiveVideo(videoUrl);
   status.textContent=msg+' · '+settlement.summary;
   closeAiStudio();
   await beginOpenCards(settlement);
