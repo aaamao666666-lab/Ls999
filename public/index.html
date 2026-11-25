@@ -755,7 +755,7 @@ function paintRoad(arr){
 }
 paintRoad(roadSeed);
 let chip=100,bets={},lastBets={},lockedBets={},road=roadSeed.slice();
-let dealing=false,bettingOpen=false,secondsLeft=BET_SECONDS,cdTimer=null,roundNo=87326;
+let dealing=false,bettingOpen=false,secondsLeft=BET_SECONDS,cdTimer=null,roundNo=87326,openSeq=0;
 function cardValue(rank){if(rank==='A')return 1;if(['10','J','Q','K'].includes(rank))return 0;return Number(rank)}
 function handPoint(cards){return cards.reduce((a,c)=>a+cardValue(c.rank),0)%10}
 function drawCard(){
@@ -887,6 +887,7 @@ function localSettle(player,banker){
 }
 async function beginOpenCards(settlement){
   if(dealing)return;
+  const mySeq=++openSeq;
   dealing=true;bettingOpen=false;
   document.getElementById('bacConfirm').disabled=true;
   lockedBets=Object.keys(bets).length?{...bets}:{...lastBets};
@@ -894,6 +895,7 @@ async function beginOpenCards(settlement){
   clearFelt('封盘 · 即将开牌');
   document.getElementById('countdownLayer').classList.add('hide');
   await wait(450);
+  if(mySeq!==openSeq)return;
   roundNo+=1;
   document.getElementById('tableId').textContent='局号 B'+String(roundNo).padStart(7,'0');
   document.getElementById('dealStatus').textContent='荷官开牌中 · 同步变牌…';
@@ -912,9 +914,11 @@ async function beginOpenCards(settlement){
     }
   }
   for(let i=0;i<Math.max(player.length,banker.length);i++){
+    if(mySeq!==openSeq)return;
     if(player[i]) await dealTo('pCards',player[i]);
     if(banker[i]) await dealTo('bCards',banker[i]);
   }
+  if(mySeq!==openSeq)return;
   const final=settlement||localSettle(player,banker);
   document.getElementById('pScore').textContent=final.playerPoint+' 点';
   document.getElementById('bScore').textContent=final.bankerPoint+' 点';
@@ -925,6 +929,7 @@ async function beginOpenCards(settlement){
   toast('同步开奖：'+final.summary+'（演示）');
   bets={};forcedHands=null;document.querySelectorAll('[data-bet]').forEach(x=>x.classList.remove('active'));updateBetSummary();
   await wait(2800);
+  if(mySeq!==openSeq)return;
   dealing=false;
   if(document.getElementById('baccarat').classList.contains('active')) startBettingCountdown();
 }
@@ -1039,9 +1044,20 @@ async function runAiSyncOpen(){
   try{
     settlement=localSettle(player.map(c=>({...c,...SUIT_META[c.suit]})),banker.map(c=>({...c,...SUIT_META[c.suit]})));
   }catch(e){status.textContent=String(e.message||e);return}
+  /* Seal immediately so sync never waits out the remaining countdown. */
+  stopCountdown();
+  openSeq++;
+  dealing=false;
+  bettingOpen=false;
   forcedHands={player,banker};
+  document.getElementById('bacConfirm').disabled=true;
+  setVideoPhase('sealed');
+  document.getElementById('cdLabel').textContent='AI 同步开奖中…';
+  document.getElementById('dealStatus').textContent='AI 同步中 · 封盘';
+  renderCountdown();
   btn.disabled=true;btn.textContent='同步中…';
   status.textContent='正在请求 AI 开牌视频并同步牌局…';
+  toast('封盘 · 正在同步开奖');
   let videoUrl=null;let msg='';
   try{
     const res=await fetch('/api/ai-card/generate-video',{
@@ -1067,8 +1083,6 @@ async function runAiSyncOpen(){
   mapLiveVideo(videoUrl||null);
   status.textContent=msg+' · '+settlement.summary;
   closeAiStudio();
-  stopCountdown();
-  toast('AI 变牌已注入本局');
   await beginOpenCards(settlement);
   btn.disabled=false;btn.textContent='AI 一键变牌与同步开奖';
 }
